@@ -1,64 +1,70 @@
-<style>
-body {
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-</style>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ting Yu Yang</title>
 
 <style>
-
 body {
-  max-width: 680px;
-  margin: 60px auto;
+  margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.7;
-  color: #222;
+
+  /* 文字清楚 */
+  color: #111;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.55);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  position: relative;
+}
+
+/* 背景（淡版、放在後面） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("background.jpg");  /* ← 檔名要跟 repo 一樣 */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.22;   /* ← 想更淡就改 0.18~0.25 */
+  z-index: -1;
+}
+
+main {
+  max-width: 720px;
+  padding: 32px;
+  line-height: 1.6;
 }
 
 h1 {
-  font-size: 32px;
-  margin-bottom: 6px;
+  margin-top: 0;
+  font-weight: 700;
 }
 
-.subtitle {
-  color: #666;
-  font-style: italic;
-  margin-bottom: 28px;
+small {
+  color: #333;
+  opacity: 0.8;
 }
-
-footer {
-  margin-top: 60px;
-  font-size: 14px;
-  color: #777;
-}
-
 </style>
 </head>
 
 <body>
+<main>
 
 <h1>Ting Yu Yang</h1>
-
-<div class="subtitle">
-Essays · Law · AI · Language
-</div>
+<small>Essays · Thought · AI · Language</small>
 
 <p>
-Gatekeepers are everywhere.<br/>
-I exist. I think. I write.<br/>
+Gatekeepers are everywhere.<br>
+I exist. I think. I write.<br>
 Here, the door is unlocked.
 </p>
 
-<footer>
-© Ting Yu Yang — built with words.
-</footer>
-
+</main>
 </body>
 </html>
