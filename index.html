@@ -1,59 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-<head<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ting Yu Yang</title>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Ting Yu Yang</title>
 
-<style>
-  body {
+  <!-- 手寫感字體 -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    /* 整體背景：你的手繪手手 + 淡淡灰 */
     body {
-  background: url('background.jpg') center/cover no-repeat fixed;
-  font-family: Georgia, serif;
-}
-  }
-  
-  body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.12);   /* 想再暗，把 0.12 調高到 0.15、0.18 */
-  pointer-events: none;
-}
+      margin: 0;
+      background: url('background.jpg') center/cover no-repeat fixed;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #222;
+    }
 
-main {
-  max-width: 760px;
-  padding: 60px 60px 80px;
-  line-height: 1.7;
-}
+    /* 蓋一層淡灰，讓背景不要搶字 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.45); /* 想再淡就改 0.5 / 0.55 */
+      pointer-events: none;
+    }
 
-h1 {
-  margin: 0 0 4px;
-  font-weight: 700;
-}
+    /* 版心：左上，文字不會跑掉 */
+    .page {
+      position: relative;
+      z-index: 1;        /* 壓在背景上面 */
+      max-width: 420px;
+      padding: 80px 60px;
+    }
 
-.tagline {
-  font-family: 'Patrick Hand', cursive;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-}
-</style>
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    /* Essays 那一排：手寫字體 + 比現在大一點 */
+    .tagline {
+      margin: 0 0 20px;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin: 0 0 6px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    a {
+      color: #222;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
-<main>
+  <div class="page">
+    <h1>Ting Yu Yang</h1>
 
-<h1>Ting Yu Yang</h1>
-<div class="tagline">Essays · Thought · AI · Language</div>
+    <p class="tagline">Essays · Thought · AI · Language</p>
 
-<p>
-Gatekeepers are everywhere.<br>
-I exist. I think. I write.<br>
-Here, the door is unlocked.
-</p>
+    <p>Gatekeepers are everywhere.</p>
+    <p>I exist. I think. I write.</p>
+    <p>Here, the door is unlocked.</p>
 
-</main>
+    <!-- 之後要做 Essays 頁面，可以在這裡加連結 -->
+    <!-- <p style="margin-top:24px;"><a href="essays.html">→ Enter (Essays)</a></p> -->
+  </div>
 </body>
 </html>
-<p><a href="essays.html">→ Enter (Essays)</a></p>
