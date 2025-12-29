@@ -2,51 +2,68 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Here’s the key</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Here’s the key.</title>
 
 <style>
-  body{
-    margin:0;
-    background:#111;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    font-family: serif;
-  }
+    body {
+        margin: 0;
+        background: #111;
+        color: #f2f2f2;
+        font-family: "Georgia", serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-  .container{
-    text-align:center;
-  }
+    .wrapper {
+        text-align: center;
+    }
 
-  .container img{
-    max-width:90vw;
-    max-height:75vh;
-  }
+    .key-image {
+        width: 260px;
+        max-width: 80%;
+        margin-bottom: 18px;
+        filter: drop-shadow(0px 3px 6px rgba(0,0,0,.45));
+    }
 
-  a.enter{
-    display:inline-block;
-    margin-top:16px;
-    text-decoration:none;
-    font-size:18px;
-    letter-spacing:0.5px;
-    border-bottom:1px solid #aaa;
-    color:#ddd;
-  }
+    .subtitle {
+        font-size: 15px;
+        opacity: .75;
+        margin-bottom: 26px;
+        letter-spacing: .4px;
+    }
 
-  a.enter:hover{
-    color:white;
-    border-color:white;
-  }
+    .enter-btn {
+        text-decoration: none;
+        border: 1px solid #bbb;
+        padding: 9px 20px;
+        border-radius: 4px;
+        color: #f3f3f3;
+        font-size: 14px;
+        transition: .18s ease;
+    }
+
+    .enter-btn:hover {
+        background: #eaeaea;
+        color: #111;
+    }
 </style>
 </head>
 
 <body>
-  <div class="container">
-      <img src="/assets/images/key-landing.jpg" alt="Here's the key">
-      <br>
-      <a class="enter" href="/home.html">Enter</a>
-  </div>
+<div class="wrapper">
+
+    <img src="key.jpg" alt="key" class="key-image">
+
+    <p class="subtitle">
+        Here’s the key. <br>
+        But you don’t actually need it.
+    </p>
+
+    <a href="essays.html" class="enter-btn">Enter</a>
+
+</div>
 </body>
 </html>
