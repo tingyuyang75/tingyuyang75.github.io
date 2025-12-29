@@ -1,111 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ting Yu Yang</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ting Yu Yang</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
+<style>
     body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #222;
-      background-color: #f5f1ea;
-      background-image: url("background.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-attachment: fixed;
-      position: relative;
-      min-height: 100vh;
+        font-family: Georgia, "Times New Roman", serif;
+        background: #f4f4f2;
+        margin: 0;
     }
 
-    /* 淡淡的覆蓋層，讓背景再淺一點 */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(245, 241, 234, 0.65);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .page {
-      max-width: 540px;
-      margin: 70px auto 90px;
-      padding: 40px 32px 55px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.82);
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    .container {
+        max-width: 820px;
+        margin: 60px auto;
+        padding: 0 18px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 14px;
+        box-shadow: 0 20px 50px rgba(0,0,0,.05);
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: 1.9rem;
-      letter-spacing: 0.06em;
+        margin-top: 35px;
+        margin-bottom: 2px;
+        letter-spacing: .5px;
     }
 
-    .tagline {
-      margin: 0 0 30px;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #222;
     }
 
-    p {
-      margin: 6px 0;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
+    nav a:hover { text-decoration: underline; }
 
-    .links {
-      margin-top: 16px;
-      margin-bottom: 28px;
-    }
-
-    .links a {
-      display: inline-block;
-      margin: 0 10px;
-      font-size: 0.95rem;
-      text-decoration: none;
-      color: #444;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 2px;
-    }
-
-    .links a:hover {
-      border-color: #444;
+    .quote { 
+        margin-top: 20px; 
+        font-size: 15px; 
+        line-height: 1.6; 
     }
 
     .key-img {
-      margin-top: 8px;
-      max-width: 260px;
-      width: 100%;
-      border-radius: 6px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+        margin-top: 30px;
+        width: 280px;
+        border-radius: 10px;
+        box-shadow: 0 12px 40px rgba(0,0,0,.12);
     }
-  </style>
+
+    footer { 
+        margin: 30px 0 25px; 
+        font-size: 13px; 
+        color: #777; 
+    }
+</style>
 </head>
 
 <body>
-  <div class="page">
+
+<div class="container">
+
     <h1>Ting Yu Yang</h1>
-    <p class="tagline">Essays ・ Thought ・ AI ・ Language</p>
 
-    <p>Gatekeepers are everywhere.</p>
-    <p>I exist. I think. I write.</p>
-    <p>Here, the door is unlocked.</p>
+    <nav>
+        <a href="essays.html">Essays</a> |
+        <a href="research.html">Research</a> |
+        <a href="#">Contact</a> |
+        <a href="#">FAQ</a>
+    </nav>
 
-    <div class="links">
-      <a href="essays.html">Essays</a>
-      <a href="research.html">Research</a>
-    </div>
+    <p class="quote">
+        Gatekeepers are everywhere.<br>
+        I exist. I think. I write.<br>
+        Here, the door is unlocked.
+    </p>
 
-    <img class="key-img" src="key.jpg" alt="Key illustration">
-  </div>
+    <img class="key-img" src="key%202.jpg" alt="The key is here. You don't need one.">
+
+    <footer>
+        Here’s the key. But you don’t actually need it.
+    </footer>
+
+</div>
+
 </body>
 </html>
