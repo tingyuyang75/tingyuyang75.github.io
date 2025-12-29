@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ting Yu Yang</title>
 
-<!-- 字體：標題 EB Garamond，內文 Libre Baskerville -->
+<!-- 標題：EB Garamond；內文：Libre Baskerville -->
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -17,29 +17,26 @@
     text-align: center;
   }
 
-  /* 大標題：微微金光 */
+  /* 大標題：乾淨、不太閃 */
   h1 {
     font-family: "EB Garamond", serif;
     letter-spacing: 3px;
     margin-top: 70px;
     font-size: 42px;
     color: #f7f2e9;
-    text-shadow:
-      0 0 6px rgba(255, 215, 160, 0.25),
-      0 0 18px rgba(255, 215, 160, 0.12);
   }
 
-  /* 導覽列：細直線＋hover 金色底線 */
+  /* 導覽列：比 quote 大一點、金光很淡 */
   nav {
-    margin-top: 22px;
-    font-size: 13px;
+    margin-top: 26px;
+    font-size: 15px;           /* 比 quote 大 */
   }
 
   nav a {
     position: relative;
     font-family: "Libre Baskerville", serif;
     text-decoration: none;
-    color: #d6d1c7;
+    color: #e2ddd2;
     letter-spacing: 1px;
     margin: 0 10px;
     padding: 0 4px 3px;
@@ -58,7 +55,7 @@
     width: 0;
     height: 1px;
     background: linear-gradient(90deg, #f3c87a, #fff3c4);
-    box-shadow: 0 0 6px rgba(243, 200, 122, 0.55);
+    box-shadow: 0 0 4px rgba(243, 200, 122, 0.35); /* 比之前淡一點 */
     transition: width 0.25s ease;
   }
 
@@ -70,54 +67,57 @@
     width: 100%;
   }
 
-  /* quote 區塊 */
+  /* quote 區塊：安靜一點，讓上面 nav 更搶眼 */
   .quote {
     margin-top: 40px;
     line-height: 1.7;
-    font-size: 15px;
+    font-size: 14px;
+    color: #eae4d9;
   }
 
   .quote-line-1 {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 6px;
   }
 
-  /* 鑰匙圖片：柔柔金光 */
+  /* 鑰匙圖片：有明顯一點但還是高雅的柔金光與陰影 */
   .key-img {
     margin-top: 34px;
-    width: 330px;
+    width: 340px;
     max-width: 80vw;
     border-radius: 6px;
     border: 1px solid rgba(243, 200, 122, 0.32);
     box-shadow:
-      0 14px 30px rgba(0, 0, 0, 0.7),
-      0 0 22px rgba(243, 200, 122, 0.25);
+      0 18px 38px rgba(0, 0, 0, 0.78),
+      0 0 26px rgba(243, 200, 122, 0.45),
+      0 0 80px rgba(243, 200, 122, 0.18);
     transition: box-shadow 0.35s ease, transform 0.35s ease;
   }
 
   .key-img:hover {
     box-shadow:
-      0 18px 40px rgba(0, 0, 0, 0.😎,
-      0 0 30px rgba(243, 200, 122, 0.35);
+      0 20px 44px rgba(0, 0, 0, 0.85),
+      0 0 32px rgba(243, 200, 122, 0.55),
+      0 0 95px rgba(243, 200, 122, 0.25);
     transform: translateY(-2px);
   }
 
-  /* 手機小一點間距 */
+  /* 手機版微調 */
   @media (max-width: 600px) {
     h1 {
       font-size: 32px;
       margin-top: 55px;
     }
     nav {
-      font-size: 12px;
+      font-size: 13px;
     }
     .quote {
-      font-size: 14px;
+      font-size: 13px;
       margin-top: 30px;
     }
     .key-img {
-      margin-top: 30px;
-      width: 270px;
+      margin-top: 28px;
+      width: 280px;
     }
   }
 </style>
