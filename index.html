@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ting Yu Yang</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond:ital@0;1&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -24,19 +24,19 @@ body{
   padding:0 22px 60px;
 }
 
-/* —— 標題（放大） —— */
+/* ===== 標題 ===== */
 h1{
   margin:0;
   font-family:"Cinzel",serif;
   letter-spacing:.23em;
   font-weight:600;
-  font-size:34px;   /* ← 原本 30px，現在更主角 */
+  font-size:36px;
 }
 
-/* —— 導覽列（放大＋更穩） —— */
+/* ===== 導覽 ===== */
 .nav{
-  margin-top:20px;
-  font-size:14px;   /* ← 原本 13 */
+  margin-top:24px;
+  font-size:14px;
   letter-spacing:.23em;
 }
 
@@ -44,9 +44,9 @@ h1{
   position:relative;
   text-decoration:none;
   text-transform:uppercase;
-  margin:0 9px;     /* ← 稍微加寬 */
+  margin:0 9px;
   padding-bottom:2px;
-  font-size:13px;   /* ← 原本 12 */
+  font-size:13px;
   color:#f5f1e5;
 }
 
@@ -59,41 +59,44 @@ h1{
   height:1px;
   background:linear-gradient(90deg,#d4af37,#fff0b3);
   transition:width .25s ease-out;
-  opacity:.9;
 }
 
 .nav a:hover::after{width:100%;}
 .nav a:hover{color:#f7e7c3;}
 
 
-/* —— quote：保持低調 —— */
+/* ===== quote：更文學、可讀 ===== */
 .quote{
-  margin-top:60px;
-  margin-bottom:40px;
-  line-height:1.9;
-  font-size:17px;    /* ← 稍微小於 nav */
+  margin-top:68px;
+  margin-bottom:60px;
+  line-height:2.05;
 }
 
 .quote span{
   display:block;
 }
 
+.quote .main{
+  font-family:"Dancing Script", cursive;
+  font-size:22px;          /* ← 變大＋更像手寫 */
+}
+
 .quote .small{
   opacity:.9;
-  font-size:15.5px;
+  font-size:17px;
 }
 
 
-/* —— 圖片柔金光 —— */
+/* ===== 圖片柔金光 ===== */
 .hero-image{
   display:block;
-  margin:0 auto;
-  max-width:270px;
-  border-radius:7px;
+  margin:35px auto 0;       /* ← 往下 */
+  max-width:300px;          /* ← 變大 */
+  border-radius:9px;
   box-shadow:
-     0 0 75px rgba(212,175,55,.09),
-     0 0 32px rgba(212,175,55,.16),
-     0 0 12px rgba(0,0,0,.8);
+     0 0 110px rgba(212,175,55,.12),
+     0 0 55px rgba(212,175,55,.22),
+     0 0 18px rgba(0,0,0,.85);
 }
 
 </style>
@@ -113,7 +116,7 @@ h1{
   </div>
 
   <div class="quote">
-    <span>Gatekeepers are everywhere.</span>
+    <span class="main">Gatekeepers are everywhere.</span>
     <span class="small">I exist. I think. I write.</span>
     <span class="small">Here, the door is unlocked.</span>
   </div>
