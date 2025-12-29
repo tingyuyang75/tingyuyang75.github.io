@@ -1,179 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ting Yu Yang</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ting Yu Yang</title>
 
-  <!-- 字體：標題用 Libre Baskerville，手寫感用 Nothing You Could Do -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=La+Belle+Aurore&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #050608;
-      --text: #f5f1e6;
-      --muted: #c7c1b4;
-      --accent-soft: #f3d59a;
-      --accent-strong: #f0b15d;
-    }
+<style>
+:root {
+  --bg: #050608;
+  --text: #f5f1e6;
+  --muted: #c7c1b4;
+  --accent-soft: #f3d59a;
+  --accent-strong: #f0b15d;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+/* Base */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #13131a 0%, #050608 55%, #000 100%);
+  color: var(--text);
+  font-family: "Libre Baskerville", serif;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #121218 0%, #050608 55%, #000 100%);
-      color: var(--text);
-      font-family: "Libre Baskerville", "Times New Roman", serif;
-      font-size: 17px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
+.page {
+  width: 100%;
+  max-width: 700px;
+  padding: 86px 18px 90px;   /* ← 這裡讓整個往下移 */
+  text-align: center;
+}
 
-    .page {
-      width: 100%;
-      max-width: 680px;
-      padding: 56px 16px 80px;
-      text-align: center;
-    }
+/* Title */
+h1 {
+  margin: 0 0 20px;
+  font-size: 2.4rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
 
-    h1 {
-      margin: 0 0 14px;
-      font-size: 2.4rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-    }
+/* Nav */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 38px;
+  font-size: 0.92rem;
+  letter-spacing: 0.15em;
+}
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 26px;
-      margin-bottom: 32px;
-      font-size: 0.9rem;
-      letter-spacing: 0.16em;
-    }
+.nav a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  padding-bottom: 3px;
+}
 
-    .nav a {
-      position: relative;
-      text-decoration: none;
-      color: var(--text);
-      padding-bottom: 3px;
-    }
+/* subtle vertical separators */
+.nav a + a::before {
+  content: "|";
+  position: absolute;
+  left: -13px;
+  top: 0;
+  color: rgba(245, 241, 230, 0.28);
+  font-weight: 100;
+}
 
-    /* 金色漸層底線（hover 才出現） */
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        var(--accent-soft),
-        var(--accent-strong),
-        var(--accent-soft)
-      );
-      transition: width 0.25s ease-out;
-    }
+/* gold underline on hover */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent-strong), var(--accent-soft));
+  transition: width 0.25s ease-out;
+}
+.nav a:hover::after {
+  width: 100%;
+}
 
-    .nav a:hover::after {
-      width: 100%;
-    }
+/* quotes */
+.quote-main {
+  margin: 4px 0 14px;
+  font-family: "La Belle Aurore", cursive;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+}
 
-    /* 上方 quote 區塊 */
-    .quote-main {
-      margin: 10px 0 10px;
-      font-family: "Nothing You Could Do", cursive;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-    }
+.quote-sub {
+  margin: 8px 0 28px;
+  font-family: "La Belle Aurore", cursive;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
 
-    .quote-sub {
-      margin: 12px 0 24px; /* 和上面拉開一點距離 */
-      font-family: "Nothing You Could Do", cursive;
-      font-size: 0.95rem;  /* 比主句小一點 */
-      line-height: 1.5;
-      letter-spacing: 0.04em;
-    }
+/* image */
+.key-wrapper {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+.key-image {
+  width: 260px;
+  max-width: 80vw;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 223, 150, 0.22);
+  box-shadow:
+    0 0 26px rgba(251, 214, 134, 0.18),
+    0 18px 40px rgba(0,0,0,0.9);
+  transition: transform .25s ease-out, box-shadow .25s ease-out;
+}
+.key-image:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 32px rgba(251, 214, 134, 0.25),
+    0 22px 50px rgba(0,0,0,.95);
+}
 
-    .quote-sub p {
-      margin: 2px 0;
-    }
-
-    /* 鑰匙圖片 */
-    .key-wrapper {
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .key-image {
-      display: block;
-      width: 260px;
-      max-width: 80vw;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 223, 150, 0.22);
-      box-shadow:
-        0 0 25px rgba(251, 214, 134, 0.18),
-        0 18px 40px rgba(0, 0, 0, 0.9);
-      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
-    }
-
-    /* 輕微放大＋一點金光的 hover，不張揚 */
-    .key-image:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 0 32px rgba(251, 214, 134, 0.26),
-        0 22px 48px rgba(0, 0, 0, 0.95);
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.9rem;
-        letter-spacing: 0.16em;
-      }
-
-      .nav {
-        gap: 16px;
-        font-size: 0.8rem;
-        flex-wrap: wrap;
-      }
-
-      .quote-main {
-        font-size: 1rem;
-      }
-
-      .quote-sub {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+/* mobile */
+@media (max-width: 600px) {
+  .page { padding-top: 72px; }
+  h1 { font-size: 1.9rem; }
+  .nav { gap: 14px; font-size: .82rem; }
+}
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <h1>TING YU YANG</h1>
+<div class="page">
 
-    <nav class="nav">
-      <a href="essays.html">ESSAYS</a>
-      <a href="research.html">RESEARCH</a>
-      <a href="mailto:yangtina75@gmail.com">CONTACT</a>
-      <a href="#">FAQ</a>
-    </nav>
+  <h1>TING YU YANG</h1>
 
-    <p class="quote-main">Gatekeepers are everywhere.</p>
+  <nav class="nav">
+    <a href="essays.html">ESSAYS</a>
+    <a href="research.html">RESEARCH</a>
+    <a href="mailto:yangtina75@gmail.com">CONTACT</a>
+    <a href="#">FAQ</a>
+  </nav>
 
-    <div class="quote-sub">
-      <p>I exist. I think. I write.</p>
-      <p>Here, the door is unlocked.</p>
-    </div>
+  <p class="quote-main">Gatekeepers are everywhere.</p>
 
-    <div class="key-wrapper">
-      <img src="key.jpg" alt="Key illustration" class="key-image">
-    </div>
+  <div class="quote-sub">
+    <p>I exist. I think. I write.</p>
+    <p>Here, the door is unlocked.</p>
   </div>
+
+  <div class="key-wrapper">
+    <img src="key.jpg" class="key-image" alt="Key">
+  </div>
+
+</div>
 </body>
 </html>
