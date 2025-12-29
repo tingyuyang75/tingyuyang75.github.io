@@ -1,161 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ting Yu Yang</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ting Yu Yang</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+  <!-- 字體：標題用 Cinzel，內文字 EB Garamond，手寫感用 Homemade Apple -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond&family=Homemade+Apple&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --bg: #050608;
-  --text: #f5f1e6;
-  --muted: #c7c1b4;
-  --accent-soft: #f3d59a;
-  --accent-strong: #f0b15d;
-}
+  <style>
+    /* 整體背景與排版 */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "EB Garamond", "Times New Roman", serif;
+      color: #f8f5ec;
+      background: radial-gradient(circle at top, #2b2324 0%, #050506 55%, #020203 100%);
+    }
 
-/* Base */
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #13131a 0%, #050608 55%, #000 100%);
-  color: var(--text);
-  font-family: "Libre Baskerville", serif;
-  font-size: 17px;
-  display: flex;
-  justify-content: center;
-}
+    .page {
+      max-width: 620px;
+      margin: 110px auto 80px auto; /* 整塊往下移一點 */
+      text-align: center;
+      padding: 0 20px 60px;
+    }
 
-.page {
-  width: 100%;
-  max-width: 700px;
-  padding: 86px 18px 90px;   /* ← 這裡讓整個往下移 */
-  text-align: center;
-}
+    /* 標題 */
+    h1 {
+      margin: 0;
+      font-family: "Cinzel", "Times New Roman", serif;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      font-size: 30px;
+      text-transform: uppercase;
+    }
 
-/* Title */
-h1 {
-  margin: 0 0 20px;
-  font-size: 2.4rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
+    /* 導覽列：ESSAYS | RESEARCH | CONTACT | FAQ */
+    .nav {
+      margin-top: 18px;
+      font-size: 13px;
+      letter-spacing: 0.22em;
+    }
 
-/* Nav */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  margin-bottom: 38px;
-  font-size: 0.92rem;
-  letter-spacing: 0.15em;
-}
+    .nav a {
+      position: relative;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin: 0 7px;
+      padding-bottom: 2px;
+      font-size: 12px;
+      color: #f5f1e5;
+    }
 
-.nav a {
-  position: relative;
-  text-decoration: none;
-  color: var(--text);
-  padding-bottom: 3px;
-}
+    /* 底下那條細金線（hover 才出現） */
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 1px;
+      background: linear-gradient(90deg, #d4af37, #fff2b0);
+      transition: width 0.25s ease-out;
+      opacity: 0.9;
+    }
 
-/* subtle vertical separators */
-.nav a + a::before {
-  content: "|";
-  position: absolute;
-  left: -13px;
-  top: 0;
-  color: rgba(245, 241, 230, 0.28);
-  font-weight: 100;
-}
+    .nav a:hover::after {
+      width: 100%;
+    }
 
-/* gold underline on hover */
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent-soft), var(--accent-strong), var(--accent-soft));
-  transition: width 0.25s ease-out;
-}
-.nav a:hover::after {
-  width: 100%;
-}
+    .nav a:hover {
+      color: #f7e7c3;
+    }
 
-/* quotes */
-.quote-main {
-  margin: 4px 0 14px;
-  font-family: "La Belle Aurore", cursive;
-  font-size: 1.25rem;
-  letter-spacing: 0.03em;
-}
+    /* 宣言文字區：Gatekeepers... */
+    .quote {
+      margin-top: 55px;
+      margin-bottom: 40px;
+      font-family: "Homemade Apple", cursive;
+      font-size: 20px;
+      line-height: 2.0;
+    }
 
-.quote-sub {
-  margin: 8px 0 28px;
-  font-family: "La Belle Aurore", cursive;
-  font-size: 1.05rem;
-  line-height: 1.55;
-}
+    .quote-main {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 20px;
+    }
 
-/* image */
-.key-wrapper {
-  margin-top: 6px;
-  display: flex;
-  justify-content: center;
-}
-.key-image {
-  width: 260px;
-  max-width: 80vw;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 223, 150, 0.22);
-  box-shadow:
-    0 0 26px rgba(251, 214, 134, 0.18),
-    0 18px 40px rgba(0,0,0,0.9);
-  transition: transform .25s ease-out, box-shadow .25s ease-out;
-}
-.key-image:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 32px rgba(251, 214, 134, 0.25),
-    0 22px 50px rgba(0,0,0,.95);
-}
+    .quote-small {
+      display: block;
+      font-size: 16px;           /* I exist 這兩行再小一點 */
+      margin-top: 4px;
+      opacity: 0.9;
+    }
 
-/* mobile */
-@media (max-width: 600px) {
-  .page { padding-top: 72px; }
-  h1 { font-size: 1.9rem; }
-  .nav { gap: 14px; font-size: .82rem; }
-}
-</style>
+    /* 鑰匙圖片 */
+    .hero-image {
+      display: block;
+      margin: 0 auto;
+      max-width: 270px;
+      border-radius: 6px;
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.7),
+        0 0 26px rgba(212, 175, 55, 0.28); /* 很淡的金光，不會太張揚 */
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
+  <div class="page">
+    <h1>TING YU YANG</h1>
 
-  <h1>TING YU YANG</h1>
+    <div class="nav">
+      <a href="essays.html">Essays</a>
+      |
+      <a href="research.html">Research</a>
+      |
+      <a href="contact.html">Contact</a>
+      |
+      <a href="faq.html">FAQ</a>
+    </div>
 
-  <nav class="nav">
-    <a href="essays.html">ESSAYS</a>
-    <a href="research.html">RESEARCH</a>
-    <a href="mailto:yangtina75@gmail.com">CONTACT</a>
-    <a href="#">FAQ</a>
-  </nav>
+    <div class="quote">
+      <span class="quote-main">Gatekeepers are everywhere.</span>
+      <span class="quote-small">I exist. I think. I write.</span>
+      <span class="quote-small">Here, the door is unlocked.</span>
+    </div>
 
-  <p class="quote-main">Gatekeepers are everywhere.</p>
-
-  <div class="quote-sub">
-    <p>I exist. I think. I write.</p>
-    <p>Here, the door is unlocked.</p>
+    <!-- 這邊用 key.jpg -->
+    <img src="key.jpg" alt="Key illustration" class="hero-image">
   </div>
-
-  <div class="key-wrapper">
-    <img src="key.jpg" class="key-image" alt="Key">
-  </div>
-
-</div>
 </body>
 </html>
