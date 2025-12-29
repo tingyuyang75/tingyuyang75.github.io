@@ -5,124 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ting Yu Yang</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond:ital@0;1&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+  body {
+    margin: 0;
+    color: #e8e8e8;
+    background: radial-gradient(#1d1a1a, #0c0b0b);
+    font-family: "Libre Baskerville", serif;
+    text-align: center;
+  }
 
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:"EB Garamond","Times New Roman",serif;
-  color:#f5f2e8;
-  background:radial-gradient(circle at top,#2b2324 0%,#060608 55%,#020203 100%);
-}
+  h1 {
+    font-family: "EB Garamond", serif;
+    letter-spacing: 3px;
+    margin-top: 65px;
+    font-size: 40px;
+  }
 
-.page{
-  max-width:650px;
-  margin:105px auto 90px;
-  text-align:center;
-  padding:0 25px 60px;
-}
+  nav a {
+    font-family: "Libre Baskerville", serif;
+    margin: 0 14px;
+    text-decoration: none;
+    color: #d3d3d3;
+  }
 
-/* ===== 標題 ===== */
-h1{
-  margin:0 0 8px;
-  font-family:"Cinzel",serif;
-  letter-spacing:.23em;
-  font-weight:600;
-  font-size:37px;
-}
+  nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 
-/* ===== 導覽 ===== */
-.nav{
-  margin-top:10px;
-  font-size:15px;
-  letter-spacing:.20em;
-}
+  .quote {
+    margin-top: 35px;
+    line-height: 1.7;
+    font-size: 15px;
+  }
 
-.nav a{
-  position:relative;
-  text-decoration:none;
-  text-transform:uppercase;
-  margin:0 10px;
-  padding-bottom:2px;
-  font-size:14px;
-  color:#f5f1e5;
-}
+  /* Key image */
+  .key-img {
+    margin-top: 32px;
+    width: 320px;
+    border-radius: 6px;
+    box-shadow: 0 12px 25px rgba(255, 220, 120, 0.15);
+    transition: 0.4s ease;
+  }
 
-.nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-2px;
-  width:0%;
-  height:1px;
-  background:linear-gradient(90deg,#d4af37,#fff0b3);
-  transition:width .25s ease-out;
-}
-
-.nav a:hover::after{width:100%;}
-.nav a:hover{color:#f7e7c3;}
-
-
-/* ===== quote ===== */
-.quote{
-  margin-top:40px;      /* ← 往上 */
-  margin-bottom:55px;
-  line-height:2.05;
-}
-
-.quote .main{
-  display:block;
-  font-family:"EB Garamond",serif;
-  font-size:19px;       /* ← 比之前大 */
-}
-
-.quote .small{
-  display:block;
-  opacity:.9;
-  font-size:16px;
-}
-
-
-/* ===== 圖片柔金光（加強） ===== */
-.hero-image{
-  display:block;
-  margin:25px auto 0;
-  max-width:330px;       /* ← 再大一點 */
-  border-radius:10px;
-
-  box-shadow:
-     0 0 22px rgba(212,175,55,.45),
-     0 0 75px rgba(212,175,55,.28),
-     0 0 10px rgba(0,0,0,.9);
-}
-
+  .key-img:hover {
+    box-shadow: 0 16px 35px rgba(255, 210, 120, 0.25);
+  }
 </style>
 </head>
 
 <body>
 
-<div class="page">
+<h1>TING YU YANG</h1>
 
-  <h1>TING YU YANG</h1>
+<nav>
+  <a href="essays.html">ESSAYS</a> |
+  <a href="research.html">RESEARCH</a> |
+  <a href="#">CONTACT</a> |
+  <a href="#">FAQ</a>
+</nav>
 
-  <div class="nav">
-    <a href="essays.html">Essays</a> |
-    <a href="research.html">Research</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="faq.html">FAQ</a>
-  </div>
-
-  <div class="quote">
-    <span class="main">Gatekeepers are everywhere.</span>
-    <span class="small">I exist. I think. I write.</span>
-    <span class="small">Here, the door is unlocked.</span>
-  </div>
-
-  <img src="key.jpg" class="hero-image" alt="Key">
-
+<div class="quote">
+  Gatekeepers are everywhere.<br>
+  I exist. I think. I write.<br>
+  Here, the door is unlocked.
 </div>
+
+<img src="key.jpg" class="key-img" alt="Key">
 
 </body>
 </html>
