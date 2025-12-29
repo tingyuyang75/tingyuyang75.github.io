@@ -11,85 +11,114 @@
   body {
     margin: 0;
     font-family: "EB Garamond", serif;
-    color: #e8e6e3;
+    color: #f3efe7;
     text-align: center;
-    background: radial-gradient( circle at top, #1c1a1a, #0c0b0b );
+    background: radial-gradient(circle at top, #1f1a1a, #050405);
   }
 
   h1 {
-    margin-top: 55px;
+    margin-top: 52px;
     letter-spacing: 3px;
-    font-size: 36px;
+    font-size: 38px;
     font-weight: 600;
   }
 
   nav {
-    margin-top: 26px;
-    font-size: 16px;
+    margin-top: 24px;
+    font-size: 17px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;        /* ⭐ 手機時允許換行 */
+    flex-wrap: wrap;
     gap: 6px;
   }
 
   nav a {
     text-decoration: none;
-    color: #e6e3de;
+    color: #f0ece4;
     letter-spacing: 1px;
     padding: 0 6px;
     position: relative;
   }
 
   nav span {
-    opacity: .45;
+    opacity: 0.5;
   }
 
-  /* ⭐ hover 的淡淡金色 */
+  /* 淡淡金光 hover */
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: -3px;
+    height: 1px;
+    background: linear-gradient(to right,
+      rgba(255, 222, 173, 0),
+      rgba(255, 222, 173, 0.7),
+      rgba(255, 222, 173, 0)
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
   nav a:hover {
-    color: #e8d6a6;
+    color: #f3e0b1;
+  }
+
+  nav a:hover::after {
+    opacity: 1;
   }
 
   .quote {
-    margin-top: 45px;
-    font-size: 17px;
-    line-height: 1.7;
+    margin-top: 46px;
+    font-size: 18px;
+    line-height: 1.8;
   }
 
   .image-wrapper {
-    margin: 40px auto 70px auto;
-    width: 290px;
-    padding: 10px;
-    border-radius: 14px;
+    margin: 42px auto 80px auto;
+    width: 320px;
+    padding: 14px;
+    border-radius: 18px;
 
-    /* ⭐ 柔柔的金光 */
+    /* 柔金光 + 暖色邊框，去掉「死黑框」感 */
+    background: radial-gradient(circle at top,
+      rgba(250, 240, 225, 0.85),
+      rgba(20, 14, 12, 0.92)
+    );
+
     box-shadow:
-      0 0 12px rgba(255, 210, 130, 0.18),
-      0 0 28px rgba(255, 188, 120, 0.15);
+      0 0 20px rgba(255, 214, 160, 0.40),
+      0 0 70px rgba(255, 192, 140, 0.22);
   }
 
   .image-wrapper img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     display: block;
   }
 
-  /* 📱 手機優化 */
+  /* 手機排版 */
   @media (max-width: 600px) {
-
-    h1 { font-size: 30px; }
+    h1 {
+      font-size: 32px;
+      margin-top: 44px;
+    }
 
     nav {
-      font-size: 14px;
+      font-size: 15px;
       gap: 4px;
     }
 
     .quote {
-      font-size: 15px;
+      font-size: 16px;
+      margin-top: 38px;
     }
 
     .image-wrapper {
-      width: 270px;
-      margin-top: 35px;
+      width: 285px;
+      margin-top: 34px;
+      padding: 12px;
     }
   }
 </style>
