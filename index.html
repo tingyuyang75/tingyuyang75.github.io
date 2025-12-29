@@ -1,123 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ting Yu Yang</title>
 
-<!-- 標題：EB Garamond；內文：Libre Baskerville -->
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
-    color: #e8e8e8;
-    background: radial-gradient(#1b1818, #050405);
-    font-family: "Libre Baskerville", serif;
-    text-align: center;
-  }
-
-  /* 大標題：乾淨、不太閃 */
-  h1 {
     font-family: "EB Garamond", serif;
-    letter-spacing: 3px;
-    margin-top: 70px;
-    font-size: 42px;
-    color: #f7f2e9;
+    color: #e8e6e3;
+    text-align: center;
+    background: radial-gradient( circle at top, #1c1a1a, #0c0b0b );
   }
 
-  /* 導覽列：比 quote 大一點、金光很淡 */
+  h1 {
+    margin-top: 55px;
+    letter-spacing: 3px;
+    font-size: 36px;
+    font-weight: 600;
+  }
+
   nav {
     margin-top: 26px;
-    font-size: 15px;           /* 比 quote 大 */
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;        /* ⭐ 手機時允許換行 */
+    gap: 6px;
   }
 
   nav a {
-    position: relative;
-    font-family: "Libre Baskerville", serif;
     text-decoration: none;
-    color: #e2ddd2;
+    color: #e6e3de;
     letter-spacing: 1px;
-    margin: 0 10px;
-    padding: 0 4px 3px;
+    padding: 0 6px;
+    position: relative;
   }
 
-  nav span.divider {
-    color: #807a71;
-    margin: 0 2px;
+  nav span {
+    opacity: .45;
   }
 
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 1px;
-    background: linear-gradient(90deg, #f3c87a, #fff3c4);
-    box-shadow: 0 0 4px rgba(243, 200, 122, 0.35); /* 比之前淡一點 */
-    transition: width 0.25s ease;
-  }
-
+  /* ⭐ hover 的淡淡金色 */
   nav a:hover {
-    color: #f3c87a;
+    color: #e8d6a6;
   }
 
-  nav a:hover::after {
-    width: 100%;
-  }
-
-  /* quote 區塊：安靜一點，讓上面 nav 更搶眼 */
   .quote {
-    margin-top: 40px;
+    margin-top: 45px;
+    font-size: 17px;
     line-height: 1.7;
-    font-size: 14px;
-    color: #eae4d9;
   }
 
-  .quote-line-1 {
-    font-size: 15px;
-    margin-bottom: 6px;
-  }
+  .image-wrapper {
+    margin: 40px auto 70px auto;
+    width: 290px;
+    padding: 10px;
+    border-radius: 14px;
 
-  /* 鑰匙圖片：有明顯一點但還是高雅的柔金光與陰影 */
-  .key-img {
-    margin-top: 34px;
-    width: 340px;
-    max-width: 80vw;
-    border-radius: 6px;
-    border: 1px solid rgba(243, 200, 122, 0.32);
+    /* ⭐ 柔柔的金光 */
     box-shadow:
-      0 18px 38px rgba(0, 0, 0, 0.78),
-      0 0 26px rgba(243, 200, 122, 0.45),
-      0 0 80px rgba(243, 200, 122, 0.18);
-    transition: box-shadow 0.35s ease, transform 0.35s ease;
+      0 0 12px rgba(255, 210, 130, 0.18),
+      0 0 28px rgba(255, 188, 120, 0.15);
   }
 
-  .key-img:hover {
-    box-shadow:
-      0 20px 44px rgba(0, 0, 0, 0.85),
-      0 0 32px rgba(243, 200, 122, 0.55),
-      0 0 95px rgba(243, 200, 122, 0.25);
-    transform: translateY(-2px);
+  .image-wrapper img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
   }
 
-  /* 手機版微調 */
+  /* 📱 手機優化 */
   @media (max-width: 600px) {
-    h1 {
-      font-size: 32px;
-      margin-top: 55px;
-    }
+
+    h1 { font-size: 30px; }
+
     nav {
-      font-size: 13px;
+      font-size: 14px;
+      gap: 4px;
     }
+
     .quote {
-      font-size: 13px;
-      margin-top: 30px;
+      font-size: 15px;
     }
-    .key-img {
-      margin-top: 28px;
-      width: 280px;
+
+    .image-wrapper {
+      width: 270px;
+      margin-top: 35px;
     }
   }
 </style>
@@ -128,19 +100,21 @@
 <h1>TING YU YANG</h1>
 
 <nav>
-  <a href="essays.html">ESSAYS</a><span class="divider">|</span>
-  <a href="research.html">RESEARCH</a><span class="divider">|</span>
-  <a href="#">CONTACT</a><span class="divider">|</span>
-  <a href="#">FAQ</a>
+  <a href="essays.html">ESSAYS</a> <span>|</span>
+  <a href="research.html">RESEARCH</a> <span>|</span>
+  <a href="contact.html">CONTACT</a> <span>|</span>
+  <a href="faq.html">FAQ</a>
 </nav>
 
 <div class="quote">
-  <div class="quote-line-1">Gatekeepers are everywhere.</div>
+  Gatekeepers are everywhere. <br>
   I exist. I think. I write.<br>
   Here, the door is unlocked.
 </div>
 
-<img src="key.jpg" class="key-img" alt="Key">
+<div class="image-wrapper">
+  <img src="key.jpg" alt="Key image">
+</div>
 
 </body>
 </html>
