@@ -1,107 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ting Yu Yang</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ting Yu Yang</title>
 
-<!-- Google 字體 -->
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <!-- 字體：標題用 Libre Baskerville，手寫感用 Nothing You Could Do -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 
-<style>
-  body {
-    margin: 0;
-    font-family: "Libre Baskerville", serif;
-    background: #121214;
-    color: #f4f4f4;
-    text-align: center;
-  }
+  <style>
+    :root {
+      --bg: #050608;
+      --text: #f5f1e6;
+      --muted: #c7c1b4;
+      --accent-soft: #f3d59a;
+      --accent-strong: #f0b15d;
+    }
 
-  header {
-    padding: 42px 0 18px 0;
-    letter-spacing: 1.5px;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  h1 {
-    font-size: 30px;
-    margin-bottom: 16px;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #121218 0%, #050608 55%, #000 100%);
+      color: var(--text);
+      font-family: "Libre Baskerville", "Times New Roman", serif;
+      font-size: 17px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
 
-  nav a {
-    color: #e7e6e3;
-    text-decoration: none;
-    margin: 0 12px;
-    font-size: 15px;
-    transition: 0.25s;
-    position: relative;
-  }
+    .page {
+      width: 100%;
+      max-width: 680px;
+      padding: 56px 16px 80px;
+      text-align: center;
+    }
 
-  /* ✨ 金色滑過底線 */
-  nav a:hover::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #d8b36a, #f5e3a1);
-  }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 2.4rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
 
-  .quote {
-    margin-top: 26px;
-    line-height: 1.7;
-    font-size: 15px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+    }
 
-  /* ✍🏼 手寫感字體（只套在 quote） */
-  .quote-hand {
-    font-family: "Gloria Hallelujah", cursive;
-    font-size: 16px;
-  }
+    .nav a {
+      position: relative;
+      text-decoration: none;
+      color: var(--text);
+      padding-bottom: 3px;
+    }
 
-  /* 鑰匙圖 */
-  .hero-key {
-    width: 260px;
-    border-radius: 6px;
-    margin-top: 24px;
+    /* 金色漸層底線（hover 才出現） */
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        var(--accent-soft),
+        var(--accent-strong),
+        var(--accent-soft)
+      );
+      transition: width 0.25s ease-out;
+    }
 
-    /* ✨ 不張揚的金光 */
-    filter: drop-shadow(0 0 6px rgba(255, 215, 120, 0.32))
-            drop-shadow(0 0 18px rgba(255, 190, 80, 0.18));
-    transition: 0.35s ease;
-  }
+    .nav a:hover::after {
+      width: 100%;
+    }
 
-  .hero-key:hover {
-    filter: drop-shadow(0 0 10px rgba(255, 220, 140, 0.55))
-            drop-shadow(0 0 26px rgba(255, 190, 80, 0.32));
-    transform: translateY(-2px);
-  }
-</style>
+    /* 上方 quote 區塊 */
+    .quote-main {
+      margin: 10px 0 10px;
+      font-family: "Nothing You Could Do", cursive;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .quote-sub {
+      margin: 12px 0 24px; /* 和上面拉開一點距離 */
+      font-family: "Nothing You Could Do", cursive;
+      font-size: 0.95rem;  /* 比主句小一點 */
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .quote-sub p {
+      margin: 2px 0;
+    }
+
+    /* 鑰匙圖片 */
+    .key-wrapper {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .key-image {
+      display: block;
+      width: 260px;
+      max-width: 80vw;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 223, 150, 0.22);
+      box-shadow:
+        0 0 25px rgba(251, 214, 134, 0.18),
+        0 18px 40px rgba(0, 0, 0, 0.9);
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    /* 輕微放大＋一點金光的 hover，不張揚 */
+    .key-image:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 0 32px rgba(251, 214, 134, 0.26),
+        0 22px 48px rgba(0, 0, 0, 0.95);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.9rem;
+        letter-spacing: 0.16em;
+      }
+
+      .nav {
+        gap: 16px;
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+      }
+
+      .quote-main {
+        font-size: 1rem;
+      }
+
+      .quote-sub {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <h1>TING YU YANG</h1>
 
-<header>
-  <h1>TING YU YANG</h1>
+    <nav class="nav">
+      <a href="essays.html">ESSAYS</a>
+      <a href="research.html">RESEARCH</a>
+      <a href="mailto:yangtina75@gmail.com">CONTACT</a>
+      <a href="#">FAQ</a>
+    </nav>
 
-  <nav>
-    <a href="essays.html">ESSAYS</a> |
-    <a href="research.html">RESEARCH</a> |
-    <a href="#">CONTACT</a> |
-    <a href="#">FAQ</a>
-  </nav>
+    <p class="quote-main">Gatekeepers are everywhere.</p>
 
-  <div class="quote">
-    <p class="quote-hand">Gatekeepers are everywhere.</p>
-    <p>I exist. I think. I write.<br>
-    Here, the door is unlocked.</p>
+    <div class="quote-sub">
+      <p>I exist. I think. I write.</p>
+      <p>Here, the door is unlocked.</p>
+    </div>
+
+    <div class="key-wrapper">
+      <img src="key.jpg" alt="Key illustration" class="key-image">
+    </div>
   </div>
-
-  <img src="key.jpg" alt="Key image" class="hero-key">
-</header>
-
 </body>
 </html>
