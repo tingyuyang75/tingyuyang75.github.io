@@ -1,135 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ting Yu Yang</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ting Yu Yang</title>
 
-  <!-- 字體：標題用 Cinzel，內文字 EB Garamond，手寫感用 Homemade Apple -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
 
-  <style>
-    /* 整體背景與排版 */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "EB Garamond", "Times New Roman", serif;
-      color: #f8f5ec;
-      background: radial-gradient(circle at top, #2b2324 0%, #050506 55%, #020203 100%);
-    }
+<style>
 
-    .page {
-      max-width: 620px;
-      margin: 110px auto 80px auto; /* 整塊往下移一點 */
-      text-align: center;
-      padding: 0 20px 60px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"EB Garamond","Times New Roman",serif;
+  color:#f5f2e8;
+  background:radial-gradient(circle at top,#2b2324 0%,#060608 55%,#020203 100%);
+}
 
-    /* 標題 */
-    h1 {
-      margin: 0;
-      font-family: "Cinzel", "Times New Roman", serif;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      font-size: 30px;
-      text-transform: uppercase;
-    }
+.page{
+  max-width:620px;
+  margin:120px auto 90px;
+  text-align:center;
+  padding:0 22px 60px;
+}
 
-    /* 導覽列：ESSAYS | RESEARCH | CONTACT | FAQ */
-    .nav {
-      margin-top: 18px;
-      font-size: 13px;
-      letter-spacing: 0.22em;
-    }
+/* —— 標題（放大） —— */
+h1{
+  margin:0;
+  font-family:"Cinzel",serif;
+  letter-spacing:.23em;
+  font-weight:600;
+  font-size:34px;   /* ← 原本 30px，現在更主角 */
+}
 
-    .nav a {
-      position: relative;
-      text-decoration: none;
-      text-transform: uppercase;
-      margin: 0 7px;
-      padding-bottom: 2px;
-      font-size: 12px;
-      color: #f5f1e5;
-    }
+/* —— 導覽列（放大＋更穩） —— */
+.nav{
+  margin-top:20px;
+  font-size:14px;   /* ← 原本 13 */
+  letter-spacing:.23em;
+}
 
-    /* 底下那條細金線（hover 才出現） */
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 0%;
-      height: 1px;
-      background: linear-gradient(90deg, #d4af37, #fff2b0);
-      transition: width 0.25s ease-out;
-      opacity: 0.9;
-    }
+.nav a{
+  position:relative;
+  text-decoration:none;
+  text-transform:uppercase;
+  margin:0 9px;     /* ← 稍微加寬 */
+  padding-bottom:2px;
+  font-size:13px;   /* ← 原本 12 */
+  color:#f5f1e5;
+}
 
-    .nav a:hover::after {
-      width: 100%;
-    }
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0%;
+  height:1px;
+  background:linear-gradient(90deg,#d4af37,#fff0b3);
+  transition:width .25s ease-out;
+  opacity:.9;
+}
 
-    .nav a:hover {
-      color: #f7e7c3;
-    }
+.nav a:hover::after{width:100%;}
+.nav a:hover{color:#f7e7c3;}
 
-    /* 宣言文字區：Gatekeepers... */
-    .quote {
-      margin-top: 55px;
-      margin-bottom: 40px;
-      font-family: "Homemade Apple", cursive;
-      font-size: 20px;
-      line-height: 2.0;
-    }
 
-    .quote-main {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 20px;
-    }
+/* —— quote：保持低調 —— */
+.quote{
+  margin-top:60px;
+  margin-bottom:40px;
+  line-height:1.9;
+  font-size:17px;    /* ← 稍微小於 nav */
+}
 
-    .quote-small {
-      display: block;
-      font-size: 16px;           /* I exist 這兩行再小一點 */
-      margin-top: 4px;
-      opacity: 0.9;
-    }
+.quote span{
+  display:block;
+}
 
-    /* 鑰匙圖片 */
-    .hero-image {
-      display: block;
-      margin: 0 auto;
-      max-width: 270px;
-      border-radius: 6px;
-      box-shadow:
-        0 0 40px rgba(0, 0, 0, 0.7),
-        0 0 26px rgba(212, 175, 55, 0.28); /* 很淡的金光，不會太張揚 */
-    }
-  </style>
+.quote .small{
+  opacity:.9;
+  font-size:15.5px;
+}
+
+
+/* —— 圖片柔金光 —— */
+.hero-image{
+  display:block;
+  margin:0 auto;
+  max-width:270px;
+  border-radius:7px;
+  box-shadow:
+     0 0 75px rgba(212,175,55,.09),
+     0 0 32px rgba(212,175,55,.16),
+     0 0 12px rgba(0,0,0,.8);
+}
+
+</style>
 </head>
 
 <body>
-  <div class="page">
-    <h1>TING YU YANG</h1>
 
-    <div class="nav">
-      <a href="essays.html">Essays</a>
-      |
-      <a href="research.html">Research</a>
-      |
-      <a href="contact.html">Contact</a>
-      |
-      <a href="faq.html">FAQ</a>
-    </div>
+<div class="page">
 
-    <div class="quote">
-      <span class="quote-main">Gatekeepers are everywhere.</span>
-      <span class="quote-small">I exist. I think. I write.</span>
-      <span class="quote-small">Here, the door is unlocked.</span>
-    </div>
+  <h1>TING YU YANG</h1>
 
-    <!-- 這邊用 key.jpg -->
-    <img src="key.jpg" alt="Key illustration" class="hero-image">
+  <div class="nav">
+    <a href="essays.html">Essays</a> |
+    <a href="research.html">Research</a> |
+    <a href="contact.html">Contact</a> |
+    <a href="faq.html">FAQ</a>
   </div>
+
+  <div class="quote">
+    <span>Gatekeepers are everywhere.</span>
+    <span class="small">I exist. I think. I write.</span>
+    <span class="small">Here, the door is unlocked.</span>
+  </div>
+
+  <img src="key.jpg" class="hero-image" alt="Key">
+
+</div>
+
 </body>
 </html>
