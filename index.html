@@ -5,54 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ting Yu Yang</title>
 
-<!-- Google Fonts -->
+<!-- 字體：標題 EB Garamond，內文 Libre Baskerville -->
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
     color: #e8e8e8;
-    background: radial-gradient(#1d1a1a, #0c0b0b);
+    background: radial-gradient(#1b1818, #050405);
     font-family: "Libre Baskerville", serif;
     text-align: center;
   }
 
+  /* 大標題：微微金光 */
   h1 {
     font-family: "EB Garamond", serif;
     letter-spacing: 3px;
-    margin-top: 65px;
-    font-size: 40px;
+    margin-top: 70px;
+    font-size: 42px;
+    color: #f7f2e9;
+    text-shadow:
+      0 0 6px rgba(255, 215, 160, 0.25),
+      0 0 18px rgba(255, 215, 160, 0.12);
+  }
+
+  /* 導覽列：細直線＋hover 金色底線 */
+  nav {
+    margin-top: 22px;
+    font-size: 13px;
   }
 
   nav a {
+    position: relative;
     font-family: "Libre Baskerville", serif;
-    margin: 0 14px;
     text-decoration: none;
-    color: #d3d3d3;
+    color: #d6d1c7;
+    letter-spacing: 1px;
+    margin: 0 10px;
+    padding: 0 4px 3px;
+  }
+
+  nav span.divider {
+    color: #807a71;
+    margin: 0 2px;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #f3c87a, #fff3c4);
+    box-shadow: 0 0 6px rgba(243, 200, 122, 0.55);
+    transition: width 0.25s ease;
   }
 
   nav a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    color: #f3c87a;
   }
 
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* quote 區塊 */
   .quote {
-    margin-top: 35px;
+    margin-top: 40px;
     line-height: 1.7;
     font-size: 15px;
   }
 
-  /* Key image */
+  .quote-line-1 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  /* 鑰匙圖片：柔柔金光 */
   .key-img {
-    margin-top: 32px;
-    width: 320px;
+    margin-top: 34px;
+    width: 330px;
+    max-width: 80vw;
     border-radius: 6px;
-    box-shadow: 0 12px 25px rgba(255, 220, 120, 0.15);
-    transition: 0.4s ease;
+    border: 1px solid rgba(243, 200, 122, 0.32);
+    box-shadow:
+      0 14px 30px rgba(0, 0, 0, 0.7),
+      0 0 22px rgba(243, 200, 122, 0.25);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
   }
 
   .key-img:hover {
-    box-shadow: 0 16px 35px rgba(255, 210, 120, 0.25);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.😎,
+      0 0 30px rgba(243, 200, 122, 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* 手機小一點間距 */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 32px;
+      margin-top: 55px;
+    }
+    nav {
+      font-size: 12px;
+    }
+    .quote {
+      font-size: 14px;
+      margin-top: 30px;
+    }
+    .key-img {
+      margin-top: 30px;
+      width: 270px;
+    }
   }
 </style>
 </head>
@@ -62,14 +128,14 @@
 <h1>TING YU YANG</h1>
 
 <nav>
-  <a href="essays.html">ESSAYS</a> |
-  <a href="research.html">RESEARCH</a> |
-  <a href="#">CONTACT</a> |
+  <a href="essays.html">ESSAYS</a><span class="divider">|</span>
+  <a href="research.html">RESEARCH</a><span class="divider">|</span>
+  <a href="#">CONTACT</a><span class="divider">|</span>
   <a href="#">FAQ</a>
 </nav>
 
 <div class="quote">
-  Gatekeepers are everywhere.<br>
+  <div class="quote-line-1">Gatekeepers are everywhere.</div>
   I exist. I think. I write.<br>
   Here, the door is unlocked.
 </div>
