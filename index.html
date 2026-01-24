@@ -5,18 +5,21 @@
   <title>Ting Yu Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font: elegant + readable -->
+  <!-- Fonts: body serif + readable handwritten -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#0e0e0e;
       --text:#eaeaea;
-      --muted:rgba(234,234,234,0.85);
-      --sep:rgba(234,234,234,0.40);
-      --gold:#c8a96a; /* hover gold */
+      --muted:rgba(234,234,234,0.88);
+      --sep:rgba(234,234,234,0.38);
+
+      /* lighter gold-gray hover */
+      --gold:#b79b6b;
+
       --panel:rgba(12,12,12,0.92);
       --panel-border:rgba(255,255,255,0.10);
     }
@@ -43,22 +46,27 @@
     }
 
     header h1 {
-      font-size: clamp(28px, 3.2vw, 44px); /* name is the largest */
+      font-size: clamp(30px, 3.4vw, 46px);
       letter-spacing: 2px;
       font-weight: 400;
       margin: 0 0 14px 0;
     }
 
-    /* --- Nav --- */
+    /* --- Nav (bigger than the quote) --- */
     .topnav{
       display:flex;
       justify-content:center;
       align-items:center;
       gap: 16px;
-      font-size: 14px;            /* nav smaller than name */
-      letter-spacing: 1px;
-      opacity: 0.9;
+      font-size: clamp(15px, 1.55vw, 18px); /* nav > quote */
+      letter-spacing: 1.2px;
+      opacity: 0.92;
       user-select: none;
+
+      /* give dropdown room so it won't overlap quote */
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 10;
     }
 
     .nav-sep{
@@ -73,20 +81,19 @@
       transition: color 140ms ease;
     }
 
-    /* gold hover you wanted */
     .topnav a:hover,
     .topnav summary:hover{
       color: var(--gold);
     }
 
-    /* --- Dropdown via details/summary (clickable on desktop+mobile) --- */
+    /* --- Dropdown via details/summary (clickable everywhere) --- */
     details.dropdown{
       position: relative;
       display: inline-block;
     }
 
     details.dropdown > summary{
-      list-style: none; /* remove default marker */
+      list-style: none;
       display: inline-block;
     }
 
@@ -94,11 +101,12 @@
       display: none;
     }
 
+    /* Dropdown opens UP, not down -> avoids overlapping the quote */
     .dropdown-content{
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      top: 28px;
+      bottom: 28px;           /* open upward */
       min-width: 170px;
       padding: 10px;
       background: var(--panel);
@@ -109,8 +117,9 @@
     .dropdown-content a{
       display: block;
       padding: 8px 10px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       white-space: nowrap;
+      font-size: 15px;
     }
 
     .dropdown-content a:hover{
@@ -118,7 +127,7 @@
       text-decoration: underline;
     }
 
-    /* --- Main content --- */
+    /* --- Main --- */
     main {
       flex: 1;
       display: flex;
@@ -126,24 +135,26 @@
       align-items: center;
       justify-content: flex-start;
       width: 100%;
-      max-width: 720px;
-      padding: 26px 20px 40px 20px;
+      max-width: 820px;
+      padding: 10px 20px 50px 20px;
     }
 
+    /* Handwritten quote (elegant + readable) */
     .intro-text {
       text-align: center;
-      font-size: clamp(16px, 1.9vw, 22px); /* smaller than before */
-      line-height: 1.65;
-      margin-top: 40px;   /* move it DOWN */
-      margin-bottom: 44px;
-      opacity: 0.95;
+      font-family: "Caveat", cursive;
+      font-size: clamp(22px, 2.6vw, 34px); /* smaller than nav, larger than normal p */
+      line-height: 1.45;
+      margin-top: 8px;
+      margin-bottom: 34px;
+      opacity: 0.96;
     }
 
-    /* --- Image: fully blended, no frame --- */
+    /* --- Image --- */
     .hero-image {
       display: block;
-      max-width: 340px;
-      width: 82%;
+      max-width: 360px;
+      width: 84%;
       margin: 0 auto;
 
       border: none !important;
@@ -160,21 +171,16 @@
       height: 40px;
     }
 
-    /* --- Mobile fine-tune --- */
     @media (max-width: 600px) {
-      header {
-        margin-top: 54px;
-      }
+      header { margin-top: 54px; }
       .topnav{
-        font-size: 12px;
         gap: 12px;
+        margin-bottom: 18px;
+        letter-spacing: 1px;
       }
       .dropdown-content{
-        top: 24px;
+        bottom: 24px;
         min-width: 160px;
-      }
-      .intro-text{
-        margin-top: 34px;
       }
     }
   </style>
