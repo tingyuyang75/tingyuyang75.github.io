@@ -1,148 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ting Yu Yang</title>
+  <meta charset="UTF-8" />
+  <title>Ting Yu Yang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Font: elegant + readable -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-  body {
-    margin: 0;
-    font-family: "EB Garamond", serif;
-    color: #f3efe7;
-    text-align: center;
-    background: radial-gradient(circle at top, #1f1a1a, #050405);
-  }
+  <style>
+    /* --- Base --- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0e0e0e;
+      color: #eaeaea;
+      font-family: "Libre Baskerville", Georgia, serif;
+    }
 
-  h1 {
-    margin-top: 52px;
-    letter-spacing: 3px;
-    font-size: 38px;
-    font-weight: 600;
-  }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  nav {
-    margin-top: 24px;
-    font-size: 17px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+    /* --- Header / Name --- */
+    header {
+      margin-top: 60px;
+      text-align: center;
+    }
 
-  nav a {
-    text-decoration: none;
-    color: #f0ece4;
-    letter-spacing: 1px;
-    padding: 0 6px;
-    position: relative;
-  }
-
-  nav span {
-    opacity: 0.5;
-  }
-
-  /* 淡淡金光 hover */
-  nav a::after {
-    content: "";
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    bottom: -3px;
-    height: 1px;
-    background: linear-gradient(to right,
-      rgba(255, 222, 173, 0),
-      rgba(255, 222, 173, 0.7),
-      rgba(255, 222, 173, 0)
-    );
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-
-  nav a:hover {
-    color: #f3e0b1;
-  }
-
-  nav a:hover::after {
-    opacity: 1;
-  }
-
-  .quote {
-    margin-top: 46px;
-    font-size: 18px;
-    line-height: 1.8;
-  }
-
-  .image-wrapper {
-    margin: 42px auto 80px auto;
-    width: 320px;
-    padding: 14px;
-    border-radius: 18px;
-
-    /* 柔金光 + 暖色邊框，去掉「死黑框」感 */
-    background: radial-gradient(circle at top,
-      rgba(250, 240, 225, 0.85),
-      rgba(20, 14, 12, 0.92)
-    );
-
-    box-shadow:
-      0 0 20px rgba(255, 214, 160, 0.40),
-      0 0 70px rgba(255, 192, 140, 0.22);
-  }
-
-  .image-wrapper img {
-    width: 100%;
-    border-radius: 12px;
-    display: block;
-  }
-
-  /* 手機排版 */
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 32px;
-      margin-top: 44px;
+    header h1 {
+      font-size: 28px;
+      letter-spacing: 2px;
+      font-weight: 400;
+      margin-bottom: 12px;
     }
 
     nav {
-      font-size: 15px;
-      gap: 4px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      opacity: 0.8;
     }
 
-    .quote {
-      font-size: 16px;
-      margin-top: 38px;
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      margin: 0 10px;
     }
 
-    .image-wrapper {
-      width: 285px;
-      margin-top: 34px;
-      padding: 12px;
+    /* --- Main content --- */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      max-width: 720px;
     }
-  }
-</style>
+
+    .intro-text {
+      text-align: center;
+      font-size: clamp(18px, 2.4vw, 26px);
+      line-height: 1.65;
+      margin-bottom: 48px;
+    }
+
+    /* --- Image: fully blended, no frame --- */
+    .hero-image {
+      display: block;
+      max-width: 320px;
+      width: 80%;
+      margin: 0 auto;
+
+      /* kill any frame/card effect */
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+
+      /* blend into black background */
+      mix-blend-mode: lighten;
+      opacity: 0.95;
+    }
+
+    /* --- Footer spacing (optional) --- */
+    footer {
+      height: 40px;
+    }
+
+    /* --- Mobile fine-tune --- */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 22px;
+      }
+      nav {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>TING YU YANG</h1>
+  <header>
+    <h1>TING YU YANG</h1>
+    <nav>
+      <a href="essays.html">ESSAYS</a> |
+      <a href="research.html">RESEARCH</a> |
+      <a href="contact.html">CONTACT</a> |
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
 
-<nav>
-  <a href="essays.html">ESSAYS</a> <span>|</span>
-  <a href="research.html">RESEARCH</a> <span>|</span>
-  <a href="contact.html">CONTACT</a> <span>|</span>
-  <a href="faq.html">FAQ</a>
-</nav>
+  <main>
+    <div class="intro-text">
+      You’re allowed to change shape.<br>
+      Coffee cup or doughnut — just don’t rip yourself in the process.
+    </div>
 
-<div class="quote">
-  You're allowed to change shape. <br>
-  Coffee cup or doughnut－just don't rip yourself in the process.<br>
-</div>
+    <img src="key.jpg" alt="figure" class="hero-image" />
+  </main>
 
-<div class="image-wrapper">
-  <img src="key.jpg" alt="Key image">
-</div>
+  <footer></footer>
 
 </body>
 </html>
