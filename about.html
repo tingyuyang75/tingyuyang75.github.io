@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      --bg-dim: 0.40;
+      --dim: 0.40;
       --copper: #c98a52;
       --pad-desktop: 56px;
       --pad-mobile: 28px;
@@ -20,62 +20,61 @@
 
     * { box-sizing: border-box; }
 
-    html, body {
+    html, body{
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: "Libre Baskerville", Georgia, serif;
       background: #000;
-      color: var(--copper);
     }
 
-    /* Background image layer (most reliable on iOS) */
-    body::before{
-      content:"";
+    /* Background image layer (robust on iOS/Messenger) */
+    .bg{
       position: fixed;
       inset: 0;
-      z-index: -2;
-
-      /* IMPORTANT: absolute path + cache bust */
-      background-image: url("/about-bg.jpg?v=4");
+      z-index: 0;
+      background-image: url("/about-bg.jpg?v=6");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
-
       transform: translateZ(0);
     }
 
     /* Dark overlay */
-    body::after{
-      content:"";
+    .overlay{
       position: fixed;
       inset: 0;
-      z-index: -1;
-      background: rgba(0,0,0,var(--bg-dim));
+      z-index: 1;
+      background: rgba(0,0,0,var(--dim));
       pointer-events: none;
     }
 
-    main {
+    /* Content */
+    main{
+      position: relative;
+      z-index: 2;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       padding: 48px var(--pad-desktop) 44px var(--pad-desktop);
+      color: var(--copper);
     }
 
-    .title {
+    .title{
       letter-spacing: 7px;
-      font-size: 18px;
+      font-size: 22px;          /* bigger */
       text-transform: uppercase;
       margin-top: 8px;
       opacity: 0.95;
+      text-shadow: 0 2px 18px rgba(0,0,0,0.55);
     }
 
-    .contact {
+    .contact{
       max-width: 520px;
       margin-right: auto;
       line-height: 1.65;
-      font-size: 24px; /* bigger */
+      font-size: 26px;          /* bigger */
       letter-spacing: 0.6px;
       text-shadow: 0 2px 18px rgba(0,0,0,0.55);
     }
@@ -95,25 +94,26 @@
       main{
         padding: 36px var(--pad-mobile) 34px var(--pad-mobile);
       }
-
       .title{
-        font-size: 20px;
-        margin-left: 10px; /* move a bit toward center */
+        font-size: 26px;       /* About bigger on mobile */
+        margin-left: 14px;     /* move toward center a bit */
       }
-
       .contact{
-        font-size: 22px;
+        font-size: 23px;
       }
 
-      /* Shift image up on mobile */
-      body::before{
-        background-position: center 35%;
+      /* move image up a bit on mobile so it doesn't crowd the contact */
+      .bg{
+        background-position: center 32%;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
   <main>
     <div class="title">ABOUT</div>
 
