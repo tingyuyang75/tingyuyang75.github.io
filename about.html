@@ -21,12 +21,11 @@
     body {
       font-family: "Libre Baskerville", Georgia, serif;
       background: #000;
-      color: rgba(255, 255, 255, 0.8);
       position: relative;
       overflow: hidden;
     }
 
-    /* 背景圖 */
+    /* 背景圖（桌機預設） */
     body::before {
       content: "";
       position: fixed;
@@ -38,7 +37,7 @@
       z-index: -2;
     }
 
-    /* 暗色遮罩（0.40） */
+    /* 暗色遮罩（0.45） */
     body::after {
       content: "";
       position: fixed;
@@ -47,17 +46,22 @@
       z-index: -1;
     }
 
-    /* 聯絡資訊（右側留白＋放大＋暖橘） */
+    /* 手機版上方標記（避免空） */
+    .mobile-tag {
+      display: none; /* 桌機不顯示 */
+    }
+
+    /* 聯絡資訊（右下） */
     .contact {
       position: absolute;
       right: 72px;
       bottom: 56px;
 
-      font-size: 18px;              /* 再放大一點 */
+      font-size: 18px;
       line-height: 1.9;
       letter-spacing: 0.6px;
 
-      color: #d48345;               /* 接近半圓的暖橘色 */
+      color: #c8743a; /* 半圓暖橘 */
       opacity: 0.92;
 
       text-align: right;
@@ -68,11 +72,31 @@
       text-decoration: none;
     }
 
-    /* 手機版微調 */
+    /* 手機版調整 */
     @media (max-width: 600px) {
+
+      /* 關鍵：手機版背景往上移 */
+      body::before {
+        background-position: center top;
+      }
+
+      .mobile-tag {
+        display: inline-block;
+        position: absolute;
+        left: 22px;
+        top: 22px;
+
+        font-size: 12px;
+        letter-spacing: 2.6px;
+        text-transform: uppercase;
+
+        color: #c8743a;
+        opacity: 0.45;
+      }
+
       .contact {
-        right: 28px;
-        bottom: 36px;
+        right: 22px;
+        bottom: 32px;
         font-size: 16px;
       }
     }
@@ -80,6 +104,9 @@
 </head>
 
 <body>
+
+  <!-- 只在手機版出現 -->
+  <div class="mobile-tag">ABOUT</div>
 
   <div class="contact">
     <a href="mailto:yangtina75@gmail.com">yangtina75@gmail.com</a><br>
