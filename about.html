@@ -5,181 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About</title>
 
-  <!-- Fonts: serif for headings / contact, optional handwriting not used here -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg-img: url('about-bg.jpg');
-
-      /* overlay darkness */
-      --overlay: 0.45;
-
-      /* warm gold close to your semicircle */
-      --gold: #c49063;
-
-      /* slightly dimmer gold for ABOUT */
-      --gold-dim: rgba(196,144,99,0.78);
-
-      /* baseline line under ABOUT (very faint) */
-      --baseline: rgba(196,144,99,0.16);
+      --bg-img: url("about-bg.jpg");
+      --overlay: 0.45;              /* 45% 遮罩 */
+      --gold: #c49063;              /* 半圓暖金 */
+      --gold-dim: rgba(196,144,99,0.72);
+      --baseline: rgba(196,144,99,0.28);  /* 讓線更明顯一點 */
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body{
-      margin: 0;
-      background: #000;
-      font-family: "EB Garamond", "Cormorant Garamond", serif;
+      margin:0;
+      background:#000;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      overflow-x: hidden;
     }
 
-    /* Full-page background layer */
-    .about-bg{
+    /* 背景層 */
+    .bg{
       position: fixed;
       inset: 0;
       background-image: var(--bg-img);
       background-size: cover;
       background-repeat: no-repeat;
-
-      /* "往上調到 9%" */
-      background-position: center 9%;
-
-      /* helps iOS Safari render background reliably */
+      /* 桌機：更往上（避免你說的「圖往下跑」） */
+      background-position: center 0%;
       transform: translateZ(0);
       will-change: transform;
     }
-
-    /* Overlay (darken) */
-    .about-bg::after{
+    .bg::after{
       content:"";
-      position: absolute;
-      inset: 0;
+      position:absolute;
+      inset:0;
       background: rgba(0,0,0,var(--overlay));
-      pointer-events: none;
+      pointer-events:none;
     }
 
-    /* Foreground content */
-    .about-page{
+    /* 前景容器：只負責讓內容在視窗上方 */
+    .stage{
       position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      /* left padding for breathing room */
-      padding: 6vh 6vw 6vh 6vw;
-
-      /* keep text above overlay */
       z-index: 1;
     }
 
-    /* ABOUT title */
+    /* ABOUT 固定右上（桌機需求） */
     .about-title{
+      position: absolute;
+      top: 6vh;
+      right: 6vw;
+
       color: var(--gold-dim);
       letter-spacing: 0.28em;
       font-weight: 500;
-
-      /* slightly larger than before, but still restrained */
-      font-size: clamp(18px, 2.2vw, 28px);
-
-      /* push a bit toward center visually (not too left) */
-      margin-left: 2vw;
-      margin-top: 1vh;
+      font-size: clamp(18px, 2.0vw, 28px);
+      text-align: right;
+      user-select: none;
     }
-
-    /* faint baseline under ABOUT */
     .about-title::after{
       content:"";
       display:block;
-      width: min(180px, 42vw);
-      height: 1px;
+      height: 1px;                 /* 線更清楚 */
+      width: min(220px, 28vw);
       background: var(--baseline);
       margin-top: 12px;
+      margin-left: auto;           /* 線貼右 */
     }
 
-    /* Contact block */
+    /* 聯絡資訊固定右下（桌機需求） */
     .contact{
+      position: absolute;
+      right: 6vw;
+      bottom: 7vh;
+
       color: var(--gold);
       font-weight: 500;
       letter-spacing: 0.02em;
       line-height: 1.25;
-
-      /* desktop default size (bigger) */
+      text-align: right;
       font-size: clamp(20px, 2.1vw, 34px);
-
-      /* underline lines (subtle) */
-      text-shadow: 0 0 0 rgba(0,0,0,0);
     }
-
     .contact .line{
       display: inline-block;
       padding-bottom: 6px;
       border-bottom: 1px solid rgba(196,144,99,0.28);
       margin-bottom: 12px;
     }
-
     .contact .line:last-child{
       border-bottom: 1px solid rgba(196,144,99,0.22);
       margin-bottom: 0;
     }
 
-    /* ===== Desktop: contact on the right bottom ===== */
-    @media (min-width: 769px){
-      .about-page{
-        align-items: flex-end;
-      }
-      .contact{
-        text-align: right;
-        margin-right: 2.5vw; /* spacing from right edge */
-      }
-    }
-
-    /* ===== Mobile: make contact slightly smaller & avoid crowding ===== */
+    /* 手機版：背景位置用你先前喜歡的 9%，文字略小、不要貼邊 */
     @media (max-width: 768px){
-      .about-page{
-        padding: 5vh 6vw 6vh 6vw;
-        align-items: flex-start;
+      .bg{
+        background-position: center 9%;
+        background-attachment: scroll;
       }
 
       .about-title{
-        /* a bit more centered than desktop-left */
-        margin-left: 3vw;
+        top: 5vh;
+        right: 7vw;                /* 往中間一點 */
         font-size: 20px;
+      }
+      .about-title::after{
+        width: min(200px, 46vw);
+        background: rgba(196,144,99,0.24);
       }
 
       .contact{
-        /* you asked: "手機版聯絡資訊可以稍微小一點" */
-        font-size: 22px;
-        text-align: left;
-        margin-left: 3vw;
-      }
-
-      /* keep background visible and not "disappearing" */
-      .about-bg{
-        background-attachment: scroll;
-        background-position: center 9%;
+        right: 7vw;
+        bottom: 6vh;
+        font-size: 22px;           /* 手機再稍微小一點 */
       }
     }
-
-    /* Prevent iOS font auto-zoom weirdness */
-    input, textarea, select, button { font-size: 16px; }
   </style>
 </head>
 
 <body>
-  <div class="about-bg" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"></div>
 
-  <main class="about-page">
-    <div>
-      <div class="about-title">ABOUT</div>
-    </div>
+  <div class="stage">
+    <div class="about-title">ABOUT</div>
 
     <div class="contact">
       <div class="line">yangtina75@gmail.com</div><br>
       <div class="line">+886 971 856 007</div>
     </div>
-  </main>
+  </div>
 </body>
 </html>
