@@ -12,9 +12,8 @@
 
   <style>
     :root{
-      --bg-dim: 0.40;               /* darkness overlay */
-      --copper: #c98a52;            /* close to your semicircle tone */
-      --text: var(--copper);
+      --bg-dim: 0.40;
+      --copper: #c98a52;
       --pad-desktop: 56px;
       --pad-mobile: 28px;
     }
@@ -27,23 +26,28 @@
       height: 100%;
       font-family: "Libre Baskerville", Georgia, serif;
       background: #000;
-      color: var(--text);
+      color: var(--copper);
     }
 
-    /* Use a fixed <img> (NOT background-attachment: fixed) to avoid iOS Safari blank bug */
-    .bg {
+    /* Background image layer (most reliable on iOS) */
+    body::before{
+      content:"";
       position: fixed;
       inset: 0;
       z-index: -2;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
+
+      /* IMPORTANT: absolute path + cache bust */
+      background-image: url("/about-bg.jpg?v=4");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+
       transform: translateZ(0);
     }
 
     /* Dark overlay */
-    .dim {
+    body::after{
+      content:"";
       position: fixed;
       inset: 0;
       z-index: -1;
@@ -60,19 +64,18 @@
     }
 
     .title {
-      letter-spacing: 6px;
+      letter-spacing: 7px;
       font-size: 18px;
-      opacity: 0.95;
       text-transform: uppercase;
       margin-top: 8px;
+      opacity: 0.95;
     }
 
-    /* Contact block: left aligned, leave right blank naturally */
     .contact {
       max-width: 520px;
       margin-right: auto;
       line-height: 1.65;
-      font-size: 22px;  /* bigger */
+      font-size: 24px; /* bigger */
       letter-spacing: 0.6px;
       text-shadow: 0 2px 18px rgba(0,0,0,0.55);
     }
@@ -87,38 +90,30 @@
       border-bottom-color: rgba(201,138,82,0.75);
     }
 
-    /* Mobile tuning */
+    /* Mobile */
     @media (max-width: 640px){
       main{
         padding: 36px var(--pad-mobile) 34px var(--pad-mobile);
       }
 
-      /* Move ABOUT a bit more toward center (not stuck at the edge) */
       .title{
         font-size: 20px;
-        letter-spacing: 7px;
-        margin-left: 6px;
+        margin-left: 10px; /* move a bit toward center */
       }
 
-      /* Give contact a bit more breathing space from the bottom */
       .contact{
-        font-size: 20px;
-        padding-bottom: 6px;
+        font-size: 22px;
       }
 
-      /* Shift image up a little on mobile so it doesn't feel too low */
-      .bg{
-        object-position: center 35%;
+      /* Shift image up on mobile */
+      body::before{
+        background-position: center 35%;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Background image (must be in same folder) -->
-  <img class="bg" src="about-bg.jpg" alt="" />
-  <div class="dim"></div>
-
   <main>
     <div class="title">ABOUT</div>
 
