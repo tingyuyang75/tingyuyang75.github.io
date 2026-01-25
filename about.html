@@ -12,7 +12,8 @@
   <style>
     :root{
       --dim: 0.40;
-      --copper: #c98a52;
+      --copper: #c98a52;          /* contact color */
+      --copper-soft: #b87a4a;     /* softer for ABOUT */
       --pad-desktop: 56px;
       --pad-mobile: 28px;
     }
@@ -32,7 +33,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      background-image: url("/about-bg.jpg?v=7");
+      background-image: url("/about-bg.jpg?v=9");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
@@ -59,13 +60,33 @@
       color: var(--copper);
     }
 
+    .title-wrap{
+      display: inline-block;
+      margin-top: 8px;
+      margin-left: 0;
+    }
+
     .title{
       letter-spacing: 7px;
       font-size: 22px;
       text-transform: uppercase;
-      margin-top: 8px;
-      opacity: 0.95;
-      text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+      color: var(--copper-soft);
+      opacity: 0.78; /* slightly lighter */
+      text-shadow: 0 2px 18px rgba(0,0,0,0.50);
+    }
+
+    /* subtle baseline under ABOUT */
+    .baseline{
+      margin-top: 14px;
+      width: 160px;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        rgba(201,138,82,0.00),
+        rgba(201,138,82,0.16),
+        rgba(201,138,82,0.00)
+      );
+      opacity: 0.28;  /* barely visible */
     }
 
     .contact{
@@ -93,17 +114,26 @@
         padding: 36px var(--pad-mobile) 34px var(--pad-mobile);
       }
 
-      .title{
-        font-size: 26px;
+      .title-wrap{
         margin-left: 14px;
       }
 
+      .title{
+        font-size: 26px;
+        opacity: 0.72; /* a touch lighter on mobile */
+      }
+
+      .baseline{
+        width: 150px;
+        opacity: 0.24;
+      }
+
       .contact{
-        font-size: 20.5px;   /* slightly smaller */
+        font-size: 19px; /* slightly smaller */
       }
 
       .bg{
-        background-position: center 18%;  /* move image up */
+        background-position: center 12%; /* move image up more */
       }
     }
   </style>
@@ -114,7 +144,10 @@
   <div class="overlay"></div>
 
   <main>
-    <div class="title">ABOUT</div>
+    <div class="title-wrap">
+      <div class="title">ABOUT</div>
+      <div class="baseline"></div>
+    </div>
 
     <div class="contact">
       <div><a href="mailto:yangtina75@gmail.com">yangtina75@gmail.com</a></div>
