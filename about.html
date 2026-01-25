@@ -1,124 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg-img: url("about-bg.jpg");
-  --overlay: 0.45;
-  --gold: #c49063;
-  --gold-dim: rgba(196,144,99,0.70);
-  --baseline: rgba(196,144,99,0.30);
-}
+  <style>
+    :root{
+      --bg-img: url("about-bg.jpg");
+      --overlay: 0.45;                    /* 45% 遮罩 */
+      --gold: #c49063;                    /* 半圓暖金 */
+      --gold-dim: rgba(196,144,99,0.68);  /* ABOUT 淡一點 */
+      --baseline: rgba(196,144,99,0.33);  /* ABOUT 底線更明顯一點 */
+      --line: rgba(196,144,99,0.28);
+    }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
-body{
-  margin:0;
-  background:#000;
-  font-family:"EB Garamond","Cormorant Garamond",serif;
-  overflow-x:hidden;
-}
+    body{
+      margin:0;
+      background:#000;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      overflow-x: hidden;
+    }
 
-/* 背景 */
-.bg{
-  position:fixed;
-  inset:0;
-  background-image:var(--bg-img);
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center 0%;
-  z-index:0;
-}
-.bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,var(--overlay));
-}
+    /* 背景層 */
+    .bg{
+      position: fixed;
+      inset: 0;
+      background-image: var(--bg-img);
+      background-repeat: no-repeat;
 
-/* 前景層 */
-.stage{
-  position:relative;
-  min-height:100vh;
-  z-index:1;
-}
+      /* ✅ 桌機：真的「再往上」= 先放大再用負值推 */
+      background-size: 112%;
+      background-position: center -7%;
 
-/* ABOUT：左上 */
-.about-title{
-  position:absolute;
-  top:6vh;
-  left:6vw;
+      transform: translateZ(0);
+      will-change: transform;
+      z-index: 0;
+    }
+    .bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,var(--overlay));
+      pointer-events:none;
+    }
 
-  color:var(--gold-dim);
-  letter-spacing:0.28em;
-  font-weight:500;
-  font-size:clamp(18px,2vw,28px);
-  user-select:none;
-}
-.about-title::after{
-  content:"";
-  display:block;
-  width:min(220px,30vw);
-  height:1px;
-  background:var(--baseline);
-  margin-top:12px;
-}
+    /* 前景容器 */
+    .stage{
+      position: relative;
+      min-height: 100vh;
+      z-index: 1;
+    }
 
-/* 聯絡資訊：右下 */
-.contact{
-  position:absolute;
-  right:6vw;
-  bottom:7vh;
+    /* ✅ About：左上 */
+    .about-title{
+      position: absolute;
+      top: 6vh;
+      left: 6vw;
 
-  text-align:right;
-  color:var(--gold);
-  font-weight:500;
-  line-height:1.25;
-  font-size:clamp(20px,2.1vw,34px);
-}
-.contact .line{
-  display:inline-block;
-  padding-bottom:6px;
-  border-bottom:1px solid rgba(196,144,99,0.28);
-  margin-bottom:12px;
-}
-.contact .line:last-child{
-  border-bottom:1px solid rgba(196,144,99,0.22);
-  margin-bottom:0;
-}
+      color: var(--gold-dim);
+      letter-spacing: 0.28em;
+      font-weight: 500;
+      font-size: clamp(18px, 2.0vw, 28px);
+      text-align: left;
+      user-select: none;
+    }
+    .about-title::after{
+      content:"";
+      display:block;
+      height: 1px;
+      width: min(220px, 28vw);
+      background: var(--baseline);
+      margin-top: 12px;
+      margin-right: auto;
+    }
 
-/* 手機 */
-@media (max-width:768px){
-  .bg{
-    background-position:center 9%;
-  }
+    /* ✅ 聯絡資訊：右下 + 距離邊緣保留 */
+    .contact{
+      position: absolute;
+      right: 6vw;
+      bottom: 7vh;
 
-  .about-title{
-    top:5vh;
-    left:7vw;
-    font-size:20px;
-  }
-  .about-title::after{
-    width:min(200px,48vw);
-    background:rgba(196,144,99,0.24);
-  }
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      text-align: right;
+      font-size: clamp(20px, 2.1vw, 34px);
+    }
+    .contact .line{
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+    .contact .line:last-child{
+      margin-bottom: 0;
+    }
 
-  .contact{
-    right:7vw;
-    bottom:6vh;
-    font-size:22px;
-  }
-}
-</style>
+    /* ✅ 手機版：你要 9% + 字再小一點 + 圖也往上些 */
+    @media (max-width: 768px){
+      .bg{
+        background-size: cover;
+        background-position: center 9%;
+        background-attachment: scroll;
+      }
+
+      .about-title{
+        top: 5vh;
+        left: 7vw;              /* 往中間一點，別貼邊 */
+        font-size: 20px;
+      }
+      .about-title::after{
+        width: min(200px, 46vw);
+        background: rgba(196,144,99,0.28);
+      }
+
+      .contact{
+        right: 7vw;
+        bottom: 6vh;
+        font-size: 20px;        /* 手機再稍微小一點 */
+      }
+    }
+  </style>
 </head>
 
 <body>
