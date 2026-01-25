@@ -5,6 +5,11 @@
   <title>About — Ting Yu Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- 與首頁一致的字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       margin: 0;
@@ -14,7 +19,9 @@
     }
 
     body {
+      font-family: "Libre Baskerville", Georgia, serif;
       background: #000;
+      color: rgba(255, 255, 255, 0.78);
       position: relative;
       overflow: hidden;
     }
@@ -24,28 +31,56 @@
       content: "";
       position: fixed;
       inset: 0;
-
       background-image: url("about-bg.jpg");
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-
       z-index: -2;
     }
 
-    /* 深色遮罩（沈靜版） */
+    /* 暗色遮罩（0.40） */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.40);
       z-index: -1;
+    }
+
+    /* 聯絡資訊 */
+    .contact {
+      position: absolute;
+      left: 48px;
+      bottom: 48px;
+
+      font-size: 14px;
+      line-height: 1.8;
+      letter-spacing: 0.4px;
+      opacity: 0.85;
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 手機版 */
+    @media (max-width: 600px) {
+      .contact {
+        left: 24px;
+        bottom: 32px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- This page speaks by not speaking -->
+
+  <div class="contact">
+    <a href="mailto:yangtina75@gmail.com">yangtina75@gmail.com</a><br>
+    <a href="tel:+886971856007">+886&nbsp;971&nbsp;856&nbsp;007</a>
+  </div>
+
 </body>
 </html>
