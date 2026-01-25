@@ -47,16 +47,19 @@
       z-index: -1;
     }
 
-    /* 聯絡資訊（右側留白） */
+    /* 聯絡資訊（右側留白＋放大＋暖橘） */
     .contact {
       position: absolute;
-      right: 72px;     /* 關鍵：右邊留白 */
-      bottom: 56px;    /* 底部呼吸距離 */
+      right: 72px;
+      bottom: 56px;
 
-      font-size: 16px; /* 稍微放大 */
+      font-size: 18px;              /* 再放大一點 */
       line-height: 1.9;
-      letter-spacing: 0.5px;
-      opacity: 0.88;
+      letter-spacing: 0.6px;
+
+      color: #c8743a;               /* 接近半圓的暖橘色 */
+      opacity: 0.92;
+
       text-align: right;
     }
 
@@ -70,7 +73,7 @@
       .contact {
         right: 28px;
         bottom: 36px;
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   </style>
