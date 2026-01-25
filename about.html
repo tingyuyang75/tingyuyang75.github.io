@@ -5,7 +5,6 @@
   <title>About — Ting Yu Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Same font as homepage -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
@@ -18,7 +17,7 @@
       --pad-mobile: 28px;
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing: border-box; }
 
     html, body{
       margin: 0;
@@ -28,12 +27,12 @@
       background: #000;
     }
 
-    /* Background image layer (robust on iOS/Messenger) */
+    /* Background image */
     .bg{
       position: fixed;
       inset: 0;
       z-index: 0;
-      background-image: url("/about-bg.jpg?v=6");
+      background-image: url("/about-bg.jpg?v=7");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
@@ -49,7 +48,6 @@
       pointer-events: none;
     }
 
-    /* Content */
     main{
       position: relative;
       z-index: 2;
@@ -63,7 +61,7 @@
 
     .title{
       letter-spacing: 7px;
-      font-size: 22px;          /* bigger */
+      font-size: 22px;
       text-transform: uppercase;
       margin-top: 8px;
       opacity: 0.95;
@@ -74,7 +72,7 @@
       max-width: 520px;
       margin-right: auto;
       line-height: 1.65;
-      font-size: 26px;          /* bigger */
+      font-size: 26px;
       letter-spacing: 0.6px;
       text-shadow: 0 2px 18px rgba(0,0,0,0.55);
     }
@@ -89,22 +87,23 @@
       border-bottom-color: rgba(201,138,82,0.75);
     }
 
-    /* Mobile */
+    /* Mobile adjustments */
     @media (max-width: 640px){
       main{
         padding: 36px var(--pad-mobile) 34px var(--pad-mobile);
       }
+
       .title{
-        font-size: 26px;       /* About bigger on mobile */
-        margin-left: 14px;     /* move toward center a bit */
-      }
-      .contact{
-        font-size: 23px;
+        font-size: 26px;
+        margin-left: 14px;
       }
 
-      /* move image up a bit on mobile so it doesn't crowd the contact */
+      .contact{
+        font-size: 20.5px;   /* slightly smaller */
+      }
+
       .bg{
-        background-position: center 32%;
+        background-position: center 18%;  /* move image up */
       }
     }
   </style>
