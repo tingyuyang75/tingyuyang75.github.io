@@ -16,63 +16,71 @@
       margin: 0;
       background: #000;
       font-family: "Libre Baskerville", Georgia, serif;
+      overflow: hidden;
     }
 
-    /* 背景層（比 ::before 在手機穩） */
-    .bg {
+    /* ✅ 最穩的背景：用 img，避免 iOS in-app 把背景吃掉 */
+    .bgimg {
       position: fixed;
       inset: 0;
-      background: url("about-bg.jpg") no-repeat center center / cover;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center 12%; /* 桌機預設構圖 */
       z-index: -3;
     }
 
-    /* 全頁暗度（你要 0.40） */
+    /* 暗度（你要 0.40） */
     .dim {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.40);
       z-index: -2;
+      pointer-events: none;
     }
 
-    /* 底部加一層漸層：讓 contact 有呼吸、不被圖吃掉 */
+    /* 底部漸層：讓字不被背景吃掉、也不擠 */
     .bottom-fade {
       position: fixed;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.00) 45%,
+        rgba(0,0,0,0.00) 46%,
         rgba(0,0,0,0.55) 78%,
-        rgba(0,0,0,0.85) 100%
+        rgba(0,0,0,0.88) 100%
       );
       z-index: -1;
       pointer-events: none;
     }
 
-    /* 手機版的小 ABOUT 標記 */
-    .mobile-tag {
+    /* ABOUT：放大 + 往中間移（不要貼左上角） */
+    .about-tag {
       position: absolute;
-      left: 22px;
-      top: 22px;
-      font-size: 12px;
-      letter-spacing: 2.6px;
+      left: 50%;
+      top: 34px;
+      transform: translateX(-50%);
+      font-size: 14px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      color: #c8743a;
-      opacity: 0.45;
+      color: #c8743a;   /* 跟半圓同色 */
+      opacity: 0.60;
+      text-align: center;
+      white-space: nowrap;
     }
 
-    /* 聯絡資訊（右下，留邊距） */
+    /* 聯絡資訊：右下，留邊距 */
     .contact {
       position: absolute;
-      right: 72px;
-      bottom: 56px;
+      right: 22px;
+      bottom: 34px;
+      text-align: right;
 
-      font-size: 20px;           /* 比之前再大一點 */
+      color: #c8743a;
+      opacity: 0.92;
+
+      font-size: 18px;     /* 手機也清楚 */
       line-height: 1.9;
       letter-spacing: 0.6px;
-
-      color: #c8743a;            /* 跟半圓同色 */
-      opacity: 0.92;
-      text-align: right;
     }
 
     .contact a {
@@ -80,13 +88,16 @@
       text-decoration: none;
     }
 
-    /* 手機版：背景往上推 + contact 邊距縮小但不貼邊 */
+    /* ✅ 手機：把背景「往上推」一點，避免跟聯絡資訊擠 */
     @media (max-width: 600px) {
-      .bg {
-        /* 關鍵：真的把畫面往上移（數字越小越靠上） */
-        background-position: center 10%;
+      .bgimg {
+        object-position: center 6%;  /* 越小越往上 */
       }
-
+      .about-tag {
+        top: 42px;
+        font-size: 15px;
+        opacity: 0.62;
+      }
       .contact {
         right: 22px;
         bottom: 34px;
@@ -94,25 +105,22 @@
       }
     }
 
-    /* 超小螢幕再微調（避免太擠） */
+    /* 更小手機再推一點 */
     @media (max-width: 380px) {
-      .bg {
-        background-position: center 6%;
-      }
-      .contact {
-        font-size: 17px;
-        bottom: 30px;
-      }
+      .bgimg { object-position: center 4%; }
+      .contact { font-size: 17px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg"></div>
+  <!-- 背景圖（你 repo 裡就是 about-bg.jpg） -->
+  <img class="bgimg" src="about-bg.jpg" alt="" />
+
   <div class="dim"></div>
   <div class="bottom-fade"></div>
 
-  <div class="mobile-tag">ABOUT</div>
+  <div class="about-tag">ABOUT</div>
 
   <div class="contact">
     <a href="mailto:yangtina75@gmail.com">yangtina75@gmail.com</a><br>
