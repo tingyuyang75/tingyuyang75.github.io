@@ -1,191 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About</title>
 
-  <!-- Serif (你的金色字體) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 字體：正文＋手寫（與首頁一致） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 
-  <!-- Handwritten (用來對齊首頁那段 “You’re allowed to change shape” 的感覺)
-       若你首頁用的是別的字體，把這個改成同一個 Google Font 即可 -->
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-img: url("about-bg.jpg");
+  --overlay-desktop: 0.45;
+  --overlay-mobile: 0.55; /* 手機更黑一點 */
 
-  <style>
-    :root{
-      --bg-img: url("about-bg.jpg");
+  --white: #f2f2f2;
+  --gray-soft: rgba(255,255,255,0.55);
+  --gray-deep: rgba(255,255,255,0.42);
+}
 
-      /* 桌機遮罩 45% */
-      --overlay-desktop: 0.45;
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:#000;
+  font-family:"EB Garamond", serif;
+  overflow-x:hidden;
+}
 
-      /* 手機再黑一點 */
-      --overlay-mobile: 0.58;
+/* 背景 */
+.bg{
+  position:fixed;
+  inset:0;
+  background-image:var(--bg-img);
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center 0%;
+}
+.bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,var(--overlay-desktop));
+}
 
-      --gold: #c49063;
-      --gold-dim: rgba(196,144,99,0.72);
-      --line: rgba(196,144,99,0.26);
+/* 內容層 */
+.stage{
+  position:relative;
+  min-height:100vh;
+  z-index:1;
+}
 
-      --white: rgba(255,255,255,0.92);
-      --gray: rgba(255,255,255,0.50);
+/* 手寫段落 */
+.handwritten{
+  position:absolute;
+  top:32vh;
+  left:8vw;
 
-      --serif: "EB Garamond","Cormorant Garamond",serif;
-      --hand: "Caveat", cursive;
-    }
+  font-family:"Nothing You Could Do", cursive;
+  font-size:clamp(20px, 2.2vw, 30px);
+  line-height:1.45;
+  max-width:520px;
+}
 
-    *{ box-sizing:border-box; }
-    html, body{ height:100%; }
-    body{
-      margin:0;
-      background:#000;
-      font-family: var(--serif);
-      overflow-x:hidden;
-    }
+/* 第一行 */
+.handwritten .intro{
+  color:var(--gray-deep);
+  margin-bottom:18px;
+}
 
-    /* 背景（固定滿版） */
-    .bg{
-      position: fixed;
-      inset: 0;
-      background-image: var(--bg-img);
-      background-size: cover;
-      background-repeat: no-repeat;
+/* 第二、三行 */
+.handwritten .focus{
+  color:var(--white);
+  margin-left:24px; /* 稍微往中間收 */
+}
 
-      /* 桌機：再往上（你要更上） */
-      background-position: center 0%;
-      transform: translateZ(0);
-      will-change: transform;
-      z-index: 0;
-    }
-    .bg::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,var(--overlay-desktop));
-      pointer-events:none;
-    }
+/* Back */
+.back{
+  position:absolute;
+  top:6vh;
+  left:8vw;
 
-    /* 前景層 */
-    .stage{
-      position: relative;
-      min-height: 100vh;
-      z-index: 1;
-    }
+  font-family:"EB Garamond", serif;
+  font-size:16px;
+  color:var(--gray-soft);
+  text-decoration:none;
+  letter-spacing:0.08em;
+}
+.back:hover{
+  color:var(--white);
+}
 
-    /* 小小 back（回首頁） */
-    .back{
-      position: fixed;
-      top: 5.5vh;
-      left: 6vw;
-      z-index: 2;
+/* 聯絡資訊（維持你之前定好的位置） */
+.contact{
+  position:absolute;
+  right:6vw;
+  bottom:7vh;
 
-      font-family: var(--serif);
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.38);
-      text-decoration: none;
-      user-select: none;
-      padding: 6px 8px;
-      border-radius: 6px;
-      background: rgba(0,0,0,0.10);
-      backdrop-filter: blur(2px);
-    }
-    .back:hover{
-      color: rgba(255,255,255,0.62);
-      background: rgba(0,0,0,0.18);
-    }
+  text-align:right;
+  color:rgba(196,144,99,0.85);
+  font-size:clamp(18px,2vw,28px);
+  line-height:1.35;
+}
+.contact .line{
+  border-bottom:1px solid rgba(196,144,99,0.25);
+  padding-bottom:6px;
+  margin-bottom:10px;
+}
 
-    /* 你要加的那段文字（同首頁手寫感覺） */
-    .about-note{
-      position: absolute;
-      top: 18vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(860px, 86vw);
-      text-align: center;
+/* 手機調整 */
+@media (max-width:768px){
+  .bg::after{
+    background:rgba(0,0,0,var(--overlay-mobile));
+  }
 
-      font-family: var(--hand);
-      font-weight: 500;
-      font-size: clamp(22px, 3.2vw, 40px);
-      line-height: 1.25;
-      user-select: none;
-    }
-    .about-note .dim{ color: var(--gray); }
-    .about-note .white{ color: var(--white); }
+  .handwritten{
+    top:28vh;
+    left:7vw;
+    font-size:22px;
+  }
 
-    /* 聯絡資訊：桌機右下、留邊距 */
-    .contact{
-      position: absolute;
-      right: 6vw;
-      bottom: 7vh;
+  .handwritten .focus{
+    margin-left:18px;
+  }
 
-      color: var(--gold);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
-      text-align: right;
-      font-size: clamp(20px, 2.1vw, 34px);
-    }
-    .contact .line{
-      display: inline-block;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(196,144,99,0.26);
-      margin-bottom: 12px;
-    }
-    .contact .line:last-child{
-      border-bottom: 1px solid rgba(196,144,99,0.20);
-      margin-bottom: 0;
-    }
+  .contact{
+    right:7vw;
+    bottom:6vh;
+    font-size:20px;
+  }
 
-    /* 手機版調整 */
-    @media (max-width: 768px){
-      .bg{
-        /* 手機：你要 9% */
-        background-position: center 9%;
-      }
-      .bg::after{
-        /* 手機更黑 */
-        background: rgba(0,0,0,var(--overlay-mobile));
-      }
-
-      .back{
-        top: 4.8vh;
-        left: 7vw;
-        font-size: 13px;
-      }
-
-      .about-note{
-        top: 16vh;
-        width: min(520px, 88vw);
-        font-size: 30px;   /* 手機手寫字不要太小 */
-      }
-
-      .contact{
-        right: 7vw;
-        bottom: 6vh;
-        font-size: 21px;   /* 手機聯絡資訊再小一點 */
-      }
-    }
-  </style>
+  .back{
+    font-size:18px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true"></div>
 
-  <a class="back" href="index.html">back</a>
+<div class="stage">
 
-  <div class="stage">
-    <div class="about-note" aria-label="About note">
-      <span class="dim">If you are curious about</span><br>
-      <span class="white">My work, website</span><br>
-      <span class="white">Me (with sincerity), contact me</span>
-    </div>
+  <a href="index.html" class="back">← Back</a>
 
-    <div class="contact" aria-label="Contact">
-      <div class="line">yangtina75@gmail.com</div><br>
-      <div class="line">+886 971 856 007</div>
-    </div>
+  <div class="handwritten">
+    <div class="intro">If you are curious about—</div>
+    <div class="focus">My work, website</div>
+    <div class="focus">Me (with sincerity), contact me</div>
   </div>
+
+  <div class="contact">
+    <div class="line">yangtina75@gmail.com</div>
+    <div class="line">+886&nbsp;971&nbsp;856&nbsp;007</div>
+  </div>
+
+</div>
 </body>
 </html>
