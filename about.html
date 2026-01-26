@@ -19,13 +19,12 @@
   --about-white: rgba(245,245,245,0.92);
   --about-line: rgba(220,220,220,0.45);
 
-  --hand-grey: rgba(210,210,210,0.75);
-  --hand-white: rgba(245,245,245,0.92);
+  --hand-grey: rgba(210,210,210,0.78);
+  --hand-white: rgba(245,245,245,0.94);
 
   --gold: #c49063;
 }
 
-/* ===== Base ===== */
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -62,23 +61,32 @@ body{
   z-index:1;
 }
 
-/* ===== Left Rail (Back + About) ===== */
+/* ===== Left rail ===== */
+/* Back 更靠左：left 改小；About 仍內縮用 padding-left 做出差 */
 .left-rail{
   position:absolute;
   top:34px;
-  left:9vw; /* 再內縮 */
+  left:4vw;            /* ✅ back 更靠左 */
+  padding-left:5vw;    /* ✅ About 視覺仍內縮 */
 }
 
+/* Back */
 .back{
+  display:inline-block;
   font-size:20px;
   letter-spacing:.06em;
-  color:rgba(235,235,235,0.7);
+  color:rgba(235,235,235,0.72);
   text-decoration:none;
   padding:10px 14px;
   border-radius:12px;
   background:rgba(0,0,0,.18);
 }
+.back:hover{
+  color:rgba(255,255,255,0.9);
+  background:rgba(0,0,0,.26);
+}
 
+/* About title */
 .about-title{
   margin-top:22px;
   font-size:28px;
@@ -94,30 +102,36 @@ body{
   background:var(--about-line);
 }
 
-/* ===== Handwriting "cloud" block ===== */
+/* ===== Handwriting block ===== */
 .note{
   position:absolute;
   top:26vh;
-  left:13vw; /* 比 ABOUT 再往內 */
+  left:13vw;
   max-width:520px;
   font-family:"Caveat",cursive;
   line-height:1.25;
 }
 
-/* 🌫 雲霧層 */
+/* 🌫 重霧：更深、更大、更像雲 */
 .note::before{
   content:"";
   position:absolute;
-  inset:-40px -60px -50px -60px;
+
+  /* 範圍更大：雲才看得見 */
+  inset:-70px -110px -80px -110px;
+
+  /* 中心更濃 + 延伸更久 */
   background:radial-gradient(
-    ellipse at center,
-    rgba(40,45,50,0.55) 0%,
-    rgba(40,45,50,0.38) 35%,
-    rgba(40,45,50,0.18) 60%,
-    rgba(40,45,50,0.06) 75%,
-    rgba(40,45,50,0.0) 85%
+    ellipse at 35% 40%,
+    rgba(20,22,26,0.82) 0%,
+    rgba(20,22,26,0.62) 28%,
+    rgba(20,22,26,0.38) 52%,
+    rgba(20,22,26,0.18) 70%,
+    rgba(20,22,26,0.06) 82%,
+    rgba(20,22,26,0.00) 92%
   );
-  filter:blur(18px);
+
+  filter: blur(26px);   /* blur 再加大，才像霧 */
   z-index:-1;
 }
 
@@ -126,7 +140,6 @@ body{
   color:var(--hand-grey);
   margin-bottom:10px;
 }
-
 .note .l2,
 .note .l3{
   font-size:42px;
@@ -162,14 +175,25 @@ body{
     background:rgba(0,0,0,var(--overlay-mobile));
   }
 
-  .left-rail{ left:22px; top:18px; }
+  .left-rail{
+    left:10px;         /* 手機 back 也靠左 */
+    padding-left:12px; /* About 仍稍微內縮 */
+    top:18px;
+  }
 
   .note{
-    left:22px;
-    right:22px;
+    left:18px;
+    right:18px;
     max-width:none;
   }
-  .note .l2,.note .l3{ white-space:normal; }
+  .note::before{
+    inset:-60px -40px -70px -40px;
+    filter: blur(24px);
+  }
+
+  .note .l2, .note .l3{
+    white-space:normal;
+  }
 }
 </style>
 </head>
