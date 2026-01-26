@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About</title>
 
-  <!-- Serif (與聯絡資訊相同) -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Serif (same as contact / name) -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- Handwriting -->
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -14,35 +18,47 @@
     :root{
       --bg-img: url("about-bg.jpg");
 
-      --overlay-desktop: 0.45;
+      --overlay-desktop: 0.50;   /* 桌機黑 50% */
       --overlay-mobile: 0.62;
 
       --gold: #c49063;
       --white-soft: rgba(245,245,245,0.92);
-      --grey-line: rgba(220,220,220,0.38);
+      --grey-line: rgba(220,220,220,0.35);
 
       --hand-grey: rgba(200,200,200,0.75);
-      --hand-white: rgba(245,245,245,0.90);
+      --hand-white: rgba(245,245,245,0.9);
     }
 
     * { box-sizing: border-box; }
+
     html, body {
-      margin:0;
-      height:100%;
-      overflow:hidden;
-      background:#000;
-      font-family: "EB Garamond","Cormorant Garamond",serif;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      font-family: "EB Garamond", serif;
+      overflow: hidden;
     }
 
-    /* ===== Background ===== */
+    /* 吃掉所有瀏覽器縫隙（避免黑邊） */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background:#000;
+      z-index:-2;
+    }
+
+    /* Background */
     .bg{
       position: fixed;
-      top:-2px; left:-2px; right:-2px; bottom:-2px; /* 防黑邊 */
+      inset:-4px;
       background-image: var(--bg-img);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center -6%;
-      transform: scale(1.02);
+      transform: scale(1.03);
+      z-index:-1;
     }
     .bg::after{
       content:"";
@@ -54,48 +70,46 @@
     .stage{
       position: relative;
       min-height: 100vh;
-      z-index: 1;
     }
 
-    /* ===== Back ===== */
+    /* Back */
     .back{
       position: absolute;
       top: 28px;
       left: 28px;
       font-size: 22px;
       letter-spacing: 0.06em;
-      color: rgba(230,230,230,0.75);
+      color: rgba(235,235,235,0.75);
       text-decoration: none;
-      padding: 8px 12px;
     }
-    .back:hover{ color: rgba(255,255,255,0.9); }
+    .back:hover{
+      color: rgba(255,255,255,0.9);
+    }
 
-    /* ===== ABOUT ===== */
+    /* ABOUT title */
     .about-title{
       position: absolute;
-      top: 72px;
+      top: 120px;
       left: 6vw;
 
-      font-family: "EB Garamond","Cormorant Garamond",serif;
       font-size: clamp(18px, 1.8vw, 26px);
       letter-spacing: 0.18em;
       font-weight: 500;
       color: var(--white-soft);
-      text-transform: uppercase;
     }
     .about-title::after{
       content:"";
       display:block;
       width: min(260px, 32vw);
-      height:1px;
+      height: 1px;
       background: var(--grey-line);
-      margin-top: 12px;
+      margin-top: 14px;
     }
 
-    /* ===== Handwriting note ===== */
+    /* Handwriting block */
     .note{
       position: absolute;
-      top: 34vh;                 /* 往下，靠近圖但不碰 */
+      top: 38vh; /* 往下靠近圖，但不碰 */
       left: 7vw;
       max-width: 70vw;
 
@@ -115,13 +129,12 @@
       margin-left: 2vw;
     }
 
-    /* ===== Contact ===== */
+    /* Contact */
     .contact{
       position: absolute;
       right: 6vw;
       bottom: 7vh;
 
-      font-family: "EB Garamond","Cormorant Garamond",serif;
       font-size: clamp(20px, 2.1vw, 34px);
       color: var(--gold);
       text-align: right;
@@ -134,37 +147,24 @@
       margin-bottom:12px;
     }
 
-    /* ===== Mobile ===== */
+    /* Mobile */
     @media (max-width: 768px){
       .bg{
         background-position: center 9%;
-        transform: scale(1.03);
       }
       .bg::after{
         background: rgba(0,0,0,var(--overlay-mobile));
       }
 
       .about-title{
-        top: 56px;
+        top: 96px;
         left: 7vw;
-        font-size: 20px;
       }
 
       .note{
-        top: 38vh;
+        top: 42vh;
         left: 6vw;
         max-width: 88vw;
-      }
-      .note .l1{ font-size: 26px; }
-      .note .l2, .note .l3{
-        font-size: 30px;
-        margin-left: 3vw;
-      }
-
-      .contact{
-        right: 7vw;
-        bottom: 6vh;
-        font-size: 22px;
       }
     }
   </style>
@@ -186,7 +186,7 @@
 
     <div class="contact">
       <div class="line">yangtina75@gmail.com</div><br>
-      <div class="line">+886 971 856 007</div>
+      <div class="line">+886&nbsp;971&nbsp;856&nbsp;007</div>
     </div>
   </div>
 </body>
