@@ -1,196 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Serif (和聯絡資訊同字體系統) -->
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- 手寫字體（首頁同款） -->
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --bg-img: url("about-bg.jpg");
-  --overlay-desktop: 0.50;
-  --overlay-mobile: 0.65;
-
-  --gold: #c49063;
-  --white-soft: rgba(245,245,245,0.92);
-  --grey-soft: rgba(205,205,205,0.78);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-*{box-sizing:border-box;}
-html,body{
-  height:100%;
-  margin:0;
-  background:#000;
-  font-family:"EB Garamond","Cormorant Garamond",serif;
+body{
+  font-family: 'Times New Roman', serif;
+  color:#f5f5f5;
+  background: url("about-bg.jpg") center/cover no-repeat fixed;
+  min-height:100vh;
+  position:relative;
   overflow-x:hidden;
 }
 
-/* 背景圖 */
-.bg{
+/* 整體暗色濾鏡 */
+body::after{
+  content:"";
   position:fixed;
   inset:0;
-  background-image:var(--bg-img);
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center -8%;
-  z-index:0;
-}
-.bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,var(--overlay-desktop));
+  background:rgba(0,0,0,0.5);
+  z-index:-1;
 }
 
-/* 主層 */
-.stage{
-  position:relative;
-  min-height:100vh;
-  z-index:1;
-}
-
-/* Back */
-.back{
+/* back */
+.back-link{
   position:absolute;
-  top:28px;
-  left:22px;
-  font-size:22px;
-  color:rgba(235,235,235,0.78);
+  top:30px;
+  left:40px;
+  color:#ddd;
   text-decoration:none;
-  padding:10px 14px;
-  border-radius:12px;
-  background:rgba(0,0,0,0.22);
-  backdrop-filter:blur(3px);
-}
-.back:hover{
-  color:#fff;
+  font-size:16px;
+  letter-spacing:2px;
 }
 
 /* ABOUT 標題 */
 .about-title{
   position:absolute;
-  top:100px;
+  top:90px;
   left:80px;
-  letter-spacing:0.25em;
-  font-size:30px;
-  color:var(--white-soft);
-}
-.about-line{
-  position:absolute;
-  top:140px;
-  left:80px;
-  width:180px;
-  height:1px;
-  background:rgba(200,200,200,0.35);
+  font-size:28px;
+  letter-spacing:6px;
+  color:white;
 }
 
-/* 手寫區塊 */
+.about-line{
+  position:absolute;
+  top:130px;
+  left:80px;
+  width:140px;
+  height:1px;
+  background:#aaa;
+}
+
+/* 手寫文字區 */
 .note{
   position:absolute;
-  top:230px;
-  left:100px;
-  max-width:520px;
-  font-family:"Caveat",cursive;
-  line-height:1.2;
+  top:190px;
+  left:120px;
+  max-width:420px;
+  font-family: 'Brush Script MT', cursive;
+  font-size:26px;
+  line-height:1.6;
+  color:#dfe7df;
   z-index:2;
 }
 
-/* 雲霧層（高級柔霧） */
+/* 霧氣底層（柔雲感） */
 .note::before{
   content:"";
   position:absolute;
-  inset:-90px -160px -100px -160px;
-  background:
-    radial-gradient(ellipse at 30% 35%,
-      rgba(20,22,26,0.82) 0%,
-      rgba(20,22,26,0.55) 30%,
-      rgba(20,22,26,0.28) 55%,
-      rgba(20,22,26,0.08) 75%,
-      rgba(20,22,26,0.00) 92%
-    ),
-    radial-gradient(ellipse at 70% 60%,
-      rgba(20,22,26,0.45) 0%,
-      rgba(20,22,26,0.20) 45%,
-      rgba(20,22,26,0.00) 80%
-    );
-  filter:blur(36px);
+  inset:-40px -60px -40px -60px;
+  background:rgba(200,200,200,0.18);
+  filter:blur(40px);
+  border-radius:50%;
   z-index:-1;
 }
 
-/* 手寫文字 */
-.note .l1{
-  color:var(--grey-soft);
-  font-size:42px;
-  margin-bottom:8px;
-}
-.note .l2,
-.note .l3{
-  color:var(--white-soft);
-  font-size:46px;
-  margin-left:24px;
-}
-
-/* 聯絡資訊 */
-.contact{
-  position:absolute;
-  right:7vw;
-  bottom:8vh;
-  color:var(--gold);
-  font-size:26px;
-  line-height:1.4;
-  text-align:right;
-}
-.contact .line{
-  display:inline-block;
-  padding-bottom:6px;
-  border-bottom:1px solid rgba(196,144,99,0.28);
-  margin-bottom:12px;
-}
-
-/* 手機 */
+/* ===== MOBILE 魔法 ===== */
 @media (max-width:768px){
-  .bg{background-position:center 10%;}
-  .bg::after{background:rgba(0,0,0,var(--overlay-mobile));}
 
-  .about-title{left:40px; top:80px;}
-  .about-line{left:40px; top:120px; width:120px;}
+  .back-link{
+    left:20px;
+    top:20px;
+    font-size:14px;
+  }
 
-  .note{left:40px; top:190px; max-width:80vw;}
-  .note .l1{font-size:34px;}
-  .note .l2,.note .l3{font-size:38px;}
+  .about-title{
+    left:24px;
+    top:70px;
+    font-size:22px;
+    letter-spacing:4px;
+  }
 
-  .contact{font-size:20px;}
+  .about-line{
+    left:24px;
+    top:105px;
+    width:110px;
+  }
+
+  .note{
+    position:relative;
+    top:auto;
+    left:auto;
+    margin:80px 24px 40px 24px;
+    font-size:20px;
+    max-width:none;
+  }
+
+  .note::before{
+    inset:-60px -40px -60px -40px;
+    filter:blur(55px);
+    opacity:0.6;
+  }
+
+  body::after{
+    background:rgba(0,0,0,0.35);
+  }
 }
+
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
 
-<div class="stage">
-  <a class="back" href="index.html">← back</a>
+<a href="index.html" class="back-link">← back</a>
 
-  <div class="about-title">ABOUT</div>
-  <div class="about-line"></div>
+<div class="about-title">ABOUT</div>
+<div class="about-line"></div>
 
-  <div class="note">
-    <div class="l1">If you are curious about—</div>
-    <div class="l2">My work, website</div>
-    <div class="l3">Me (with sincerity), contact me</div>
-  </div>
-
-  <div class="contact">
-    <div class="line">yangtina75@gmail.com</div><br>
-    <div class="line">+886 971 856 007</div>
-  </div>
+<div class="note">
+  <div>If you are curious about—</div>
+  <div>My work, website</div>
+  <div>Me (with sincerity), contact me</div>
 </div>
+
 </body>
 </html>
