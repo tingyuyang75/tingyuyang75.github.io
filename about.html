@@ -5,166 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Serif (same as contact / name) -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Handwriting -->
+  <!-- Same serif feel (for ABOUT + contact) -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Handwriting: Caveat (same as homepage) -->
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg-img: url("about-bg.jpg");
+      /* ✅ 背景圖：如果你實際檔名不是 about-bg.jpg（大小寫也算），改這裡 */
+      --bg-url: url("about-bg.jpg");
 
-      --overlay-desktop: 0.50;   /* 桌機黑 50% */
+      /* ✅ 桌機黑色濾鏡 50% */
+      --overlay-desktop: 0.50;
+      /* 手機更黑一點（你之前說想再黑） */
       --overlay-mobile: 0.62;
 
       --gold: #c49063;
-      --white-soft: rgba(245,245,245,0.92);
-      --grey-line: rgba(220,220,220,0.35);
 
-      --hand-grey: rgba(200,200,200,0.75);
-      --hand-white: rgba(245,245,245,0.9);
+      /* ABOUT + underline (白字 + 淺灰線) */
+      --about-white: rgba(245,245,245,0.92);
+      --about-line: rgba(220,220,220,0.35);
+
+      /* Handwriting colors */
+      --hand-grey: rgba(205,205,205,0.70); /* If you are curious about— */
+      --hand-white: rgba(245,245,245,0.88); /* other two lines */
+
+      /* Back */
+      --back-grey: rgba(235,235,235,0.70);
     }
 
     * { box-sizing: border-box; }
-
-    html, body {
+    html, body { height: 100%; }
+    body{
       margin: 0;
-      padding: 0;
-      height: 100%;
-      background: #000;
-      font-family: "EB Garamond", serif;
-      overflow: hidden;
+      background: #000;         /* 背景圖掛了也不會出現怪色 */
+      overflow-x: hidden;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
     }
 
-    /* 吃掉所有瀏覽器縫隙（避免黑邊） */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      background:#000;
-      z-index:-2;
-    }
-
-    /* Background */
+    /* ✅ 背景層：用「加大畫布 + 上移」避免任何黑邊 */
     .bg{
       position: fixed;
-      inset:-4px;
-      background-image: var(--bg-img);
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg::before{
+      content:"";
+      position:absolute;
+
+      /* 關鍵：上下多給一些空間，怎麼移都不會露出黑邊 */
+      inset: -14vh 0 -14vh 0;
+
+      background-image: var(--bg-url);
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center -6%;
-      transform: scale(1.03);
-      z-index:-1;
+      background-position: center 0%;
+      transform: translateY(-6vh);   /* ✅ 桌機：整張圖往上 */
+      will-change: transform;
     }
     .bg::after{
       content:"";
       position:absolute;
-      inset:0;
+      inset: 0;
       background: rgba(0,0,0,var(--overlay-desktop));
+      pointer-events:none;
     }
 
     .stage{
       position: relative;
       min-height: 100vh;
+      z-index: 1;
     }
 
-    /* Back */
+    /* Back：不要太小、也不要貼 ABOUT 太近 */
     .back{
       position: absolute;
-      top: 28px;
-      left: 28px;
-      font-size: 22px;
+      top: 26px;
+      left: 26px;
+
+      font-size: 20px;
       letter-spacing: 0.06em;
-      color: rgba(235,235,235,0.75);
+      color: var(--back-grey);
       text-decoration: none;
+
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.18);
+      backdrop-filter: blur(2px);
+      -webkit-tap-highlight-color: transparent;
     }
     .back:hover{
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.90);
+      background: rgba(0,0,0,0.26);
     }
 
-    /* ABOUT title */
+    /* ✅ ABOUT：用你聯絡資訊同系（serif），白色，不突兀 */
     .about-title{
       position: absolute;
-      top: 120px;
-      left: 6vw;
 
-      font-size: clamp(18px, 1.8vw, 26px);
-      letter-spacing: 0.18em;
+      /* 下移一點，跟 back 拉開距離 */
+      top: 78px;
+      left: 26px;
+
+      color: var(--about-white);
+      letter-spacing: 0.28em;
       font-weight: 500;
-      color: var(--white-soft);
+      font-size: clamp(18px, 1.8vw, 26px);
+      user-select: none;
     }
     .about-title::after{
       content:"";
       display:block;
-      width: min(260px, 32vw);
       height: 1px;
-      background: var(--grey-line);
-      margin-top: 14px;
+      width: min(240px, 36vw);
+      background: var(--about-line);
+      margin-top: 10px;
     }
 
-    /* Handwriting block */
+    /* ✅ 手寫三行：Caveat、小一點、往下靠近圖但不碰圖 */
     .note{
       position: absolute;
-      top: 38vh; /* 往下靠近圖，但不碰 */
+
+      /* 往下移：靠近圖（你要的） */
+      top: 30vh;
       left: 7vw;
+
       max-width: 70vw;
 
-      font-family: "Caveat", cursive;
-      line-height: 1.2;
+      font-family: "Caveat", cursive !important;
+      line-height: 1.18;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
-
     .note .l1{
-      font-size: clamp(26px, 2.4vw, 34px);
       color: var(--hand-grey);
-      margin-bottom: 6px;
+      font-size: clamp(22px, 2.2vw, 32px);
+      margin: 0 0 6px 0;
     }
     .note .l2,
     .note .l3{
-      font-size: clamp(28px, 2.6vw, 38px);
       color: var(--hand-white);
-      margin-left: 2vw;
+      font-size: clamp(24px, 2.4vw, 34px);
+      margin: 0;
+      margin-left: 1.6vw; /* 兩行稍微往中間收一點點 */
     }
 
-    /* Contact */
+    /* ✅ Contact：維持你原本右下感覺 */
     .contact{
       position: absolute;
       right: 6vw;
       bottom: 7vh;
 
-      font-size: clamp(20px, 2.1vw, 34px);
       color: var(--gold);
-      text-align: right;
+      font-weight: 500;
+      letter-spacing: 0.02em;
       line-height: 1.25;
+      text-align: right;
+      font-size: clamp(18px, 2.0vw, 32px);
     }
     .contact .line{
-      display:inline-block;
-      padding-bottom:6px;
-      border-bottom:1px solid rgba(196,144,99,0.28);
-      margin-bottom:12px;
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(196,144,99,0.28);
+      margin-bottom: 12px;
+    }
+    .contact .line:last-child{
+      border-bottom: 1px solid rgba(196,144,99,0.22);
+      margin-bottom: 0;
     }
 
-    /* Mobile */
+    /* ✅ Mobile */
     @media (max-width: 768px){
-      .bg{
+      .bg::before{
+        /* 手機用你之前喜歡的 9% 位置感 */
         background-position: center 9%;
+        transform: translateY(0);
+        inset: -10vh 0 -10vh 0;
       }
       .bg::after{
         background: rgba(0,0,0,var(--overlay-mobile));
       }
 
+      .back{
+        top: 16px;
+        left: 16px;
+        font-size: 18px;
+        padding: 10px 14px;
+      }
+
       .about-title{
-        top: 96px;
-        left: 7vw;
+        top: 62px;
+        left: 16px;
+        font-size: 18px;
+      }
+      .about-title::after{
+        width: min(220px, 56vw);
       }
 
       .note{
-        top: 42vh;
+        top: 26vh;     /* 手機也往下靠近圖 */
         left: 6vw;
         max-width: 88vw;
+      }
+      .note .l1{ font-size: 22px; }
+      .note .l2, .note .l3{
+        font-size: 24px;
+        margin-left: 3.2vw;
+      }
+
+      .contact{
+        right: 7vw;
+        bottom: 6vh;
+        font-size: 22px;
       }
     }
   </style>
@@ -174,19 +230,23 @@
   <div class="bg" aria-hidden="true"></div>
 
   <div class="stage">
+    <!-- ✅ Back 回首頁（你現在 homepage 已救回來，就用 index.html） -->
     <a class="back" href="index.html">← back</a>
 
+    <!-- ✅ ABOUT + underline -->
     <div class="about-title">ABOUT</div>
 
-    <div class="note">
+    <!-- ✅ Handwriting -->
+    <div class="note" aria-label="about note">
       <div class="l1">If you are curious about—</div>
       <div class="l2">My work, website</div>
       <div class="l3">Me (with sincerity), contact me</div>
     </div>
 
+    <!-- ✅ Contact -->
     <div class="contact">
       <div class="line">yangtina75@gmail.com</div><br>
-      <div class="line">+886&nbsp;971&nbsp;856&nbsp;007</div>
+      <div class="line">+886 971 856 007</div>
     </div>
   </div>
 </body>
