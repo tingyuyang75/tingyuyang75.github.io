@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,11 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Serif -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Handwriting: Caveat -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -17,39 +21,44 @@
       --overlay-mobile: 0.62;
 
       --gold: #c49063;
-      --gold-dim: rgba(196,144,99,0.68);
-      --baseline: rgba(196,144,99,0.32);
+      --gold-dim: rgba(196,144,99,0.72);
+      --baseline: rgba(196,144,99,0.30);
 
-      --hand-white: rgba(245,245,245,0.90);
-      --hand-grey: rgba(200,200,200,0.72);
+      --hand-white: rgba(245,245,245,0.92);
+      --hand-grey: rgba(205,205,205,0.82);
 
-      --back-grey: rgba(230,230,230,0.82);
+      --back-grey: rgba(235,235,235,0.78);
     }
 
-    *{ box-sizing:border-box; }
-    html, body{
-      margin:0;
-      padding:0;
-      width:100%;
-      height:100%;
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body{
       background:#000;
-      overflow-x:hidden;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      overflow-x: hidden;
     }
-
-    body{ font-family:"EB Garamond","Cormorant Garamond",serif; }
 
     /* Background */
     .bg{
       position: fixed;
-      top: -4vh;
-      left: 0;
-      width: 100%;
-      height: 108vh;
+      inset: 0;
       background-image: var(--bg-img);
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: center -6%;
-      z-index: 0;
+
+      /* 桌機往上：更負更往上 */
+      background-position: center -8%;
+
+      /* 避免桌機上方出現奇怪黑邊：不要用 attachment fixed */
+      background-attachment: scroll;
+      transform: translateZ(0);
+      will-change: transform;
     }
     .bg::after{
       content:"";
@@ -65,30 +74,12 @@
       z-index: 1;
     }
 
-    /* Back */
-    .back{
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      font-size: 22px;
-      letter-spacing: 0.06em;
-      color: var(--back-grey);
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.18);
-      backdrop-filter: blur(2px);
-    }
-    .back:hover{
-      color: rgba(255,255,255,0.92);
-      background: rgba(0,0,0,0.28);
-    }
-
-    /* ABOUT title */
+    /* ABOUT (left-top) + baseline */
     .about-title{
       position: absolute;
       top: 6vh;
       left: 6vw;
+
       color: var(--gold-dim);
       letter-spacing: 0.28em;
       font-weight: 500;
@@ -98,43 +89,83 @@
     .about-title::after{
       content:"";
       display:block;
-      height:1px;
-      width:min(220px, 28vw);
+      height: 1px;
+      width: min(260px, 42vw);
       background: var(--baseline);
       margin-top: 12px;
     }
 
-    /* Handwritten note */
+    /* Back (bigger, findable) */
+    .back{
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      z-index: 5;
+
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      font-size: 22px;
+      letter-spacing: 0.06em;
+
+      color: var(--back-grey);
+      text-decoration: none;
+
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.18);
+      backdrop-filter: blur(2px);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back:hover{
+      color: rgba(255,255,255,0.90);
+      background: rgba(0,0,0,0.26);
+    }
+
+    /* Handwriting note */
     .note{
       position: absolute;
-      top: 34vh;
-      left: 7vw;
-      max-width: 72vw;
-      font-family: "Caveat", cursive;
-      line-height: 1.15;
+
+      /* 往下移一些，靠近圖但不碰：可微調 36vh → 34vh/38vh */
+      top: 36vh;
+
+      /* 整體偏左 */
+      left: 6vw;
+      max-width: 78vw;
+
+      font-family: "Caveat", cursive !important;
+      line-height: 1.18;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      user-select: none;
     }
+
+    /* smaller, less space */
     .note .l1{
       color: var(--hand-grey);
-      font-size: clamp(26px, 2.4vw, 34px);
-      margin-bottom: 6px;
+      font-size: clamp(22px, 2.3vw, 32px);
+      margin: 0 0 6px 0;
     }
     .note .l2,
     .note .l3{
       color: var(--hand-white);
-      font-size: clamp(28px, 2.6vw, 38px);
-      margin-left: 2.2vw;
+      font-size: clamp(24px, 2.5vw, 34px);
+      margin: 0;
     }
 
-    /* Contact */
+    /* l1 more left; l2/l3 slightly pulled to center */
+    .note .l2{ margin-left: 2.0vw; }
+    .note .l3{ margin-left: 2.0vw; }
+
+    /* Contact bottom-right */
     .contact{
       position: absolute;
       right: 6vw;
       bottom: 7vh;
+
       color: var(--gold);
       font-weight: 500;
       letter-spacing: 0.02em;
-      text-align: right;
       line-height: 1.25;
+      text-align: right;
       font-size: clamp(20px, 2.1vw, 34px);
     }
     .contact .line{
@@ -143,12 +174,14 @@
       border-bottom: 1px solid rgba(196,144,99,0.28);
       margin-bottom: 12px;
     }
+    .contact .line:last-child{
+      border-bottom: 1px solid rgba(196,144,99,0.22);
+      margin-bottom: 0;
+    }
 
     /* Mobile */
     @media (max-width: 768px){
       .bg{
-        top: -6vh;
-        height: 112vh;
         background-position: center 9%;
       }
       .bg::after{
@@ -156,9 +189,10 @@
       }
 
       .back{
-        top: 16px;
-        left: 16px;
+        top: 14px;
+        left: 14px;
         font-size: 20px;
+        padding: 10px 14px;
       }
 
       .about-title{
@@ -166,18 +200,18 @@
         left: 7vw;
         font-size: 20px;
       }
+      .about-title::after{
+        width: min(240px, 56vw);
+        background: rgba(196,144,99,0.26);
+      }
 
       .note{
-        top: 38vh;
+        top: 32vh;     /* 手機再靠近圖一點點 */
         left: 6vw;
-        max-width: 86vw;
+        max-width: 88vw;
       }
       .note .l1{ font-size: 24px; }
-      .note .l2,
-      .note .l3{
-        font-size: 30px;
-        margin-left: 4vw;
-      }
+      .note .l2, .note .l3{ font-size: 26px; margin-left: 3.2vw; }
 
       .contact{
         right: 7vw;
@@ -192,11 +226,11 @@
   <div class="bg" aria-hidden="true"></div>
 
   <div class="stage">
-    <a class="back" href="./index.html">← back</a>
+    <a class="back" id="backLink" href="index.html">← back</a>
 
     <div class="about-title">ABOUT</div>
 
-    <div class="note">
+    <div class="note" aria-label="about note">
       <div class="l1">If you are curious about—</div>
       <div class="l2">My work, website</div>
       <div class="l3">Me (with sincerity), contact me</div>
@@ -207,5 +241,15 @@
       <div class="line">+886 971 856 007</div>
     </div>
   </div>
+
+  <script>
+    // Anti-cache for Messenger / in-app browsers:
+    // make "back" always open the latest index.html
+    (function () {
+      const link = document.getElementById('backLink');
+      const v = Date.now();
+      link.href = 'index.html?v=' + v;
+    })();
+  </script>
 </body>
 </html>
