@@ -1,200 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Serif (ABOUT + contact) -->
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Handwriting -->
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --overlay-desktop: 0.50;
-      --overlay-mobile: 0.62;
+<style>
+:root{
+  --overlay-desktop: 0.50;
+  --overlay-mobile: 0.62;
 
-      --gold: #c49063;
-      --about-white: rgba(245,245,245,0.92);
-      --about-line: rgba(220,220,220,0.35);
+  --about-white: rgba(245,245,245,0.92);
+  --about-line: rgba(220,220,220,0.35);
 
-      --hand-grey: rgba(205,205,205,0.72);
-      --hand-white: rgba(245,245,245,0.88);
-      --back-grey: rgba(235,235,235,0.70);
-    }
+  --hand-grey: rgba(210,210,210,0.75);
+  --hand-white: rgba(245,245,245,0.92);
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin: 0;
-      background:#000;
-      overflow-x: hidden;
-      font-family: "EB Garamond","Cormorant Garamond",serif;
-    }
+  --glass: rgba(40,40,45,0.28);
+  --glass-border: rgba(255,255,255,0.08);
+}
 
-    /* ===== Background ===== */
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-    }
-    .bg::before{
-      content:"";
-      position:absolute;
-      inset: -14vh 0 -14vh 0;
-      background-image: url("about-bg.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center 0%;
-      transform: translateY(-6vh);
-    }
-    .bg::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(0,0,0,var(--overlay-desktop));
-    }
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#000;
+  overflow-x:hidden;
+  font-family:"EB Garamond","Cormorant Garamond",serif;
+}
 
-    .stage{
-      position: relative;
-      min-height: 100vh;
-      z-index: 1;
-    }
+/* ===== Background ===== */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+}
+.bg::before{
+  content:"";
+  position:absolute;
+  inset:-14vh 0 -14vh 0;
+  background-image:url("about-bg.jpg");
+  background-size:cover;
+  background-position:center 0%;
+  transform:translateY(-6vh);
+}
+.bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,var(--overlay-desktop));
+}
 
-    /* 左側整組內縮：Back + ABOUT 同一條垂直線 */
-    .left-rail{
-      position: absolute;
-      top: 26px;
-      left: 46px; /* ✅ 往內縮（原本26） */
-    }
+.stage{ position:relative; min-height:100vh; z-index:1; }
 
-    /* Back */
-    .back{
-      display: inline-block;
-      font-size: 20px;
-      letter-spacing: 0.06em;
-      color: var(--back-grey);
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: rgba(0,0,0,0.18);
-    }
+/* ===== 左側軌道 ===== */
+.left-rail{
+  position:absolute;
+  top:30px;
+  left:70px; /* ✅ ABOUT 再內縮 */
+}
 
-    /* ABOUT */
-    .about-title{
-      margin-top: 18px; /* ✅ 跟 back 拉開一點 */
-      color: var(--about-white);
-      letter-spacing: 0.28em;
-      font-weight: 500;
-      font-size: clamp(18px, 1.8vw, 26px);
-    }
-    .about-title::after{
-      content:"";
-      display:block;
-      height: 1px;
-      width: min(240px, 36vw);
-      background: var(--about-line);
-      margin-top: 10px;
-    }
+.back{
+  font-size:20px;
+  letter-spacing:.06em;
+  color:rgba(235,235,235,0.7);
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(0,0,0,.18);
+}
 
-    /* ===== Handwriting note =====
-       核心：限制寬度，避開右側圖形區域
-    */
-    .note{
-      position: absolute;
-      top: 22vh;
-      left: 46px;             /* ✅ 跟 ABOUT 同一條線（內縮一致） */
-      padding-left: 2vw;      /* ✅ 再微微往內，讓它比 ABOUT 更柔和 */
-      font-family: "Caveat", cursive !important;
-      line-height: 1.18;
+.about-title{
+  margin-top:20px;
+  color:var(--about-white);
+  letter-spacing:.28em;
+  font-size:clamp(18px,1.8vw,26px);
+}
+.about-title::after{
+  content:"";
+  display:block;
+  height:1px;
+  width:min(260px,36vw);
+  background:var(--about-line);
+  margin-top:12px;
+}
 
-      /* ✅ 避免撞到右邊圖：保留右側安全區 */
-      max-width: min(560px, calc(100vw - 46px - 38vw));
-      /* 38vw = 右側圖形大致佔用區域的安全預留（你這張圖很適合） */
-    }
+/* ===== 手寫玻璃卡片 ===== */
+.note{
+  position:absolute;
+  top:24vh;
+  left:90px; /* ✅ 比 ABOUT 再多縮一點 */
+  font-family:"Caveat",cursive !important;
+  line-height:1.2;
 
-    .note .l1{
-      color: var(--hand-grey);
-      font-size: clamp(22px, 2.2vw, 32px);
-      margin-bottom: 6px;
-    }
-    .note .l2,
-    .note .l3{
-      color: var(--hand-white);
-      font-size: clamp(24px, 2.4vw, 34px);
-      margin-left: 1.6vw;
-      white-space: nowrap;   /* ✅ 保持像你原本那種一行一句 */
-    }
+  padding:26px 36px 28px 28px;
+  border-radius:18px;
 
-    /* Contact */
-    .contact{
-      position: absolute;
-      right: 6vw;
-      bottom: 7vh;
-      color: var(--gold);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
-      text-align: right;
-      font-size: clamp(18px, 2.0vw, 32px);
-    }
-    .contact .line{
-      display: inline-block;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(196,144,99,0.28);
-      margin-bottom: 12px;
-    }
+  background:var(--glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border:1px solid var(--glass-border);
 
-    /* Mobile */
-    @media (max-width: 768px){
-      .bg::before{
-        background-position: center 9%;
-        transform: translateY(0);
-      }
-      .bg::after{
-        background: rgba(0,0,0,var(--overlay-mobile));
-      }
+  max-width:min(520px,48vw);
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
 
-      .left-rail{ left: 18px; top: 16px; }
+.note .l1{
+  color:var(--hand-grey);
+  font-size:clamp(22px,2.2vw,32px);
+  margin-bottom:8px;
+}
+.note .l2,
+.note .l3{
+  color:var(--hand-white);
+  font-size:clamp(24px,2.4vw,36px);
+  margin-left:1.4vw;
+  white-space:nowrap;
+}
 
-      .note{
-        top: 22vh;
-        left: 18px;
-        padding-left: 4vw;
-        max-width: 88vw; /* 手機就不用避右側，直接滿版安全 */
-      }
+/* Contact */
+.contact{
+  position:absolute;
+  right:6vw;
+  bottom:7vh;
+  color:#c49063;
+  line-height:1.25;
+  text-align:right;
+  font-size:clamp(18px,2vw,30px);
+}
+.contact .line{
+  display:inline-block;
+  padding-bottom:6px;
+  border-bottom:1px solid rgba(196,144,99,0.28);
+  margin-bottom:12px;
+}
 
-      .note .l2, .note .l3{
-        white-space: normal; /* 手機允許換行，不會被擠爆 */
-      }
-    }
-  </style>
+/* ===== Mobile ===== */
+@media(max-width:768px){
+  .bg::before{ background-position:center 9%; transform:none; }
+  .bg::after{ background:rgba(0,0,0,var(--overlay-mobile)); }
+
+  .left-rail{ left:22px; top:18px; }
+  .note{
+    left:22px;
+    right:22px;
+    max-width:none;
+    padding:20px 22px;
+  }
+  .note .l2,.note .l3{ white-space:normal; }
+}
+</style>
 </head>
 
 <body>
-  <div class="bg"></div>
+<div class="bg"></div>
 
-  <div class="stage">
-    <div class="left-rail">
-      <a class="back" href="index.html">← back</a>
-      <div class="about-title">ABOUT</div>
-    </div>
-
-    <div class="note">
-      <div class="l1">If you are curious about—</div>
-      <div class="l2">My work, website</div>
-      <div class="l3">Me (with sincerity), contact me</div>
-    </div>
-
-    <div class="contact">
-      <div class="line">yangtina75@gmail.com</div><br>
-      <div class="line">+886 971 856 007</div>
-    </div>
+<div class="stage">
+  <div class="left-rail">
+    <a class="back" href="index.html">← back</a>
+    <div class="about-title">ABOUT</div>
   </div>
+
+  <div class="note">
+    <div class="l1">If you are curious about—</div>
+    <div class="l2">My work, website</div>
+    <div class="l3">Me (with sincerity), contact me</div>
+  </div>
+
+  <div class="contact">
+    <div class="line">yangtina75@gmail.com</div><br>
+    <div class="line">+886 971 856 007</div>
+  </div>
+</div>
 </body>
 </html>
