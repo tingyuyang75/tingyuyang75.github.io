@@ -2,200 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ting Yu Yang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- Serif -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Handwriting: Caveat (same as homepage) -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0e0e0e;
-      --text:#eaeaea;
-      --muted:rgba(234,234,234,0.88);
-      --sep:rgba(234,234,234,0.35);
-      --gold:#b79b6b;
-      --panel:rgba(12,12,12,0.92);
-      --panel-border:rgba(255,255,255,0.1);
+      --bg-img: url("about-bg.jpg");
+
+      --overlay-desktop: 0.45;
+      --overlay-mobile: 0.62; /* 手機更黑：想再黑就加大 */
+
+      --gold: #c49063;
+
+      --hand-white: rgba(245,245,245,0.92);
+      --hand-grey: rgba(205,205,205,0.78); /* 第一行更深灰 */
+      --back-grey: rgba(235,235,235,0.78);
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Libre Baskerville", Georgia, serif;
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      background:#000;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      overflow-x: hidden;
     }
 
-    body {
+    /* Background */
+    .bg{
+      position: fixed;
+      inset: 0;
+      background-image: var(--bg-img);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center -6%; /* 桌機往上：要更上就更負 */
+      transform: translateZ(0);
+      will-change: transform;
+    }
+    .bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,var(--overlay-desktop));
+      pointer-events:none;
+    }
+
+    .stage{
+      position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      z-index: 1;
     }
 
-    /* ---------- Header ---------- */
-    header {
-      margin-top: 64px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: clamp(30px, 3.4vw, 46px);
-      letter-spacing: 2px;
-      font-weight: 400;
-      margin-bottom: 28px; /* 關鍵：拉開名字與導覽距離 */
-    }
-
-    /* ---------- Navigation ---------- */
-    .topnav{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap: 18px;
-      font-size: clamp(15px, 1.55vw, 18px);
-      letter-spacing: 1.6px;
-      opacity: 0.92;
-      user-select: none;
-
-      /* 關鍵：預留 dropdown 空間，避免撞到 quote */
-      margin-bottom: 120px;
-
-      position: relative;
-      z-index: 10;
-    }
-
-    .nav-sep{ color: var(--sep); }
-
-    .topnav a,
-    .topnav summary{
-      color: var(--muted);
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 140ms ease;
-    }
-
-    .topnav a:hover,
-    .topnav summary:hover{
-      color: var(--gold);
-    }
-
-    /* ---------- Dropdown ---------- */
-    details.dropdown{
-      position: relative;
-      display: inline-block;
-    }
-
-    details.dropdown > summary{
-      list-style: none;
-      display: inline-block;
-    }
-
-    details.dropdown > summary::-webkit-details-marker{
-      display: none;
-    }
-
-    .dropdown-content{
+    /* Back: bigger & findable */
+    .back{
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 30px;                 /* 往下開 */
-      min-width: 170px;
-      padding: 10px;
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      z-index: 9999;
+      top: 26px;
+      left: 26px;
+      font-family: "EB Garamond","Cormorant Garamond",serif;
+      font-size: 22px;          /* 更大 */
+      letter-spacing: 0.06em;
+      color: var(--back-grey);
+      text-decoration: none;
+      padding: 10px 14px;       /* 可點擊區域更大 */
+      border-radius: 12px;
+      background: rgba(0,0,0,0.18);
+      backdrop-filter: blur(2px);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back:hover{
+      color: rgba(255,255,255,0.90);
+      background: rgba(0,0,0,0.26);
     }
 
-    .dropdown-content a{
-      display: block;
-      padding: 8px 10px;
-      letter-spacing: 0.4px;
-      font-size: 15px;
-      white-space: nowrap;
+    /* Handwriting note */
+    .note{
+      position: absolute;
+      top: 18vh;
+      left: 7vw;               /* 整塊更靠左 */
+      max-width: 76vw;
+
+      font-family: "Caveat", cursive !important; /* 強制 Caveat */
+      line-height: 1.22;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .dropdown-content a:hover{
+    /* First line: more left + deeper gray */
+    .note .l1{
+      color: var(--hand-grey);
+      font-size: clamp(34px, 3.2vw, 48px);
+      margin-left: 0;
+      margin-bottom: 8px;
+    }
+
+    /* Lines 2-3: slightly more centered */
+    .note .l2,
+    .note .l3{
+      color: var(--hand-white);
+      font-size: clamp(36px, 3.6vw, 54px);
+      margin-left: 2.4vw;
+    }
+
+    /* Contact bottom-right */
+    .contact{
+      position: absolute;
+      right: 6vw;
+      bottom: 7vh;
       color: var(--gold);
-      text-decoration: underline;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      text-align: right;
+      font-size: clamp(20px, 2.1vw, 34px);
+    }
+    .contact .line{
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(196,144,99,0.28);
+      margin-bottom: 12px;
+    }
+    .contact .line:last-child{
+      border-bottom: 1px solid rgba(196,144,99,0.22);
+      margin-bottom: 0;
     }
 
-    /* ---------- Main ---------- */
-    main {
-      width: 100%;
-      max-width: 820px;
-      padding: 0 20px 60px 20px;
-      text-align: center;
-    }
+    /* Mobile */
+    @media (max-width: 768px){
+      .bg{
+        background-position: center 9%;
+      }
+      .bg::after{
+        background: rgba(0,0,0,var(--overlay-mobile));
+      }
 
-    .intro-text {
-      font-family: "Caveat", cursive;
-      font-size: clamp(22px, 2.6vw, 34px);
-      line-height: 1.45;
-      margin-bottom: 36px;
-      opacity: 0.96;
-    }
+      .back{
+        top: 16px;
+        left: 16px;
+        font-size: 20px;
+        padding: 10px 14px;
+      }
 
-    .hero-image {
-      display: block;
-      max-width: 360px;
-      width: 84%;
-      margin: 0 auto;
-      border: none;
-      background: transparent;
-      mix-blend-mode: lighten;
-      opacity: 0.95;
-    }
+      .note{
+        top: 16vh;
+        left: 6vw;
+        max-width: 88vw;
+      }
+      .note .l1{ font-size: 34px; }
+      .note .l2, .note .l3{
+        font-size: 38px;
+        margin-left: 3.6vw;
+      }
 
-    footer { height: 40px; }
-
-    @media (max-width: 600px) {
-      header { margin-top: 54px; }
-      .topnav{
-        gap: 14px;
-        margin-bottom: 110px;
-        letter-spacing: 1.4px;
+      .contact{
+        right: 7vw;
+        bottom: 6vh;
+        font-size: 22px;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg" aria-hidden="true"></div>
 
-  <header>
-    <h1>TING YU YANG</h1>
+  <div class="stage">
+    <a class="back" href="index.html">← back</a>
 
-    <nav class="topnav">
-      <details class="dropdown">
-        <summary>PROJECT ▾</summary>
-        <div class="dropdown-content">
-          <a href="writing.html">Writing</a>
-          <a href="gallery.html">Gallery</a>
-        </div>
-      </details>
-
-      <span class="nav-sep">|</span>
-
-      <a href="research.html">RESEARCH</a>
-
-      <span class="nav-sep">|</span>
-
-      <a href="about.html">ABOUT</a>
-    </nav>
-  </header>
-
-  <main>
-    <div class="intro-text">
-      You’re allowed to change shape.<br>
-      Coffee cup or doughnut — just don’t rip yourself in the process.
+    <div class="note" aria-label="about note">
+      <div class="l1">If you are curious about—</div>
+      <div class="l2">My work, website</div>
+      <div class="l3">Me (with sincerity), contact me</div>
     </div>
 
-    <img src="key.jpg" alt="figure" class="hero-image" />
-  </main>
-
-  <footer></footer>
-
+    <div class="contact">
+      <div class="line">yangtina75@gmail.com</div><br>
+      <div class="line">+886 971 856 007</div>
+    </div>
+  </div>
 </body>
 </html>
