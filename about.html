@@ -8,9 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -20,6 +18,8 @@
       --overlay-mobile: 0.62;
 
       --gold: #c49063;
+      --gold-dim: rgba(196,144,99,0.68);
+      --baseline: rgba(196,144,99,0.32);
 
       --hand-white: rgba(245,245,245,0.90);
       --hand-grey: rgba(200,200,200,0.72);
@@ -27,28 +27,27 @@
       --back-grey: rgba(230,230,230,0.75);
     }
 
-    *{ box-sizing: border-box; }
-
+    *{ box-sizing:border-box; }
     html, body{
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-      background: #000;
+      margin:0;
+      padding:0;
+      width:100%;
+      height:100%;
+      background:#000;
+      overflow-x:hidden;
     }
 
     body{
-      font-family: "EB Garamond","Cormorant Garamond",serif;
+      font-family:"EB Garamond","Cormorant Garamond",serif;
     }
 
     /* ===== Background ===== */
     .bg{
       position: fixed;
-      top: -4vh;                 /* 🔑 吃掉頂部黑邊 */
+      top: -4vh;
       left: 0;
       width: 100%;
-      height: 108vh;             /* 🔑 高於 100vh */
+      height: 108vh;
       background-image: var(--bg-img);
       background-size: cover;
       background-repeat: no-repeat;
@@ -75,12 +74,10 @@
       position: absolute;
       top: 24px;
       left: 24px;
-
       font-size: 22px;
       letter-spacing: 0.06em;
       color: var(--back-grey);
       text-decoration: none;
-
       padding: 10px 14px;
       border-radius: 12px;
       background: rgba(0,0,0,0.18);
@@ -91,27 +88,47 @@
       background: rgba(0,0,0,0.28);
     }
 
+    /* ===== ABOUT title (restored) ===== */
+    .about-title{
+      position: absolute;
+      top: 6vh;
+      left: 6vw;
+      color: var(--gold-dim);
+      letter-spacing: 0.28em;
+      font-weight: 500;
+      font-size: clamp(18px, 2.0vw, 28px);
+      user-select: none;
+    }
+    .about-title::after{
+      content:"";
+      display:block;
+      height:1px;
+      width:min(220px, 28vw);
+      background: var(--baseline);
+      margin-top: 12px;
+    }
+
     /* ===== Handwritten note ===== */
     .note{
       position: absolute;
-      top: 20vh;
+      /* ⬇️ 往下移，靠近圖但不碰 */
+      top: 34vh;
       left: 7vw;
       max-width: 72vw;
-
       font-family: "Caveat", cursive;
       line-height: 1.15;
     }
 
     .note .l1{
       color: var(--hand-grey);
-      font-size: clamp(26px, 2.4vw, 34px);   /* ⬅ 縮小 */
+      font-size: clamp(26px, 2.4vw, 34px);
       margin-bottom: 6px;
     }
 
     .note .l2,
     .note .l3{
       color: var(--hand-white);
-      font-size: clamp(28px, 2.6vw, 38px);   /* ⬅ 縮小 */
+      font-size: clamp(28px, 2.6vw, 38px);
       margin-left: 2.2vw;
     }
 
@@ -120,7 +137,6 @@
       position: absolute;
       right: 6vw;
       bottom: 7vh;
-
       color: var(--gold);
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -128,7 +144,6 @@
       line-height: 1.25;
       font-size: clamp(20px, 2.1vw, 34px);
     }
-
     .contact .line{
       display: inline-block;
       padding-bottom: 6px;
@@ -153,8 +168,14 @@
         font-size: 20px;
       }
 
+      .about-title{
+        top: 5vh;
+        left: 7vw;
+        font-size: 20px;
+      }
+
       .note{
-        top: 18vh;
+        top: 38vh;   /* 手機再往下一點，避免擠 */
         left: 6vw;
         max-width: 86vw;
       }
@@ -180,6 +201,8 @@
 
   <div class="stage">
     <a class="back" href="index.html">← back</a>
+
+    <div class="about-title">ABOUT</div>
 
     <div class="note">
       <div class="l1">If you are curious about—</div>
