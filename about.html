@@ -36,7 +36,7 @@
       font-family: "EB Garamond","Cormorant Garamond",serif;
     }
 
-    /* ===== 背景圖（穩定版本）===== */
+    /* ===== Background ===== */
     .bg{
       position: fixed;
       inset: 0;
@@ -47,8 +47,6 @@
       content:"";
       position:absolute;
       inset: -14vh 0 -14vh 0;
-
-      /* 🔥 直接寫死圖檔，不用變數 */
       background-image: url("about-bg.jpg");
       background-size: cover;
       background-repeat: no-repeat;
@@ -68,11 +66,16 @@
       z-index: 1;
     }
 
-    /* Back */
-    .back{
+    /* 左側整組內縮：Back + ABOUT 同一條垂直線 */
+    .left-rail{
       position: absolute;
       top: 26px;
-      left: 26px;
+      left: 46px; /* ✅ 往內縮（原本26） */
+    }
+
+    /* Back */
+    .back{
+      display: inline-block;
       font-size: 20px;
       letter-spacing: 0.06em;
       color: var(--back-grey);
@@ -84,9 +87,7 @@
 
     /* ABOUT */
     .about-title{
-      position: absolute;
-      top: 80px;
-      left: 26px;
+      margin-top: 18px; /* ✅ 跟 back 拉開一點 */
       color: var(--about-white);
       letter-spacing: 0.28em;
       font-weight: 500;
@@ -101,15 +102,22 @@
       margin-top: 10px;
     }
 
-    /* ✨ 手寫句子：往上靠近 ABOUT */
+    /* ===== Handwriting note =====
+       核心：限制寬度，避開右側圖形區域
+    */
     .note{
       position: absolute;
-      top: 20vh;      /* 🔥 原本30vh → 改20vh */
-      left: 7vw;
-      max-width: 70vw;
+      top: 22vh;
+      left: 46px;             /* ✅ 跟 ABOUT 同一條線（內縮一致） */
+      padding-left: 2vw;      /* ✅ 再微微往內，讓它比 ABOUT 更柔和 */
       font-family: "Caveat", cursive !important;
       line-height: 1.18;
+
+      /* ✅ 避免撞到右邊圖：保留右側安全區 */
+      max-width: min(560px, calc(100vw - 46px - 38vw));
+      /* 38vw = 右側圖形大致佔用區域的安全預留（你這張圖很適合） */
     }
+
     .note .l1{
       color: var(--hand-grey);
       font-size: clamp(22px, 2.2vw, 32px);
@@ -120,6 +128,7 @@
       color: var(--hand-white);
       font-size: clamp(24px, 2.4vw, 34px);
       margin-left: 1.6vw;
+      white-space: nowrap;   /* ✅ 保持像你原本那種一行一句 */
     }
 
     /* Contact */
@@ -151,9 +160,17 @@
         background: rgba(0,0,0,var(--overlay-mobile));
       }
 
+      .left-rail{ left: 18px; top: 16px; }
+
       .note{
         top: 22vh;
-        max-width: 88vw;
+        left: 18px;
+        padding-left: 4vw;
+        max-width: 88vw; /* 手機就不用避右側，直接滿版安全 */
+      }
+
+      .note .l2, .note .l3{
+        white-space: normal; /* 手機允許換行，不會被擠爆 */
       }
     }
   </style>
@@ -163,8 +180,10 @@
   <div class="bg"></div>
 
   <div class="stage">
-    <a class="back" href="index.html">← back</a>
-    <div class="about-title">ABOUT</div>
+    <div class="left-rail">
+      <a class="back" href="index.html">← back</a>
+      <div class="about-title">ABOUT</div>
+    </div>
 
     <div class="note">
       <div class="l1">If you are curious about—</div>
