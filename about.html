@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Caveat:wght@400;500&display=swap" rel="stylesheet">
@@ -24,7 +23,7 @@
       --hand-white: rgba(245,245,245,0.90);
       --hand-grey: rgba(200,200,200,0.72);
 
-      --back-grey: rgba(230,230,230,0.75);
+      --back-grey: rgba(230,230,230,0.82);
     }
 
     *{ box-sizing:border-box; }
@@ -37,11 +36,9 @@
       overflow-x:hidden;
     }
 
-    body{
-      font-family:"EB Garamond","Cormorant Garamond",serif;
-    }
+    body{ font-family:"EB Garamond","Cormorant Garamond",serif; }
 
-    /* ===== Background ===== */
+    /* Background */
     .bg{
       position: fixed;
       top: -4vh;
@@ -62,14 +59,13 @@
       pointer-events:none;
     }
 
-    /* ===== Stage ===== */
     .stage{
       position: relative;
       min-height: 100vh;
       z-index: 1;
     }
 
-    /* ===== Back ===== */
+    /* Back */
     .back{
       position: absolute;
       top: 24px;
@@ -84,11 +80,11 @@
       backdrop-filter: blur(2px);
     }
     .back:hover{
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.92);
       background: rgba(0,0,0,0.28);
     }
 
-    /* ===== ABOUT title (restored) ===== */
+    /* ABOUT title */
     .about-title{
       position: absolute;
       top: 6vh;
@@ -108,23 +104,20 @@
       margin-top: 12px;
     }
 
-    /* ===== Handwritten note ===== */
+    /* Handwritten note */
     .note{
       position: absolute;
-      /* ⬇️ 往下移，靠近圖但不碰 */
       top: 34vh;
       left: 7vw;
       max-width: 72vw;
       font-family: "Caveat", cursive;
       line-height: 1.15;
     }
-
     .note .l1{
       color: var(--hand-grey);
       font-size: clamp(26px, 2.4vw, 34px);
       margin-bottom: 6px;
     }
-
     .note .l2,
     .note .l3{
       color: var(--hand-white);
@@ -132,7 +125,7 @@
       margin-left: 2.2vw;
     }
 
-    /* ===== Contact ===== */
+    /* Contact */
     .contact{
       position: absolute;
       right: 6vw;
@@ -151,7 +144,7 @@
       margin-bottom: 12px;
     }
 
-    /* ===== Mobile ===== */
+    /* Mobile */
     @media (max-width: 768px){
       .bg{
         top: -6vh;
@@ -175,11 +168,10 @@
       }
 
       .note{
-        top: 38vh;   /* 手機再往下一點，避免擠 */
+        top: 38vh;
         left: 6vw;
         max-width: 86vw;
       }
-
       .note .l1{ font-size: 24px; }
       .note .l2,
       .note .l3{
@@ -200,7 +192,7 @@
   <div class="bg" aria-hidden="true"></div>
 
   <div class="stage">
-    <a class="back" href="index.html">← back</a>
+    <a class="back" href="./index.html">← back</a>
 
     <div class="about-title">ABOUT</div>
 
