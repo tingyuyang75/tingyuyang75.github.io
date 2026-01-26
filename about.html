@@ -17,15 +17,15 @@
   --overlay-mobile: 0.62;
 
   --about-white: rgba(245,245,245,0.92);
-  --about-line: rgba(220,220,220,0.35);
+  --about-line: rgba(220,220,220,0.45);
 
   --hand-grey: rgba(210,210,210,0.75);
   --hand-white: rgba(245,245,245,0.92);
 
-  --glass: rgba(40,40,45,0.28);
-  --glass-border: rgba(255,255,255,0.08);
+  --gold: #c49063;
 }
 
+/* ===== Base ===== */
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -56,13 +56,17 @@ body{
   background:rgba(0,0,0,var(--overlay-desktop));
 }
 
-.stage{ position:relative; min-height:100vh; z-index:1; }
+.stage{
+  position:relative;
+  min-height:100vh;
+  z-index:1;
+}
 
-/* ===== 左側軌道 ===== */
+/* ===== Left Rail (Back + About) ===== */
 .left-rail{
   position:absolute;
-  top:30px;
-  left:70px; /* ✅ ABOUT 再內縮 */
+  top:34px;
+  left:9vw; /* 再內縮 */
 }
 
 .back{
@@ -76,59 +80,67 @@ body{
 }
 
 .about-title{
-  margin-top:20px;
-  color:var(--about-white);
+  margin-top:22px;
+  font-size:28px;
   letter-spacing:.28em;
-  font-size:clamp(18px,1.8vw,26px);
+  color:var(--about-white);
 }
 .about-title::after{
   content:"";
   display:block;
+  width:180px;
   height:1px;
-  width:min(260px,36vw);
+  margin-top:14px;
   background:var(--about-line);
-  margin-top:12px;
 }
 
-/* ===== 手寫玻璃卡片 ===== */
+/* ===== Handwriting "cloud" block ===== */
 .note{
   position:absolute;
-  top:24vh;
-  left:90px; /* ✅ 比 ABOUT 再多縮一點 */
-  font-family:"Caveat",cursive !important;
-  line-height:1.2;
+  top:26vh;
+  left:13vw; /* 比 ABOUT 再往內 */
+  max-width:520px;
+  font-family:"Caveat",cursive;
+  line-height:1.25;
+}
 
-  padding:26px 36px 28px 28px;
-  border-radius:18px;
-
-  background:var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border:1px solid var(--glass-border);
-
-  max-width:min(520px,48vw);
-  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+/* 🌫 雲霧層 */
+.note::before{
+  content:"";
+  position:absolute;
+  inset:-40px -60px -50px -60px;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(40,45,50,0.55) 0%,
+    rgba(40,45,50,0.38) 35%,
+    rgba(40,45,50,0.18) 60%,
+    rgba(40,45,50,0.06) 75%,
+    rgba(40,45,50,0.0) 85%
+  );
+  filter:blur(18px);
+  z-index:-1;
 }
 
 .note .l1{
+  font-size:36px;
   color:var(--hand-grey);
-  font-size:clamp(22px,2.2vw,32px);
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
+
 .note .l2,
 .note .l3{
+  font-size:42px;
   color:var(--hand-white);
-  font-size:clamp(24px,2.4vw,36px);
-  margin-left:1.4vw;
+  margin-left:24px;
   white-space:nowrap;
 }
 
-/* Contact */
+/* ===== Contact ===== */
 .contact{
   position:absolute;
   right:6vw;
   bottom:7vh;
-  color:#c49063;
+  color:var(--gold);
   line-height:1.25;
   text-align:right;
   font-size:clamp(18px,2vw,30px);
@@ -142,15 +154,20 @@ body{
 
 /* ===== Mobile ===== */
 @media(max-width:768px){
-  .bg::before{ background-position:center 9%; transform:none; }
-  .bg::after{ background:rgba(0,0,0,var(--overlay-mobile)); }
+  .bg::before{
+    background-position:center 9%;
+    transform:none;
+  }
+  .bg::after{
+    background:rgba(0,0,0,var(--overlay-mobile));
+  }
 
   .left-rail{ left:22px; top:18px; }
+
   .note{
     left:22px;
     right:22px;
     max-width:none;
-    padding:20px 22px;
   }
   .note .l2,.note .l3{ white-space:normal; }
 }
