@@ -8,88 +8,104 @@
 <style>
 body {
     margin: 0;
-    background-color: #0d0d0d;
-    color: #e8e6df;
+    background: #0b0b0d;
+    color: #e8e6e3;
     font-family: "Georgia", serif;
-    letter-spacing: 0.5px;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Back link */
+a {
+    color: #e8e6e3;
+    text-decoration: none;
+    opacity: 0.8;
+}
+a:hover {
+    opacity: 1;
+}
+
 .back {
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: 28px;
+    left: 32px;
     font-size: 18px;
-    text-decoration: none;
-    color: #cfcabf;
+    letter-spacing: 1px;
 }
 
-.back:hover {
+.header {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 60px;
+}
+
+.header h1 {
+    font-size: 38px;
+    letter-spacing: 6px;
+    font-weight: normal;
+}
+
+.header .line {
+    width: 120px;
+    height: 1px;
+    background: #888;
+    margin: 18px auto 0 auto;
     opacity: 0.6;
 }
 
-/* Title */
-h1 {
-    text-align: center;
-    font-weight: normal;
-    letter-spacing: 4px;
-    margin-top: 90px;
-    margin-bottom: 10px;
-    font-size: 32px;
-}
-
-.title-line {
-    width: 120px;
-    height: 1px;
-    background-color: #6e6a60;
-    margin: 0 auto 60px auto;
-}
-
-/* Gallery wall layout */
+/* 策展牆感 */
 .gallery-wall {
     display: flex;
     justify-content: center;
-    gap: 80px;
     flex-wrap: wrap;
-    padding: 40px 20px 120px 20px;
+    gap: 80px 100px;
+    padding: 40px 10vw 120px 10vw;
 }
 
-/* Artwork styling */
-.artwork {
+/* 小卡片感 */
+.art-card {
     max-width: 340px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0.9;
 }
 
-.artwork img {
+.art-card img {
     width: 100%;
+    height: auto;
     display: block;
-    filter: brightness(92%) contrast(105%);
+    filter: brightness(0.95) contrast(1.05);
 }
 
-/* Subtle hover like walking closer in a gallery */
-.artwork:hover {
-    transform: scale(1.03);
-    opacity: 0.95;
+/* 不要亮邊，不要框 */
+.art-card img {
+    box-shadow: none;
+    border: none;
 }
 
-/* Mobile version */
+/* 輕微呼吸感 */
+.art-card:hover {
+    transform: translateY(-6px);
+    opacity: 1;
+}
+
+/* 手機版：更小、更有留白 */
 @media (max-width: 768px) {
-    h1 {
+    .header h1 {
         font-size: 28px;
-        margin-top: 70px;
-    }
-
-    .title-line {
-        margin-bottom: 40px;
+        letter-spacing: 4px;
     }
 
     .gallery-wall {
-        gap: 50px;
-        padding-bottom: 80px;
+        gap: 60px;
+        padding: 30px 8vw 100px 8vw;
     }
 
-    .artwork {
-        max-width: 220px; /* smaller, breathing space */
+    .art-card {
+        max-width: 260px;
+    }
+
+    .back {
+        font-size: 16px;
+        top: 20px;
+        left: 20px;
     }
 }
 </style>
@@ -97,19 +113,27 @@ h1 {
 
 <body>
 
-<a class="back" href="index.html">← back</a>
+<a href="index.html" class="back">← back</a>
 
-<h1>GALLERY</h1>
-<div class="title-line"></div>
+<div class="header">
+    <h1>GALLERY</h1>
+    <div class="line"></div>
+</div>
 
 <div class="gallery-wall">
 
-    <div class="artwork">
-        <img src="tanghulu1.jpg" alt="Tanghulu Diagram 1">
+    <!-- 新作品（放第一張） -->
+    <div class="art-card">
+        <img src="maymyart.jpg" alt="May my art been seen">
     </div>
 
-    <div class="artwork">
-        <img src="tanghulu2.jpg" alt="Tanghulu Diagram 2">
+    <!-- Tanghulu 系列 -->
+    <div class="art-card">
+        <img src="tanghulu1.jpg" alt="Tanghulu study 1">
+    </div>
+
+    <div class="art-card">
+        <img src="tanghulu2.jpg" alt="Tanghulu study 2">
     </div>
 
 </div>
