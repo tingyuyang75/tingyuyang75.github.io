@@ -8,87 +8,90 @@
 <style>
 body {
     margin: 0;
-    background: radial-gradient(circle at 20% 30%, #1a2238, #0b0f1a 70%);
-    color: white;
-    font-family: "Georgia", serif;
+    font-family: "Times New Roman", serif;
+    background: radial-gradient(ellipse at center, #0c0f1a 0%, #05070d 100%);
+    color: #e8e6df;
+    overflow-x: hidden;
 }
 
-/* back 按鈕風格跟 About 一樣 */
-.back {
-    position: fixed;
-    top: 40px;
-    left: 60px;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 18px;
-    letter-spacing: 2px;
-}
-
-.back:hover {
-    color: white;
-}
-
-/* 標題 */
-h1 {
-    margin: 140px 0 80px 0;
-    text-align: left;
-    padding-left: 80px;
-    font-weight: normal;
-    letter-spacing: 6px;
-}
-
-/* 作品區 */
-.gallery {
-    margin: 100px auto 140px auto;
-    width: min(1100px, 90%);
-    display: flex;
-    flex-direction: column;
-    gap: 120px;
-    align-items: center;
-}
-
-.artwork {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-}
-
-.artwork::before {
+/* subtle grain */
+body::after {
     content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* back */
+.back {
     position: absolute;
-    inset: -40px;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 70%);
-    filter: blur(40px);
-    z-index: 0;
+    top: 30px;
+    left: 40px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #d8d6cf;
+    text-decoration: none;
+    opacity: 0.8;
+}
+.back:hover { opacity: 1; }
+
+/* title block like ABOUT */
+.title-wrap {
+    margin-top: 110px;
+    margin-left: 90px;
 }
 
-.artwork img {
+.title {
+    font-size: 34px;
+    letter-spacing: 6px;
+    font-weight: normal;
+}
+
+.title-line {
+    width: 120px;
+    height: 1px;
+    background: #bfbcb4;
+    margin-top: 10px;
+    opacity: 0.5;
+}
+
+/* gallery layout */
+.gallery-area {
+    margin-top: 90px;
+    margin-left: 90px;
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+/* image cards */
+.art-card {
+    width: 260px;
+    opacity: 0.85;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.art-card:hover {
+    opacity: 1;
+    transform: translateY(-4px);
+}
+
+.art-card img {
     width: 100%;
-    height: auto;
     display: block;
-    border-radius: 4px;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 60px rgba(255,255,255,0.05);
+    border-radius: 2px;
 }
 
-/* 手機版 */
+/* mobile */
 @media (max-width: 768px) {
-    .back {
-        left: 30px;
-        top: 30px;
+    .title-wrap { margin-left: 30px; }
+    .gallery-area {
+        margin-left: 30px;
+        gap: 40px;
     }
-
-    h1 {
-        margin-top: 120px;
-        padding-left: 40px;
-        font-size: 28px;
-    }
-
-    .gallery {
-        gap: 80px;
-        margin-top: 60px;
-    }
+    .art-card { width: 70%; }
 }
 </style>
 </head>
@@ -97,18 +100,19 @@ h1 {
 
 <a href="index.html" class="back">← back</a>
 
-<h1>GALLERY</h1>
+<div class="title-wrap">
+    <div class="title">GALLERY</div>
+    <div class="title-line"></div>
+</div>
 
-<div class="gallery">
+<div class="gallery-area">
+    <div class="art-card">
+        <img src="tanghulu1.jpg" alt="Tanghulu Sketch 1">
+    </div>
 
-  <div class="artwork">
-    <img src="tanghulu1.jpg" alt="Tanghulu Theory">
-  </div>
-
-  <div class="artwork">
-    <img src="tanghulu2.jpg" alt="Tanghulu Imperfection">
-  </div>
-
+    <div class="art-card">
+        <img src="tanghulu2.jpg" alt="Tanghulu Sketch 2">
+    </div>
 </div>
 
 </body>
