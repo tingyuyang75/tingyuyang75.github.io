@@ -1,42 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Project · Ting Yu Yang</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at 20% 30%, #1a2238, #0b0f1a 70%);
+    color: white;
+    font-family: "Georgia", serif;
+}
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0e0e0e;
-      color: rgba(234,234,234,0.85);
-      font-family: "Libre Baskerville", Georgia, serif;
+/* back 按鈕風格跟 About 一樣 */
+.back {
+    position: fixed;
+    top: 40px;
+    left: 60px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.back:hover {
+    color: white;
+}
+
+/* 標題 */
+h1 {
+    margin: 140px 0 80px 0;
+    text-align: left;
+    padding-left: 80px;
+    font-weight: normal;
+    letter-spacing: 6px;
+}
+
+/* 作品區 */
+.gallery {
+    margin: 100px auto 140px auto;
+    width: min(1100px, 90%);
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    align-items: center;
+}
+
+.artwork {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+}
+
+.artwork::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 70%);
+    filter: blur(40px);
+    z-index: 0;
+}
+
+.artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 60px rgba(255,255,255,0.05);
+}
+
+/* 手機版 */
+@media (max-width: 768px) {
+    .back {
+        left: 30px;
+        top: 30px;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    h1 {
+        margin-top: 120px;
+        padding-left: 40px;
+        font-size: 28px;
     }
 
-    .note {
-      font-size: clamp(18px, 2vw, 24px);
-      letter-spacing: 0.6px;
-      opacity: 0.8;
+    .gallery {
+        gap: 80px;
+        margin-top: 60px;
     }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <div class="note">
-    to be continued
+
+<a href="index.html" class="back">← back</a>
+
+<h1>GALLERY</h1>
+
+<div class="gallery">
+
+  <div class="artwork">
+    <img src="tanghulu1.jpg" alt="Tanghulu Theory">
   </div>
+
+  <div class="artwork">
+    <img src="tanghulu2.jpg" alt="Tanghulu Imperfection">
+  </div>
+
+</div>
+
 </body>
 </html>
