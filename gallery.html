@@ -1,152 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery</title>
 
 <style>
-  body{
+body{
     margin:0;
-    font-family:"Times New Roman", serif;
-    background: radial-gradient(ellipse at center, #0c0f1a 0%, #05070d 100%);
-    color:#e8e6df;
-    overflow-x:hidden;
-  }
+    font-family: 'Cormorant Garamond', serif;
+    background: url('key2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color:#e8e6e3;
+}
 
-  /* subtle grain */
-  body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    background-image:url("https://www.transparenttextures.com/patterns/asfalt-light.png");
-    opacity:.08;
-    pointer-events:none;
-  }
-
-  /* back */
-  .back{
+/* Back */
+.back{
     position:absolute;
     top:30px;
     left:40px;
-    font-size:15px;
+    font-size:18px;
     letter-spacing:1px;
-    color:#d8d6cf;
+    opacity:0.8;
+}
+.back a{
+    color:#e8e6e3;
     text-decoration:none;
-    opacity:.8;
-  }
-  .back:hover{ opacity:1; }
+}
 
-  /* title like ABOUT */
-  .title-wrap{
-    margin-top:110px;
-    margin-left:90px;
-  }
-  .title{
-    font-size:34px;
+/* Header — 和 About 一樣比例 */
+.header{
+    padding-top:120px;
+    padding-left:60px;
+}
+.header h1{
+    font-size:38px; /* 和 ABOUT 一樣 */
+    font-weight:400;
     letter-spacing:6px;
-    font-weight:normal;
-  }
-  .title-line{
-    width:120px;
+    margin:0;
+}
+.header .line{
+    width:140px;
     height:1px;
-    background:#bfbcb4;
-    margin-top:10px;
-    opacity:.5;
-  }
+    background:#cfcac2;
+    margin-top:12px;
+    opacity:0.5;
+}
 
-  /* curated wall */
-  .wall{
+/* 策展牆區域 */
+.gallery{
+    margin-top:120px;
+    padding-bottom:140px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:140px;
+}
+
+/* 每張作品像掛在牆上 */
+.artwork{
+    width:55%;
+    max-width:420px;
     position:relative;
-    width:min(980px, calc(100% - 180px));
-    margin-left:90px;
-    margin-top:90px;
-    padding-bottom:220px; /* give air */
-    min-height:520px;
-  }
+}
 
-  .card{
-    position:absolute;
-    width:260px;                 /* small like a card */
-    opacity:.88;
-    transform-origin: 50% 60%;
-    transition: transform .35s ease, opacity .35s ease;
-    /* soften edges (no bright border) */
-    filter: saturate(.95) contrast(.98);
-  }
-
-  .card:hover{
-    opacity:1;
-    transform: translateY(-4px) rotate(var(--r));
-  }
-
-  .card img{
+.artwork img{
     width:100%;
     display:block;
     border-radius:2px;
-  }
 
-  /* “placed on wall” positions */
-  .c1{
-    top:30px;
-    left:40px;
-    --r:-1.2deg;
-    transform: rotate(var(--r));
-  }
+    /* 柔和陰影 */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 
-  .c2{
-    top:140px;
-    left:380px;
-    width:280px;                 /* slight variation */
-    --r:1.0deg;
-    transform: rotate(var(--r));
-  }
+    /* 邊緣自然融入背景 */
+    mask-image: radial-gradient(circle at center, black 80%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 80%, transparent 100%);
+}
 
-  /* Optional: tiny caption style (currently unused) */
-  .cap{
-    margin-top:10px;
-    font-size:13px;
-    letter-spacing:1px;
-    opacity:.6;
-  }
+/* 手機版策展比例 */
+@media (max-width: 768px){
 
-  /* responsive: phone becomes calm vertical stack */
-  @media (max-width: 768px){
-    .title-wrap{ margin-left:30px; }
-    .wall{
-      width: calc(100% - 60px);
-      margin-left:30px;
-      padding-bottom:120px;
-      min-height: unset;
+    .header{
+        padding-top:90px;
+        padding-left:30px;
     }
-    .card{
-      position:relative;
-      top:auto; left:auto;
-      margin: 0 0 34px 0;
-      width: min(320px, 88%);
-      transform: none !important;
+
+    .header h1{
+        font-size:30px; /* About 手機版比例 */
+        letter-spacing:5px;
     }
-    .card:hover{ transform: translateY(-4px) !important; }
-  }
+
+    .header .line{
+        width:110px;
+    }
+
+    .gallery{
+        margin-top:90px;
+        gap:110px;
+    }
+
+    .artwork{
+        width:68%; /* 更小，更有呼吸感 */
+    }
+}
 </style>
 </head>
 
 <body>
-  <a href="index.html" class="back">← back</a>
 
-  <div class="title-wrap">
-    <div class="title">GALLERY</div>
-    <div class="title-line"></div>
-  </div>
+<div class="back"><a href="index.html">← back</a></div>
 
-  <div class="wall">
-    <div class="card c1">
-      <img src="tanghulu1.jpg" alt="Tanghulu 1">
+<div class="header">
+    <h1>GALLERY</h1>
+    <div class="line"></div>
+</div>
+
+<div class="gallery">
+    <div class="artwork">
+        <img src="tanghulu1.jpg" alt="Tanghulu 1">
     </div>
 
-    <div class="card c2">
-      <img src="tanghulu2.jpg" alt="Tanghulu 2">
+    <div class="artwork">
+        <img src="tanghulu2.jpg" alt="Tanghulu 2">
     </div>
-  </div>
+</div>
+
 </body>
 </html>
