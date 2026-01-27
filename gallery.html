@@ -2,111 +2,122 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-    margin: 0;
-    background: #0b0b0d;
-    color: #e8e6e3;
-    font-family: "Georgia", serif;
-    -webkit-font-smoothing: antialiased;
+:root{
+  --bg:#0a0a0a;
+  --text:#e8e6e3;
+  --muted:rgba(232,230,227,0.75);
+  --line:rgba(232,230,227,0.28);
 }
 
-a {
-    color: #e8e6e3;
-    text-decoration: none;
-    opacity: 0.8;
-}
-a:hover {
-    opacity: 1;
-}
+*{box-sizing:border-box;}
 
-.back {
-    position: absolute;
-    top: 28px;
-    left: 32px;
-    font-size: 18px;
-    letter-spacing: 1px;
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: Georgia, serif;
+  letter-spacing:0.5px;
+  overflow-x:hidden;
 }
 
-.header {
-    text-align: center;
-    margin-top: 90px;
-    margin-bottom: 60px;
+/* back */
+.back{
+  position:fixed;
+  top:28px;
+  left:34px;
+  font-size:16px;
+  text-decoration:none;
+  color:var(--muted);
+  opacity:.8;
+  z-index:50;
+}
+.back:hover{opacity:1;}
+
+/* header */
+.header{
+  text-align:center;
+  margin-top:100px;
+}
+.header h1{
+  font-weight:normal;
+  letter-spacing:4px;
+  font-size:32px;
+  margin:0;
+}
+.title-line{
+  width:120px;
+  height:1px;
+  background:var(--line);
+  margin:18px auto 70px auto;
 }
 
-.header h1 {
-    font-size: 38px;
-    letter-spacing: 6px;
-    font-weight: normal;
+/* gallery wall */
+.wall{
+  width:min(1100px,92%);
+  margin:0 auto;
+  padding-bottom:120px;
+
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:90px 110px;
 }
 
-.header .line {
-    width: 120px;
-    height: 1px;
-    background: #888;
-    margin: 18px auto 0 auto;
-    opacity: 0.6;
+/* art cards */
+.art{
+  max-width:320px;
+  opacity:.92;
+  transition:opacity .35s ease;
+  position:relative;
+}
+.art:hover{opacity:1;}
+
+.art img{
+  width:100%;
+  height:auto;
+  display:block;
+  filter:brightness(.92) contrast(1.05);
+  transition:transform .55s ease, filter .55s ease;
+  transform-origin:center center;
+  background:transparent;
+  border:none;
+  box-shadow:none;
 }
 
-/* 策展牆感 */
-.gallery-wall {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 80px 100px;
-    padding: 40px 10vw 120px 10vw;
+/* Desktop hover zoom */
+@media (hover:hover) and (pointer:fine){
+  .art:hover img{
+    transform:scale(1.65);
+    filter:brightness(1) contrast(1.08);
+    z-index:10;
+    position:relative;
+  }
 }
 
-/* 小卡片感 */
-.art-card {
-    max-width: 340px;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    opacity: 0.9;
-}
-
-.art-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: brightness(0.95) contrast(1.05);
-}
-
-/* 不要亮邊，不要框 */
-.art-card img {
-    box-shadow: none;
-    border: none;
-}
-
-/* 輕微呼吸感 */
-.art-card:hover {
-    transform: translateY(-6px);
-    opacity: 1;
-}
-
-/* 手機版：更小、更有留白 */
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 28px;
-        letter-spacing: 4px;
-    }
-
-    .gallery-wall {
-        gap: 60px;
-        padding: 30px 8vw 100px 8vw;
-    }
-
-    .art-card {
-        max-width: 260px;
-    }
-
-    .back {
-        font-size: 16px;
-        top: 20px;
-        left: 20px;
-    }
+/* Mobile */
+@media (max-width:768px){
+  .header h1{
+    font-size:26px;
+    letter-spacing:4px;
+  }
+  .title-line{
+    margin-bottom:52px;
+  }
+  .wall{
+    gap:70px;
+    padding-bottom:90px;
+  }
+  .art{
+    max-width:240px;
+  }
+  .back{
+    top:20px;
+    left:20px;
+  }
 }
 </style>
 </head>
@@ -116,25 +127,25 @@ a:hover {
 <a href="index.html" class="back">← back</a>
 
 <div class="header">
-    <h1>GALLERY</h1>
-    <div class="line"></div>
+  <h1>GALLERY</h1>
+  <div class="title-line"></div>
 </div>
 
-<div class="gallery-wall">
+<div class="wall">
 
-    <!-- 新作品（放第一張） -->
-    <div class="art-card">
-        <img src="maymyart.jpg" alt="May my art been seen">
-    </div>
+  <!-- 第一張：藝術圈嘴炮生存圖 -->
+  <div class="art">
+    <img src="maymyart.jpg" alt="May my art been seen">
+  </div>
 
-    <!-- Tanghulu 系列 -->
-    <div class="art-card">
-        <img src="tanghulu1.jpg" alt="Tanghulu study 1">
-    </div>
+  <!-- Tanghulu 系列 -->
+  <div class="art">
+    <img src="tanghulu1.jpg" alt="Tanghulu 1">
+  </div>
 
-    <div class="art-card">
-        <img src="tanghulu2.jpg" alt="Tanghulu study 2">
-    </div>
+  <div class="art">
+    <img src="tanghulu2.jpg" alt="Tanghulu 2">
+  </div>
 
 </div>
 
