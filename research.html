@@ -1,218 +1,294 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Research</title>
 
   <style>
     :root{
-      --bg:#050505;
-      --ink: rgba(235,235,235,.80);
+      --bg0:#070707;
+      --bg1:#0b0b0b;
+      --ink:#cfc7bb;
+      --ink-dim: rgba(207,199,187,.70);
 
-      /* readable warm-rust (elegant, not screaming) */
-      --rustA:#d2a062;  /* visible bronze */
-      --rustB:#e0b57d;  /* highlight */
-      --rustC:#8a5a2f;  /* depth */
+      /* rusty-gold but readable */
+      --rust:#b88442;
+      --rust-deep:#7a4f21;
 
-      /* book-engraved silver (soft, slightly oxidized) */
-      --engr1: rgba(255,255,255,.20);
-      --engr2: rgba(255,255,255,.10);
-      --engrDeep: rgba(0,0,0,.55);
+      /* “micro rusty silver” for engraved divider */
+      --silver:#a9a7a1;
+      --silver-deep:#2b2b2b;
+
+      --maxw: 1100px;
     }
 
-    html,body{
-      height:100%;
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
       margin:0;
-      background:var(--bg);
-      color:var(--ink);
+      color: var(--ink);
+      background: var(--bg0);
       font-family: Georgia, "Times New Roman", serif;
+
+      /* subtle book-wall texture, no external assets */
+      background-image:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.035), transparent 60%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(255,255,255,.03), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      background-attachment: fixed;
     }
 
-    a{ color:inherit; text-decoration:none; }
-
-    /* back like About/Writing */
-    .back{
-      position: fixed;
-      top: 26px;
-      left: 34px;
-      font-size: 18px;
-      letter-spacing: .5px;
-      color: rgba(235,235,235,.62);
-      text-shadow: 0 1px 0 rgba(0,0,0,.65);
-      z-index: 5;
-    }
-    .back:hover{ color: rgba(235,235,235,.78); }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
     .wrap{
-      min-height:100%;
-      padding: 62px 52px 70px;
-      box-sizing:border-box;
+      width: min(var(--maxw), calc(100% - 64px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* ===== Title: match Writing/About style ===== */
+    /* back */
+    .back{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-size: 18px;
+      color: rgba(207,199,187,.80);
+      letter-spacing: .02em;
+      margin-bottom: 18px;
+      user-select:none;
+    }
+    .back::before{
+      content:"←";
+      font-size: 18px;
+      line-height: 1;
+      opacity:.9;
+    }
+
+    /* Title like Writing/About style: centered + thin line */
     .title{
-      margin: 0;
       text-align:center;
-      font-size: 44px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      letter-spacing: .22em;
       font-weight: 500;
-      letter-spacing: .28em;
-      color: rgba(235,235,235,.78);
-      text-shadow: 0 1px 0 rgba(0,0,0,.7);
+      color: rgba(207,199,187,.82);
+      font-size: clamp(26px, 3.2vw, 40px);
+      text-transform: uppercase;
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.😎,
+        0 0 14px rgba(255,255,255,.04);
     }
     .title-line{
-      width: min(520px, 62vw);
+      width: min(520px, 62%);
       height: 1px;
-      margin: 18px auto 0;
-      background: rgba(235,235,235,.22);
-      box-shadow: 0 1px 0 rgba(0,0,0,.7);
+      margin: 10px auto 0;
+      background: linear-gradient(90deg, transparent, rgba(207,199,187,.55), transparent);
+      opacity: .55;
     }
 
-    /* ===== Layout ===== */
+    /* Main split area */
     .stage{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 66vh;
+    }
+
+    .panel{
       position: relative;
-      width: min(1100px, 92vw);
-      margin: 56px auto 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 120px;
-      align-items: start;
-      min-height: 62vh;
+      padding: 10px 10px 24px;
     }
 
-    .side{
-      padding-top: 6px;
-    }
-
-    /* Past/Ongoing text: visible, elegant rust, NOT bigger than Research */
-    .label{
-      margin: 0;
-      font-size: 36px;             /* < Research (44px) */
+    /* Past/Ongoing headings: readable rusty emboss */
+    .section-title{
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: .06em;
       font-weight: 600;
-      letter-spacing: .10em;
-      line-height: 1.1;
+      color: var(--rust);
+      margin: 6px 0 14px;
+      text-transform: none; /* Past / Ongoing (not all caps) */
 
-      /* readable warm metal */
-      color: var(--rustA);
-
-      /* “pressed/embossed” feel but still visible */
+      /* emboss / engraved plate feel, but still visible */
       text-shadow:
-        0 1px 0 rgba(0,0,0,.85),
-        0 -1px 0 rgba(255,255,255,.08),
-        1px 0 0 rgba(0,0,0,.45),
-        -1px 0 0 rgba(0,0,0,.45);
+        /* dark edge */
+        0 1px 0 rgba(0,0,0,.88),
+        0 2px 0 rgba(0,0,0,.55),
+        /* warm depth */
+        -1px 0 0 rgba(60,30,8,.30),
+        1px 0 0 rgba(60,30,8,.25),
+        0 0 18px rgba(184,132,66,.10);
+      filter: saturate(1.08) contrast(1.04);
     }
 
-    /* subtle worn gradient on letters */
-    .label span{
-      background-image:
-        linear-gradient(180deg,
-          var(--rustB) 0%,
-          #d6aa70 20%,
-          var(--rustA) 55%,
-          #b9804c 82%,
-          var(--rustB) 100%);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color: transparent;
+    /* content placeholder (you can replace later) */
+    .content{
+      color: rgba(207,199,187,.70);
+      font-size: 16px;
+      line-height: 1.75;
+      letter-spacing: .01em;
+      max-width: 440px;
+    }
+    .content .hint{
+      opacity: .55;
+      font-style: italic;
     }
 
-    .right{
-      text-align: right;
-    }
-
-    /* ===== Divider: book-engraved, slightly oxidized silver ===== */
+    /* Center engraved double diagonal divider */
     .divider{
-      position: absolute;
-      left: 50%;
-      top: 54%;
-      transform: translate(-50%, -50%) rotate(10deg);
-      width: 34px;
-      height: min(70vh, 520px);
-      pointer-events: none;
-      opacity: .98;
-      filter: saturate(.6);
+      position: relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
-    .divider:before,
-    .divider:after{
+    .divider::before,
+    .divider::after{
       content:"";
       position:absolute;
-      top:0; bottom:0;
-      width: 7px;
-      border-radius: 10px;
+      width: 10px;              /* total “pair” thickness space */
+      height: 72vh;
+      max-height: 520px;
+      min-height: 360px;
+      border-radius: 14px;
+      transform: rotate(10deg);
+      opacity: .70;
+      pointer-events:none;
+    }
+
+    /* Outer “plate shadow” */
+    .divider::before{
       background:
         linear-gradient(180deg,
-          var(--engr1),
-          var(--engr2) 24%,
-          rgba(0,0,0,.18) 56%,
-          var(--engrDeep));
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.03) 25%,
+          rgba(0,0,0,.20) 60%,
+          rgba(0,0,0,.35));
+      filter: blur(.1px);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        inset 0 -1px 0 rgba(0,0,0,.62),
-        0 0 0 1px rgba(255,255,255,.04),
-        0 16px 36px rgba(0,0,0,.55);
+        inset 0 0 0 1px rgba(0,0,0,.35),
+        0 0 26px rgba(0,0,0,.55);
+      opacity: .45;
     }
-    .divider:before{ left: 7px; }
-    .divider:after{ right: 7px; }
 
-    /* ===== Mobile: stacked with space ===== */
-    @media (max-width: 760px){
-      .wrap{ padding: 54px 22px 60px; }
-      .back{ left: 18px; top: 20px; font-size: 17px; }
+    /* Actual double engraved lines (micro rusty silver, not too bright) */
+    .divider::after{
+      width: 26px;
+      background:
+        linear-gradient(90deg,
+          transparent 0 35%,
+          rgba(169,167,161,.65) 35% 43%,
+          rgba(43,43,43,.55) 43% 48%,
+          transparent 48% 52%,
+          rgba(169,167,161,.62) 52% 60%,
+          rgba(43,43,43,.55) 60% 65%,
+          transparent 65% 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        inset 0 -1px 0 rgba(0,0,0,.55);
+      opacity: .55;
+    }
 
-      .title{ font-size: 38px; letter-spacing: .22em; }
-      .title-line{ width: min(420px, 72vw); }
+    /* Make headings float slightly “exhibition wall” */
+    .float-left{ padding-top: 10px; }
+    .float-right{ padding-top: 10px; }
+    @media (min-width: 980px){
+      .float-left .section-title{ margin-top: 12px; }
+      .float-right .section-title{ margin-top: 12px; text-align: right; }
+      .float-right .content{ margin-left:auto; text-align: left; } /* keep readable */
+    }
 
+    /* Mobile: stack Past / divider / Ongoing vertically with breathing space */
+    @media (max-width: 900px){
+      .wrap{ width: min(var(--maxw), calc(100% - 40px)); }
       .stage{
-        margin-top: 34px;
         grid-template-columns: 1fr;
-        row-gap: 34px;
+        gap: 10px;
         min-height: auto;
-        justify-items: center;
-        text-align: center;
       }
-
-      .right{ text-align: center; }
-
-      .label{
-        font-size: 34px;  /* still < title */
-      }
-
       .divider{
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: rotate(10deg);
-        margin: 6px auto 6px;
-        height: 210px;
+        height: 34px;
+        margin: 8px 0 14px;
       }
-    }
+      .divider::before,
+      .divider::after{
+        transform: none;
+        height: 2px;
+        min-height: 2px;
+        max-height: 2px;
+        width: 100%;
+        border-radius: 0;
+      }
+      .divider::before{
+        opacity: .0; /* hide plate shadow on mobile */
+      }
+      .divider::after{
+        background: linear-gradient(90deg, transparent, rgba(169,167,161,.40), transparent);
+        opacity: .70;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.04),
+          inset 0 -1px 0 rgba(0,0,0,.55);
+      }
 
-    @media (max-width: 380px){
-      .label{ font-size: 32px; }
-      .divider{ height: 190px; }
+      .float-right .section-title{
+        text-align: left;
+      }
+
+      /* “Past (space) divider (space) Ongoing” feel */
+      .panel{ padding: 6px 6px 18px; }
+      .content{ max-width: 100%; }
     }
   </style>
 </head>
 
 <body>
-  <a class="back" href="index.html">← back</a>
-
   <div class="wrap">
-    <h1 class="title">RESEARCH</h1>
+    <a class="back" href="index.html">back</a>
+
+    <div class="title">RESEARCH</div>
     <div class="title-line"></div>
 
-    <section class="stage" aria-label="Research split: Past and Ongoing">
-      <div class="side left">
-        <h2 class="label"><span>Past</span></h2>
-      </div>
+    <div class="stage">
+      <!-- LEFT: Past -->
+      <section class="panel float-left">
+        <div class="section-title">Past</div>
+        <div class="content">
+          <div class="hint">
+            (You can list past projects / publications here.)
+          </div>
+          <!-- Example:
+          <ul>
+            <li>2025 — Paper / Project title</li>
+            <li>2024 — Talk / Workshop</li>
+          </ul>
+          -->
+        </div>
+      </section>
 
-      <div class="side right">
-        <h2 class="label"><span>Ongoing</span></h2>
-      </div>
-
+      <!-- CENTER: Divider -->
       <div class="divider" aria-hidden="true"></div>
-    </section>
+
+      <!-- RIGHT: Ongoing -->
+      <section class="panel float-right">
+        <div class="section-title">Ongoing</div>
+        <div class="content">
+          <div class="hint">
+            (You can list ongoing research threads here.)
+          </div>
+          <!-- Example:
+          <ul>
+            <li>Turing 2.0 — Reflexive limit of machine language</li>
+            <li>Madwoman — language/governance genealogy</li>
+          </ul>
+          -->
+        </div>
+      </section>
+    </div>
   </div>
 </body>
 </html>
