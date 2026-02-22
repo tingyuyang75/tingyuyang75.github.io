@@ -7,14 +7,18 @@
 
   <style>
     :root{
-      --bg:#070707;
-      --ink: rgba(207,199,187,.82);
-      --ink-dim: rgba(207,199,187,.60);
+      --bg0:#070707;
+      --bg1:#0b0b0b;
 
-      /* keep your old Past/Ongoing look (DON'T change) */
+      /* Writing / Research 主標題用的灰白 */
+      --ink:#cfc7bb;
+      --ink-dim: rgba(207,199,187,.70);
+
+      /* Past / Ongoing 舊版金屬色（保留你現在這味道） */
       --rust:#b88442;
-      --rust-deep:#7a4f21;
-      --silver:#a9a7a1;
+
+      /* 分隔線（桌機斜線、手機橫線） */
+      --silver: rgba(180,178,172,.55);
 
       --maxw: 1100px;
     }
@@ -23,109 +27,125 @@
     html,body{ height:100%; }
     body{
       margin:0;
-      background: var(--bg);
-      color: var(--ink);
+      color:var(--ink);
+      background:var(--bg0);
       font-family: Georgia, "Times New Roman", serif;
+
+      /* subtle wall texture */
+      background-image:
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.035), transparent 60%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(255,255,255,.03), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      background-attachment: fixed;
     }
 
     a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+    a:hover{ text-decoration:underline; text-underline-offset:4px; }
 
-    /* ===== Layout (match Writing) ===== */
-    .wrap{
-      width: min(var(--maxw), calc(100% - 64px));
-      margin: 0 auto;
-      padding: 40px 0 56px;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    /* back (match Writing: top-left, simple, calm) */
+    /* ====== ✅ back：改成跟 Writing 一樣「固定左上」 ====== */
     .back{
-      position: absolute;
-      top: 26px;
-      left: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 20px;
-      color: rgba(207,199,187,.75);
-      letter-spacing: .02em;
-      user-select: none;
+      position: fixed;
+      top: 22px;
+      left: 26px;
+      z-index: 50;
+
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+
+      font-size:18px;
+      letter-spacing:.02em;
+      color: rgba(207,199,187,.80);
+      user-select:none;
     }
     .back::before{
       content:"←";
-      font-size: 20px;
-      line-height: 1;
-      opacity: .9;
+      font-size:18px;
+      line-height:1;
+      opacity:.9;
     }
 
-    /* title (match Writing) */
-    .title{
+    /* ====== ✅ 標題：改成跟 Writing 一樣的置中 + 細線 ====== */
+    .hero{
+      width: min(var(--maxw), calc(100% - 64px));
+      margin: 0 auto;
+      padding-top: 96px; /* 這個就是 Writing 那種「空白感」 */
       text-align:center;
-      margin-top: 22px;
-      letter-spacing: .22em;
-      font-weight: 500;
+    }
+    .title{
+      letter-spacing:.22em;
+      font-weight:500;
       color: rgba(207,199,187,.82);
-      font-size: clamp(28px, 3.3vw, 42px);
+      font-size: clamp(26px, 3.2vw, 40px);
       text-transform: uppercase;
+
+      /* ✅ 修掉你原本那個壞掉的 rgba(0,0,0,.😎 */
+      text-shadow:
+        0 1px 0 rgba(0,0,0,.80),
+        0 0 14px rgba(255,255,255,.04);
+      margin: 0;
     }
     .title-line{
       width: min(520px, 62%);
       height: 1px;
       margin: 14px auto 0;
       background: linear-gradient(90deg, transparent, rgba(207,199,187,.55), transparent);
-      opacity: .55;
+      opacity:.55;
     }
 
-    /* ===== Your Past/Ongoing area (keep old version) ===== */
+    /* ====== 內容區（Past/Ongoing 舊版保留） ====== */
+    .wrap{
+      width: min(var(--maxw), calc(100% - 64px));
+      margin: 0 auto;
+      padding: 22px 0 46px;
+    }
+
     .stage{
-      margin-top: 34px;
+      margin-top: 30px;
       display:grid;
       grid-template-columns: 1fr 120px 1fr;
       gap: 24px;
       align-items: stretch;
-      min-height: 64vh;
+      min-height: 62vh;
     }
 
     .panel{
-      position: relative;
+      position:relative;
       padding: 10px 10px 24px;
     }
 
+    /* Past/Ongoing：保留你現在的金屬感，但不要再蒸發 */
     .section-title{
       font-size: clamp(20px, 2.2vw, 28px);
-      letter-spacing: .06em;
-      font-weight: 600;
+      letter-spacing:.06em;
+      font-weight:600;
       color: var(--rust);
       margin: 6px 0 14px;
-      text-transform: none;
+      text-transform:none;
 
-      /* your “old” embossed vibe */
+      /* 金屬凸起：比你氧化版更「可讀」 */
       text-shadow:
-        0 1px 0 rgba(0,0,0,.88),
-        0 2px 0 rgba(0,0,0,.55),
-        -1px 0 0 rgba(60,30,8,.30),
-        1px 0 0 rgba(60,30,8,.25),
-        0 0 14px rgba(184,132,66,.10);
-      filter: saturate(1.05) contrast(1.02);
+        0 1px 0 rgba(0,0,0,.85),
+        0 2px 0 rgba(0,0,0,.35),
+        0 0 10px rgba(184,132,66,.10);
     }
 
     .content{
-      color: rgba(207,199,187,.62);
+      color: rgba(207,199,187,.70);
       font-size: 16px;
       line-height: 1.75;
       letter-spacing: .01em;
       max-width: 440px;
     }
     .content .hint{
-      opacity: .55;
-      font-style: italic;
+      opacity:.55;
+      font-style:italic;
     }
 
-    /* Desktop divider: double diagonal (subtle, not “oxidized”) */
+    /* 桌機：中間斜雙線（保留你的舊版感） */
     .divider{
-      position: relative;
+      position:relative;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -137,23 +157,23 @@
       height: 72vh;
       max-height: 520px;
       min-height: 360px;
-      border-radius: 14px;
       transform: rotate(10deg);
+      border-radius: 14px;
       pointer-events:none;
 
       background:
         linear-gradient(90deg,
           transparent 0 35%,
-          rgba(169,167,161,.48) 35% 43%,
-          rgba(0,0,0,.55)      43% 48%,
+          var(--silver) 35% 43%,
+          rgba(0,0,0,.45) 43% 48%,
           transparent 48% 52%,
-          rgba(169,167,161,.46) 52% 60%,
-          rgba(0,0,0,.55)       60% 65%,
+          var(--silver) 52% 60%,
+          rgba(0,0,0,.45) 60% 65%,
           transparent 65% 100%);
+      opacity:.55;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.05),
         inset 0 -1px 0 rgba(0,0,0,.55);
-      opacity: .55;
     }
 
     @media (min-width: 980px){
@@ -161,10 +181,10 @@
       .float-right .content{ margin-left:auto; text-align:left; }
     }
 
-    /* Mobile: stack Past / line / Ongoing (keep your old mobile behavior) */
+    /* 手機：Past / 橫線 / Ongoing 直向排列（保留你舊版畫面） */
     @media (max-width: 900px){
-      .wrap{ width: min(var(--maxw), calc(100% - 40px)); padding-top: 56px; }
-      .back{ left: 0; top: 22px; }
+      .wrap{ width: min(var(--maxw), calc(100% - 40px)); }
+      .hero{ width: min(var(--maxw), calc(100% - 40px)); padding-top: 92px; }
 
       .stage{
         grid-template-columns: 1fr;
@@ -174,35 +194,39 @@
 
       .divider{
         height: 34px;
-        margin: 8px 0 14px;
+        margin: 10px 0 16px;
       }
       .divider::after{
-        transform: none;
-        height: 2px;
-        min-height: 2px;
-        max-height: 2px;
-        width: 100%;
-        border-radius: 0;
+        transform:none;
+        height:2px;
+        min-height:2px;
+        max-height:2px;
+        width:100%;
+        border-radius:0;
+
         background: linear-gradient(90deg, transparent, rgba(207,199,187,.35), transparent);
-        opacity: .75;
+        opacity:.75;
       }
 
-      .float-right .section-title{ text-align:left; }
       .panel{ padding: 6px 6px 18px; }
-      .content{ max-width: 100%; }
+      .content{ max-width:100%; }
+      .float-right .section-title{ text-align:left; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <a class="back" href="index.html">back</a>
+  <!-- ✅ back：跟 Writing 一樣固定左上 -->
+  <a class="back" href="index.html">back</a>
 
-    <!-- ONLY change requested: make Research title/back match Writing -->
-    <div class="title">RESEARCH</div>
+  <!-- ✅ 標題：跟 Writing 一樣的 hero 區 -->
+  <div class="hero">
+    <h1 class="title">RESEARCH</h1>
     <div class="title-line"></div>
+  </div>
 
-    <!-- Keep your old Past/Ongoing block as-is -->
+  <!-- Past/Ongoing：保留你舊版 -->
+  <div class="wrap">
     <div class="stage">
       <section class="panel float-left">
         <div class="section-title">Past</div>
