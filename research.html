@@ -9,44 +9,47 @@
     :root{
       --bg0:#070707;
       --bg1:#0b0b0b;
+
+      /* base ink */
       --ink:#cfc7bb;
-      --ink-dim: rgba(207,199,187,.70);
+      --ink-dim: rgba(207,199,187,.72);
 
-      /* rusty-gold but readable */
-      --rust:#b88442;
-      --rust-deep:#7a4f21;
+      /* readable “old brass / patina gold” */
+      --brass:#c99555;
+      --brass-deep:#6b3f16;
 
-      /* “micro rusty silver” for engraved divider */
-      --silver:#a9a7a1;
-      --silver-deep:#2b2b2b;
+      /* micro rusty silver for engraved divider (visible but not harsh) */
+      --steel:#a7a59f;
+      --steel-dim: rgba(167,165,159,.55);
+      --steel-deep: rgba(25,25,25,.70);
 
-      --maxw: 1100px;
+      --maxw: 1120px;
     }
 
-    *{ box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
       color: var(--ink);
       background: var(--bg0);
       font-family: Georgia, "Times New Roman", serif;
 
-      /* subtle book-wall texture, no external assets */
+      /* subtle “book wall” texture */
       background-image:
-        radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.05), transparent 55%),
-        radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.035), transparent 60%),
-        radial-gradient(1000px 900px at 50% 90%, rgba(255,255,255,.03), transparent 60%),
+        radial-gradient(1200px 900px at 20% 10%, rgba(255,255,255,.045), transparent 56%),
+        radial-gradient(1000px 800px at 78% 18%, rgba(255,255,255,.035), transparent 60%),
+        radial-gradient(900px 900px at 50% 92%, rgba(255,255,255,.03), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg0));
       background-attachment: fixed;
     }
 
-    a{ color: inherit; text-decoration: none; }
+    a{ color: inherit; text-decoration:none; }
     a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
     .wrap{
       width: min(var(--maxw), calc(100% - 64px));
       margin: 0 auto;
-      padding: 28px 0 42px;
+      padding: 28px 0 52px;
       min-height: 100vh;
       position: relative;
     }
@@ -58,189 +61,187 @@
       gap:10px;
       font-size: 18px;
       color: rgba(207,199,187,.80);
-      letter-spacing: .02em;
-      margin-bottom: 18px;
+      letter-spacing:.02em;
       user-select:none;
+      margin-bottom: 18px;
     }
     .back::before{
       content:"←";
-      font-size: 18px;
-      line-height: 1;
+      font-size:18px;
+      line-height:1;
       opacity:.9;
     }
 
-    /* Title like Writing/About style: centered + thin line */
+    /* Title: match Writing/About vibe */
     .title{
       text-align:center;
-      margin-top: 8px;
-      margin-bottom: 10px;
+      margin-top: 6px;
       letter-spacing: .22em;
       font-weight: 500;
-      color: rgba(207,199,187,.82);
+      color: rgba(207,199,187,.84);
       font-size: clamp(26px, 3.2vw, 40px);
       text-transform: uppercase;
       text-shadow:
-        0 1px 0 rgba(0,0,0,.😎,
+        0 1px 0 rgba(0,0,0,.86),
         0 0 14px rgba(255,255,255,.04);
     }
     .title-line{
       width: min(520px, 62%);
       height: 1px;
       margin: 10px auto 0;
-      background: linear-gradient(90deg, transparent, rgba(207,199,187,.55), transparent);
-      opacity: .55;
+      background: linear-gradient(90deg, transparent, rgba(207,199,187,.58), transparent);
+      opacity:.55;
     }
 
-    /* Main split area */
+    /* Stage layout */
     .stage{
-      margin-top: 26px;
+      margin-top: 30px;
       display:grid;
-      grid-template-columns: 1fr 120px 1fr;
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: 1fr 140px 1fr;
+      gap: 28px;
+      align-items: start;
       min-height: 66vh;
     }
 
     .panel{
+      padding: 10px 6px 24px;
       position: relative;
-      padding: 10px 10px 24px;
     }
 
-    /* Past/Ongoing headings: readable rusty emboss */
+    /* Past / Ongoing: visible old-brass engraved */
     .section-title{
-      font-size: clamp(20px, 2.2vw, 28px);
+      font-size: clamp(20px, 2.0vw, 28px);
       letter-spacing: .06em;
       font-weight: 600;
-      color: var(--rust);
-      margin: 6px 0 14px;
-      text-transform: none; /* Past / Ongoing (not all caps) */
+      color: var(--brass);
+      margin: 10px 0 14px;
+      text-transform:none;
 
-      /* emboss / engraved plate feel, but still visible */
+      /* “engraved plate” feel */
       text-shadow:
-        /* dark edge */
-        0 1px 0 rgba(0,0,0,.88),
+        0 1px 0 rgba(0,0,0,.90),
         0 2px 0 rgba(0,0,0,.55),
-        /* warm depth */
-        -1px 0 0 rgba(60,30,8,.30),
-        1px 0 0 rgba(60,30,8,.25),
-        0 0 18px rgba(184,132,66,.10);
-      filter: saturate(1.08) contrast(1.04);
+        0 0 18px rgba(201,149,85,.14),
+        -1px 0 0 rgba(107,63,22,.20),
+        1px 0 0 rgba(107,63,22,.18);
     }
 
-    /* content placeholder (you can replace later) */
     .content{
-      color: rgba(207,199,187,.70);
+      color: var(--ink-dim);
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.78;
       letter-spacing: .01em;
-      max-width: 440px;
+      max-width: 460px;
     }
     .content .hint{
-      opacity: .55;
+      opacity:.58;
       font-style: italic;
+    }
+
+    /* Desktop alignment subtle “exhibition wall” */
+    @media (min-width: 980px){
+      .left .section-title{ text-align:left; }
+      .right .section-title{ text-align:right; }
+      .right .content{ margin-left:auto; }
     }
 
     /* Center engraved double diagonal divider */
     .divider{
       position: relative;
+      height: 62vh;
+      max-height: 520px;
+      min-height: 360px;
       display:flex;
       justify-content:center;
       align-items:center;
+      margin-top: 8px;
     }
-    .divider::before,
-    .divider::after{
+
+    /* plate (soft shadow, not bright) */
+    .divider::before{
       content:"";
       position:absolute;
-      width: 10px;              /* total “pair” thickness space */
-      height: 72vh;
-      max-height: 520px;
-      min-height: 360px;
-      border-radius: 14px;
+      width: 30px;
+      height: 100%;
+      border-radius: 18px;
       transform: rotate(10deg);
-      opacity: .70;
+      background:
+        linear-gradient(180deg,
+          rgba(255,255,255,.06),
+          rgba(255,255,255,.02) 25%,
+          rgba(0,0,0,.20) 65%,
+          rgba(0,0,0,.40));
+      box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,.35),
+        0 0 24px rgba(0,0,0,.55);
+      opacity: .28;
       pointer-events:none;
     }
 
-    /* Outer “plate shadow” */
-    .divider::before{
-      background:
-        linear-gradient(180deg,
-          rgba(255,255,255,.10),
-          rgba(255,255,255,.03) 25%,
-          rgba(0,0,0,.20) 60%,
-          rgba(0,0,0,.35));
-      filter: blur(.1px);
-      box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,.35),
-        0 0 26px rgba(0,0,0,.55);
-      opacity: .45;
-    }
-
-    /* Actual double engraved lines (micro rusty silver, not too bright) */
+    /* actual engraved double lines */
     .divider::after{
-      width: 26px;
+      content:"";
+      position:absolute;
+      width: 30px;
+      height: 100%;
+      border-radius: 18px;
+      transform: rotate(10deg);
       background:
         linear-gradient(90deg,
-          transparent 0 35%,
-          rgba(169,167,161,.65) 35% 43%,
-          rgba(43,43,43,.55) 43% 48%,
-          transparent 48% 52%,
-          rgba(169,167,161,.62) 52% 60%,
-          rgba(43,43,43,.55) 60% 65%,
-          transparent 65% 100%);
+          transparent 0 34%,
+          var(--steel-dim) 34% 41%,
+          var(--steel-deep) 41% 46%,
+          transparent 46% 54%,
+          var(--steel-dim) 54% 61%,
+          var(--steel-deep) 61% 66%,
+          transparent 66% 100%);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.06),
+        inset 0 1px 0 rgba(255,255,255,.05),
         inset 0 -1px 0 rgba(0,0,0,.55);
-      opacity: .55;
-    }
-
-    /* Make headings float slightly “exhibition wall” */
-    .float-left{ padding-top: 10px; }
-    .float-right{ padding-top: 10px; }
-    @media (min-width: 980px){
-      .float-left .section-title{ margin-top: 12px; }
-      .float-right .section-title{ margin-top: 12px; text-align: right; }
-      .float-right .content{ margin-left:auto; text-align: left; } /* keep readable */
+      opacity: .72; /* <-- make it clearly visible, still soft */
+      pointer-events:none;
     }
 
     /* Mobile: stack Past / divider / Ongoing vertically with breathing space */
     @media (max-width: 900px){
       .wrap{ width: min(var(--maxw), calc(100% - 40px)); }
+
       .stage{
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 14px;
         min-height: auto;
-      }
-      .divider{
-        height: 34px;
-        margin: 8px 0 14px;
-      }
-      .divider::before,
-      .divider::after{
-        transform: none;
-        height: 2px;
-        min-height: 2px;
-        max-height: 2px;
-        width: 100%;
-        border-radius: 0;
-      }
-      .divider::before{
-        opacity: .0; /* hide plate shadow on mobile */
-      }
-      .divider::after{
-        background: linear-gradient(90deg, transparent, rgba(169,167,161,.40), transparent);
-        opacity: .70;
-        box-shadow:
-          inset 0 1px 0 rgba(255,255,255,.04),
-          inset 0 -1px 0 rgba(0,0,0,.55);
+        margin-top: 26px;
       }
 
-      .float-right .section-title{
-        text-align: left;
-      }
-
-      /* “Past (space) divider (space) Ongoing” feel */
+      /* Past / Ongoing become top & bottom */
       .panel{ padding: 6px 6px 18px; }
+
+      .divider{
+        height: 28px;
+        min-height: 28px;
+        max-height: 28px;
+        margin: 6px 0 10px;
+      }
+
+      /* horizontal engraved line on mobile */
+      .divider::before{
+        display:none;
+      }
+      .divider::after{
+        transform:none;
+        width: 100%;
+        height: 2px;
+        border-radius: 0;
+        background: linear-gradient(90deg,
+          transparent,
+          rgba(167,165,159,.55),
+          rgba(25,25,25,.65),
+          rgba(167,165,159,.55),
+          transparent);
+        opacity: .78;
+      }
+
+      .right .section-title{ text-align:left; }
       .content{ max-width: 100%; }
     }
   </style>
@@ -254,38 +255,22 @@
     <div class="title-line"></div>
 
     <div class="stage">
-      <!-- LEFT: Past -->
-      <section class="panel float-left">
+      <!-- LEFT / TOP: Past -->
+      <section class="panel left">
         <div class="section-title">Past</div>
         <div class="content">
-          <div class="hint">
-            (You can list past projects / publications here.)
-          </div>
-          <!-- Example:
-          <ul>
-            <li>2025 — Paper / Project title</li>
-            <li>2024 — Talk / Workshop</li>
-          </ul>
-          -->
+          <div class="hint">(You can list past projects / publications here.)</div>
         </div>
       </section>
 
-      <!-- CENTER: Divider -->
+      <!-- CENTER divider -->
       <div class="divider" aria-hidden="true"></div>
 
-      <!-- RIGHT: Ongoing -->
-      <section class="panel float-right">
+      <!-- RIGHT / BOTTOM: Ongoing -->
+      <section class="panel right">
         <div class="section-title">Ongoing</div>
         <div class="content">
-          <div class="hint">
-            (You can list ongoing research threads here.)
-          </div>
-          <!-- Example:
-          <ul>
-            <li>Turing 2.0 — Reflexive limit of machine language</li>
-            <li>Madwoman — language/governance genealogy</li>
-          </ul>
-          -->
+          <div class="hint">(You can list ongoing research threads here.)</div>
         </div>
       </section>
     </div>
