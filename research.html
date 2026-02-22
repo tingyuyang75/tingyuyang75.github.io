@@ -7,227 +7,175 @@
 
   <style>
     :root{
-      --bg: #060606;
-      --ink: rgba(235,235,235,0.86);
+      --bg:#050505;
+      --ink: rgba(235,235,235,.80);
 
-      /* Past/Ongoing plaque (warm metal, readable) */
-      --metal: #c79257;        /* readable bronze */
-      --metal2: #e0b27a;       /* worn highlight */
-      --metalDeep: #6b3f1f;    /* deeper edge */
+      /* readable warm-rust (elegant, not screaming) */
+      --rustA:#d2a062;  /* visible bronze */
+      --rustB:#e0b57d;  /* highlight */
+      --rustC:#8a5a2f;  /* depth */
 
-      /* Divider (engraved silver, not harsh) */
-      --silver1: rgba(255,255,255,0.16);
-      --silver2: rgba(255,255,255,0.08);
-      --silverDeep: rgba(0,0,0,0.55);
+      /* book-engraved silver (soft, slightly oxidized) */
+      --engr1: rgba(255,255,255,.20);
+      --engr2: rgba(255,255,255,.10);
+      --engrDeep: rgba(0,0,0,.55);
     }
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
       font-family: Georgia, "Times New Roman", serif;
     }
 
-    /* subtle dust / gallery air */
-    body:before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.05;
-      background-image:
-        radial-gradient(circle at 18% 12%, rgba(255,255,255,0.30), transparent 48%),
-        radial-gradient(circle at 72% 28%, rgba(255,255,255,0.22), transparent 56%),
-        radial-gradient(circle at 40% 82%, rgba(255,255,255,0.16), transparent 56%);
-      mix-blend-mode: screen;
-    }
+    a{ color:inherit; text-decoration:none; }
 
-    a { color: inherit; text-decoration: none; }
-
-    .wrap{
-      min-height: 100%;
-      padding: 46px 52px 64px;
-      box-sizing: border-box;
-    }
-
-    /* back like About */
+    /* back like About/Writing */
     .back{
-      position: absolute;
+      position: fixed;
       top: 26px;
       left: 34px;
       font-size: 18px;
-      letter-spacing: 0.5px;
-      color: rgba(235,235,235,0.62);
-      text-shadow: 0 1px 0 rgba(0,0,0,0.65);
+      letter-spacing: .5px;
+      color: rgba(235,235,235,.62);
+      text-shadow: 0 1px 0 rgba(0,0,0,.65);
+      z-index: 5;
     }
-    .back:hover{ color: rgba(235,235,235,0.78); }
+    .back:hover{ color: rgba(235,235,235,.78); }
 
-    /* RESEARCH title: keep clean (no rust, no tricks) */
-    .title{
-      text-align: center;
-      margin: 0;
-      letter-spacing: 0.28em;
-      font-weight: 500;
-      font-size: 44px;
-      color: rgba(235,235,235,0.78);
-      text-shadow: 0 1px 0 rgba(0,0,0,0.7);
+    .wrap{
+      min-height:100%;
+      padding: 62px 52px 70px;
+      box-sizing:border-box;
     }
-    .rule{
+
+    /* ===== Title: match Writing/About style ===== */
+    .title{
+      margin: 0;
+      text-align:center;
+      font-size: 44px;
+      font-weight: 500;
+      letter-spacing: .28em;
+      color: rgba(235,235,235,.78);
+      text-shadow: 0 1px 0 rgba(0,0,0,.7);
+    }
+    .title-line{
       width: min(520px, 62vw);
       height: 1px;
       margin: 18px auto 0;
-      background: rgba(235,235,235,0.22);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.7);
+      background: rgba(235,235,235,.22);
+      box-shadow: 0 1px 0 rgba(0,0,0,.7);
     }
 
-    /* Two-side stage */
+    /* ===== Layout ===== */
     .stage{
       position: relative;
-      margin: 54px auto 0;
       width: min(1100px, 92vw);
-      height: min(72vh, 640px);
+      margin: 56px auto 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 90px;
+      column-gap: 120px;
       align-items: start;
+      min-height: 62vh;
     }
 
     .side{
-      padding-top: 8px;
+      padding-top: 6px;
     }
 
-    /* ===== 展牆牌子（可讀！浮起來！） ===== */
-    .plaque{
-      display: inline-block;
-      position: relative;
-      padding: 10px 16px 12px;
-      border-radius: 10px;
-
-      /* plaque subtle body */
-      background:
-        linear-gradient(180deg,
-          rgba(255,255,255,0.05),
-          rgba(255,255,255,0.015) 22%,
-          rgba(0,0,0,0.22) 75%,
-          rgba(0,0,0,0.28));
-      border: 1px solid rgba(255,255,255,0.06);
-
-      /* lift from wall */
-      box-shadow:
-        0 18px 36px rgba(0,0,0,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        inset 0 -1px 0 rgba(0,0,0,0.55);
-      backdrop-filter: blur(0.4px);
-    }
-
-    .plate{
+    /* Past/Ongoing text: visible, elegant rust, NOT bigger than Research */
+    .label{
       margin: 0;
-      font-size: 54px;
+      font-size: 36px;             /* < Research (44px) */
       font-weight: 600;
-      letter-spacing: 0.08em;
-      line-height: 1.05;
+      letter-spacing: .10em;
+      line-height: 1.1;
 
-      /* readable metal */
-      color: var(--metal);
+      /* readable warm metal */
+      color: var(--rustA);
 
-      /* gentle embossed + depth */
+      /* “pressed/embossed” feel but still visible */
       text-shadow:
-        0 1px 0 rgba(0,0,0,0.85),
-        0 -1px 0 rgba(255,255,255,0.10),
-        1px 0 0 rgba(0,0,0,0.55),
-        -1px 0 0 rgba(0,0,0,0.55),
-        0 10px 22px rgba(0,0,0,0.55);
+        0 1px 0 rgba(0,0,0,.85),
+        0 -1px 0 rgba(255,255,255,.08),
+        1px 0 0 rgba(0,0,0,.45),
+        -1px 0 0 rgba(0,0,0,.45);
     }
 
-    /* add slight “worn metal” without killing visibility */
-    .plate span{
+    /* subtle worn gradient on letters */
+    .label span{
       background-image:
         linear-gradient(180deg,
-          var(--metal2) 0%,
-          #d7a86f 18%,
-          var(--metal) 50%,
-          #b37a43 78%,
-          var(--metal2) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
+          var(--rustB) 0%,
+          #d6aa70 20%,
+          var(--rustA) 55%,
+          #b9804c 82%,
+          var(--rustB) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
       color: transparent;
     }
 
-    /* Right wall: not glued to edge, “hung on the right half wall” */
-    .right-wall{
-      padding-left: 8%;
-      text-align: left;
+    .right{
+      text-align: right;
     }
 
-    /* ===== Divider: deeper engraved silver (not harsh) ===== */
+    /* ===== Divider: book-engraved, slightly oxidized silver ===== */
     .divider{
       position: absolute;
       left: 50%;
-      top: 52%;
+      top: 54%;
       transform: translate(-50%, -50%) rotate(10deg);
       width: 34px;
-      height: 84%;
+      height: min(70vh, 520px);
       pointer-events: none;
-      opacity: 0.95;
-      filter: saturate(0.55);
+      opacity: .98;
+      filter: saturate(.6);
     }
     .divider:before,
     .divider:after{
       content:"";
-      position: absolute;
-      top: 0;
-      bottom: 0;
+      position:absolute;
+      top:0; bottom:0;
       width: 7px;
-      border-radius: 12px;
-
-      /* engraved silver */
+      border-radius: 10px;
       background:
         linear-gradient(180deg,
-          var(--silver1),
-          var(--silver2) 20%,
-          rgba(0,0,0,0.20) 55%,
-          var(--silverDeep));
-
-      /* carve + depth */
+          var(--engr1),
+          var(--engr2) 24%,
+          rgba(0,0,0,.18) 56%,
+          var(--engrDeep));
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.10),
-        inset 0 -1px 0 rgba(0,0,0,0.65),
-        0 0 0 1px rgba(255,255,255,0.035),
-        0 18px 40px rgba(0,0,0,0.55);
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(0,0,0,.62),
+        0 0 0 1px rgba(255,255,255,.04),
+        0 16px 36px rgba(0,0,0,.55);
     }
     .divider:before{ left: 7px; }
     .divider:after{ right: 7px; }
 
-    /* ===== Mobile ===== */
+    /* ===== Mobile: stacked with space ===== */
     @media (max-width: 760px){
-      .wrap{ padding: 38px 22px 52px; }
+      .wrap{ padding: 54px 22px 60px; }
       .back{ left: 18px; top: 20px; font-size: 17px; }
 
-      .title{ font-size: 38px; letter-spacing: 0.22em; }
-      .rule{ width: min(420px, 72vw); }
+      .title{ font-size: 38px; letter-spacing: .22em; }
+      .title-line{ width: min(420px, 72vw); }
 
       .stage{
-        margin-top: 30px;
-        height: auto;
+        margin-top: 34px;
         grid-template-columns: 1fr;
-        row-gap: 18px;
+        row-gap: 34px;
+        min-height: auto;
         justify-items: center;
-      }
-
-      .plaque{
-        padding: 10px 14px 12px;
-      }
-
-      .plate{
-        font-size: 46px;
-        letter-spacing: 0.06em;
         text-align: center;
       }
 
-      .right-wall{
-        padding-left: 0;
-        text-align: center;
+      .right{ text-align: center; }
+
+      .label{
+        font-size: 34px;  /* still < title */
       }
 
       .divider{
@@ -235,14 +183,13 @@
         left: auto;
         top: auto;
         transform: rotate(10deg);
-        margin: 10px auto 12px;
-        width: 32px;
+        margin: 6px auto 6px;
         height: 210px;
       }
     }
 
     @media (max-width: 380px){
-      .plate{ font-size: 42px; }
+      .label{ font-size: 32px; }
       .divider{ height: 190px; }
     }
   </style>
@@ -253,19 +200,15 @@
 
   <div class="wrap">
     <h1 class="title">RESEARCH</h1>
-    <div class="rule"></div>
+    <div class="title-line"></div>
 
-    <section class="stage" aria-label="Research timeline split: Past and Ongoing">
-      <div class="side">
-        <div class="plaque">
-          <h2 class="plate"><span>Past</span></h2>
-        </div>
+    <section class="stage" aria-label="Research split: Past and Ongoing">
+      <div class="side left">
+        <h2 class="label"><span>Past</span></h2>
       </div>
 
-      <div class="side right-wall">
-        <div class="plaque">
-          <h2 class="plate"><span>Ongoing</span></h2>
-        </div>
+      <div class="side right">
+        <h2 class="label"><span>Ongoing</span></h2>
       </div>
 
       <div class="divider" aria-hidden="true"></div>
