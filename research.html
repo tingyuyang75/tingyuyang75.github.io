@@ -1,42 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Project · Ting Yu Yang</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Research</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;
+  --text:#e8e6e3;
+  --muted:rgba(232,230,227,0.75);
+  --line:rgba(232,230,227,0.28);
+}
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #0e0e0e;
-      color: rgba(234,234,234,0.85);
-      font-family: "Libre Baskerville", Georgia, serif;
-    }
+*{box-sizing:border-box;}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: Georgia, serif;
+  letter-spacing:0.5px;
+}
 
-    .note {
-      font-size: clamp(18px, 2vw, 24px);
-      letter-spacing: 0.6px;
-      opacity: 0.8;
-    }
-  </style>
+/* back */
+.back{
+  position:fixed;
+  top:28px;
+  left:34px;
+  font-size:16px;
+  text-decoration:none;
+  color:var(--muted);
+  opacity:.8;
+}
+.back:hover{opacity:1;}
+
+/* center header */
+.header{
+  text-align:center;
+  margin-top:120px;
+}
+
+.header h1{
+  font-weight:normal;
+  letter-spacing:4px;
+  font-size:32px;
+  margin:0;
+}
+
+.title-line{
+  width:120px;
+  height:1px;
+  background:var(--line);
+  margin:18px auto 0 auto;
+}
+
+/* mobile */
+@media (max-width:768px){
+  .header{
+    margin-top:100px;
+  }
+  .header h1{
+    font-size:26px;
+  }
+  .back{
+    top:20px;
+    left:20px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="note">
-    to be continued
-  </div>
+
+<a href="index.html" class="back">← back</a>
+
+<div class="header">
+  <h1>RESEARCH</h1>
+  <div class="title-line"></div>
+</div>
+
 </body>
 </html>
