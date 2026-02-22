@@ -10,35 +10,37 @@
       --bg0:#070707;
       --bg1:#0b0b0b;
 
-      /* base ink */
+      /* Writing / Gallery style ink */
       --ink:#cfc7bb;
       --ink-dim: rgba(207,199,187,.72);
 
-      /* readable “old brass / patina gold” */
-      --brass:#c99555;
-      --brass-deep:#6b3f16;
+      /* 5% oxidation (subtle old brass) */
+      --brass-hi:#d7b07a;
+      --brass-mid:#b88442;
+      --brass-lo:#7a4f21;
 
-      /* micro rusty silver for engraved divider (visible but not harsh) */
-      --steel:#a7a59f;
-      --steel-dim: rgba(167,165,159,.55);
-      --steel-deep: rgba(25,25,25,.70);
+      /* micro rusty silver (engraved) */
+      --silver-hi: rgba(210,210,206,.35);
+      --silver:    rgba(169,167,161,.40);
+      --silver-lo: rgba(50,50,50,.55);
 
-      --maxw: 1120px;
+      --maxw: 1100px;
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html, body { height:100%; }
+
     body{
       margin:0;
       color: var(--ink);
       background: var(--bg0);
       font-family: Georgia, "Times New Roman", serif;
 
-      /* subtle “book wall” texture */
+      /* subtle wall/book texture */
       background-image:
-        radial-gradient(1200px 900px at 20% 10%, rgba(255,255,255,.045), transparent 56%),
-        radial-gradient(1000px 800px at 78% 18%, rgba(255,255,255,.035), transparent 60%),
-        radial-gradient(900px 900px at 50% 92%, rgba(255,255,255,.03), transparent 60%),
+        radial-gradient(1200px 800px at 20% 10%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,255,255,.035), transparent 60%),
+        radial-gradient(1000px 900px at 50% 90%, rgba(255,255,255,.03), transparent 60%),
         linear-gradient(180deg, var(--bg1), var(--bg0));
       background-attachment: fixed;
     }
@@ -46,165 +48,182 @@
     a{ color: inherit; text-decoration:none; }
     a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
+    /* SAME layout logic as Writing/Gallery */
     .wrap{
       width: min(var(--maxw), calc(100% - 64px));
       margin: 0 auto;
-      padding: 28px 0 52px;
       min-height: 100vh;
+      padding: 34px 0 56px;
       position: relative;
     }
 
-    /* back */
+    /* Back: fixed position style (top-left) */
     .back{
+      position:absolute;
+      top: 26px;
+      left: 0;
       display:inline-flex;
       align-items:center;
       gap:10px;
       font-size: 18px;
       color: rgba(207,199,187,.80);
-      letter-spacing:.02em;
+      letter-spacing: .02em;
       user-select:none;
-      margin-bottom: 18px;
     }
     .back::before{
       content:"←";
-      font-size:18px;
-      line-height:1;
+      font-size: 18px;
+      line-height: 1;
       opacity:.9;
     }
 
-    /* Title: match Writing/About vibe */
+    /* Title: match Writing/Gallery */
     .title{
       text-align:center;
-      margin-top: 6px;
+      margin-top: 22px;     /* ensures back doesn't feel collision */
+      margin-bottom: 10px;
       letter-spacing: .22em;
       font-weight: 500;
-      color: rgba(207,199,187,.84);
+      color: rgba(207,199,187,.82);
       font-size: clamp(26px, 3.2vw, 40px);
       text-transform: uppercase;
       text-shadow:
-        0 1px 0 rgba(0,0,0,.86),
+        0 1px 0 rgba(0,0,0,.88),
         0 0 14px rgba(255,255,255,.04);
     }
     .title-line{
       width: min(520px, 62%);
       height: 1px;
       margin: 10px auto 0;
-      background: linear-gradient(90deg, transparent, rgba(207,199,187,.58), transparent);
-      opacity:.55;
+      background: linear-gradient(90deg, transparent, rgba(207,199,187,.55), transparent);
+      opacity: .55;
     }
 
-    /* Stage layout */
+    /* Main stage */
     .stage{
       margin-top: 30px;
       display:grid;
       grid-template-columns: 1fr 140px 1fr;
-      gap: 28px;
-      align-items: start;
-      min-height: 66vh;
+      gap: 26px;
+      align-items: stretch;
+      min-height: 64vh;
     }
 
     .panel{
-      padding: 10px 6px 24px;
-      position: relative;
+      padding: 10px 10px 24px;
     }
 
-    /* Past / Ongoing: visible old-brass engraved */
+    /* Past/Ongoing: 5% oxidation, readable */
     .section-title{
-      font-size: clamp(20px, 2.0vw, 28px);
-      letter-spacing: .06em;
+      font-size: clamp(20px, 2.0vw, 26px);
+      letter-spacing: .05em;
       font-weight: 600;
-      color: var(--brass);
-      margin: 10px 0 14px;
-      text-transform:none;
+      margin: 8px 0 14px;
+      text-transform: none; /* Past / Ongoing */
 
-      /* “engraved plate” feel */
+      /* subtle oxidized brass (NOT too “rust”) */
+      background: linear-gradient(
+        180deg,
+        var(--brass-hi) 0%,
+        var(--brass-mid) 45%,
+        var(--brass-lo) 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
       text-shadow:
-        0 1px 0 rgba(0,0,0,.90),
-        0 2px 0 rgba(0,0,0,.55),
-        0 0 18px rgba(201,149,85,.14),
-        -1px 0 0 rgba(107,63,22,.20),
-        1px 0 0 rgba(107,63,22,.18);
+        0 1px 0 rgba(0,0,0,.88),
+        0 2px 0 rgba(0,0,0,.45),
+        0 0 16px rgba(184,132,66,.08);
     }
 
     .content{
       color: var(--ink-dim);
       font-size: 16px;
-      line-height: 1.78;
+      line-height: 1.75;
       letter-spacing: .01em;
-      max-width: 460px;
+      max-width: 440px;
     }
-    .content .hint{
-      opacity:.58;
+    .hint{
+      opacity: .55;
       font-style: italic;
     }
 
-    /* Desktop alignment subtle “exhibition wall” */
-    @media (min-width: 980px){
-      .left .section-title{ text-align:left; }
-      .right .section-title{ text-align:right; }
-      .right .content{ margin-left:auto; }
-    }
-
-    /* Center engraved double diagonal divider */
+    /* Center engraved divider (double diagonal lines) */
     .divider{
       position: relative;
-      height: 62vh;
-      max-height: 520px;
-      min-height: 360px;
       display:flex;
       justify-content:center;
       align-items:center;
-      margin-top: 8px;
     }
 
-    /* plate (soft shadow, not bright) */
+    /* soft plate shadow (very subtle, not bright) */
     .divider::before{
       content:"";
       position:absolute;
-      width: 30px;
-      height: 100%;
+      width: 28px;
+      height: 72vh;
+      max-height: 520px;
+      min-height: 360px;
       border-radius: 18px;
       transform: rotate(10deg);
-      background:
-        linear-gradient(180deg,
-          rgba(255,255,255,.06),
-          rgba(255,255,255,.02) 25%,
-          rgba(0,0,0,.20) 65%,
-          rgba(0,0,0,.40));
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,.05),
+        rgba(0,0,0,.25) 60%,
+        rgba(0,0,0,.38)
+      );
       box-shadow:
         inset 0 0 0 1px rgba(0,0,0,.35),
-        0 0 24px rgba(0,0,0,.55);
+        0 0 22px rgba(0,0,0,.48);
       opacity: .28;
       pointer-events:none;
     }
 
-    /* actual engraved double lines */
+    /* the actual double engraved lines */
     .divider::after{
       content:"";
       position:absolute;
-      width: 30px;
-      height: 100%;
-      border-radius: 18px;
+      width: 34px;
+      height: 72vh;
+      max-height: 520px;
+      min-height: 360px;
       transform: rotate(10deg);
+      border-radius: 16px;
+      pointer-events:none;
+
       background:
         linear-gradient(90deg,
           transparent 0 34%,
-          var(--steel-dim) 34% 41%,
-          var(--steel-deep) 41% 46%,
+          var(--silver) 34% 40%,
+          var(--silver-lo) 40% 46%,
           transparent 46% 54%,
-          var(--steel-dim) 54% 61%,
-          var(--steel-deep) 61% 66%,
-          transparent 66% 100%);
+          var(--silver) 54% 60%,
+          var(--silver-lo) 60% 66%,
+          transparent 66% 100%
+        );
+
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.05),
-        inset 0 -1px 0 rgba(0,0,0,.55);
-      opacity: .72; /* <-- make it clearly visible, still soft */
-      pointer-events:none;
+        inset 0 1px 0 var(--silver-hi),
+        inset 0 -1px 0 rgba(0,0,0,.65);
+      opacity: .62;
     }
 
-    /* Mobile: stack Past / divider / Ongoing vertically with breathing space */
+    /* Desktop alignment: Past left, Ongoing right */
+    @media (min-width: 980px){
+      .right .section-title{ text-align:right; }
+      .right .content{ margin-left:auto; text-align:left; }
+    }
+
+    /* Mobile: stack Past / divider / Ongoing vertically + breathing */
     @media (max-width: 900px){
       .wrap{ width: min(var(--maxw), calc(100% - 40px)); }
+
+      .back{
+        top: 22px;
+        left: 0;
+      }
 
       .stage{
         grid-template-columns: 1fr;
@@ -213,36 +232,37 @@
         margin-top: 26px;
       }
 
-      /* Past / Ongoing become top & bottom */
-      .panel{ padding: 6px 6px 18px; }
+      .panel{ padding: 8px 6px 18px; }
+      .content{ max-width: 100%; }
 
+      /* mobile divider becomes an engraved horizontal line */
       .divider{
         height: 28px;
-        min-height: 28px;
-        max-height: 28px;
         margin: 6px 0 10px;
       }
-
-      /* horizontal engraved line on mobile */
       .divider::before{
-        display:none;
+        opacity: 0; /* remove plate shadow on mobile */
       }
       .divider::after{
-        transform:none;
+        transform: none;
         width: 100%;
         height: 2px;
+        min-height: 2px;
+        max-height: 2px;
         border-radius: 0;
+
         background: linear-gradient(90deg,
           transparent,
-          rgba(167,165,159,.55),
-          rgba(25,25,25,.65),
-          rgba(167,165,159,.55),
-          transparent);
-        opacity: .78;
+          rgba(169,167,161,.38),
+          rgba(50,50,50,.55),
+          rgba(169,167,161,.38),
+          transparent
+        );
+        opacity: .70;
       }
 
+      /* Ongoing should not look “right aligned” on mobile */
       .right .section-title{ text-align:left; }
-      .content{ max-width: 100%; }
     }
   </style>
 </head>
@@ -255,7 +275,7 @@
     <div class="title-line"></div>
 
     <div class="stage">
-      <!-- LEFT / TOP: Past -->
+      <!-- LEFT: Past -->
       <section class="panel left">
         <div class="section-title">Past</div>
         <div class="content">
@@ -263,10 +283,10 @@
         </div>
       </section>
 
-      <!-- CENTER divider -->
+      <!-- CENTER: Divider -->
       <div class="divider" aria-hidden="true"></div>
 
-      <!-- RIGHT / BOTTOM: Ongoing -->
+      <!-- RIGHT: Ongoing -->
       <section class="panel right">
         <div class="section-title">Ongoing</div>
         <div class="content">
