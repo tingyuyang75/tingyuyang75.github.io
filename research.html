@@ -7,241 +7,188 @@
 
   <style>
     :root{
-      --bg0:#070707;
-      --bg1:#0b0b0b;
+      --bg:#070707;
+      --ink: rgba(207,199,187,.82);
+      --ink-dim: rgba(207,199,187,.60);
 
-      /* base ink */
-      --ink:#cfc7bb;
-      --ink-dim: rgba(207,199,187,.72);
+      /* keep your old Past/Ongoing look (DON'T change) */
+      --rust:#b88442;
+      --rust-deep:#7a4f21;
+      --silver:#a9a7a1;
 
-      /* readable “old brass / patina gold” */
-      --brass:#c99555;
-      --brass-deep:#6b3f16;
-
-      /* micro rusty silver for engraved divider (visible but not harsh) */
-      --steel:#a7a59f;
-      --steel-dim: rgba(167,165,159,.55);
-      --steel-deep: rgba(25,25,25,.70);
-
-      --maxw: 1120px;
+      --maxw: 1100px;
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
+    html,body{ height:100%; }
     body{
       margin:0;
+      background: var(--bg);
       color: var(--ink);
-      background: var(--bg0);
       font-family: Georgia, "Times New Roman", serif;
-
-      /* subtle “book wall” texture */
-      background-image:
-        radial-gradient(1200px 900px at 20% 10%, rgba(255,255,255,.045), transparent 56%),
-        radial-gradient(1000px 800px at 78% 18%, rgba(255,255,255,.035), transparent 60%),
-        radial-gradient(900px 900px at 50% 92%, rgba(255,255,255,.03), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg0));
-      background-attachment: fixed;
     }
 
-    a{ color: inherit; text-decoration:none; }
+    a{ color:inherit; text-decoration:none; }
     a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
+    /* ===== Layout (match Writing) ===== */
     .wrap{
       width: min(var(--maxw), calc(100% - 64px));
       margin: 0 auto;
-      padding: 28px 0 52px;
+      padding: 40px 0 56px;
       min-height: 100vh;
       position: relative;
     }
 
-    /* back */
+    /* back (match Writing: top-left, simple, calm) */
     .back{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-size: 18px;
-      color: rgba(207,199,187,.80);
-      letter-spacing:.02em;
-      user-select:none;
-      margin-bottom: 18px;
+      position: absolute;
+      top: 26px;
+      left: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      color: rgba(207,199,187,.75);
+      letter-spacing: .02em;
+      user-select: none;
     }
     .back::before{
       content:"←";
-      font-size:18px;
-      line-height:1;
-      opacity:.9;
+      font-size: 20px;
+      line-height: 1;
+      opacity: .9;
     }
 
-    /* Title: match Writing vibe */
+    /* title (match Writing) */
     .title{
       text-align:center;
-      margin-top: 6px;
+      margin-top: 22px;
       letter-spacing: .22em;
       font-weight: 500;
-      color: rgba(207,199,187,.84);
-      font-size: clamp(26px, 3.2vw, 40px);
+      color: rgba(207,199,187,.82);
+      font-size: clamp(28px, 3.3vw, 42px);
       text-transform: uppercase;
-      text-shadow:
-        0 1px 0 rgba(0,0,0,.86),
-        0 0 14px rgba(255,255,255,.04);
     }
     .title-line{
       width: min(520px, 62%);
       height: 1px;
-      margin: 10px auto 0;
-      background: linear-gradient(90deg, transparent, rgba(207,199,187,.58), transparent);
-      opacity:.55;
+      margin: 14px auto 0;
+      background: linear-gradient(90deg, transparent, rgba(207,199,187,.55), transparent);
+      opacity: .55;
     }
 
-    /* Stage layout */
+    /* ===== Your Past/Ongoing area (keep old version) ===== */
     .stage{
-      margin-top: 30px;
+      margin-top: 34px;
       display:grid;
-      grid-template-columns: 1fr 140px 1fr;
-      gap: 28px;
-      align-items: start;
-      min-height: 66vh;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 64vh;
     }
 
     .panel{
-      padding: 10px 6px 24px;
       position: relative;
+      padding: 10px 10px 24px;
     }
 
-    /* Past / Ongoing: visible old-brass engraved */
     .section-title{
-      font-size: clamp(20px, 2.0vw, 28px);
+      font-size: clamp(20px, 2.2vw, 28px);
       letter-spacing: .06em;
       font-weight: 600;
-      color: var(--brass);
-      margin: 10px 0 14px;
-      text-transform:none;
+      color: var(--rust);
+      margin: 6px 0 14px;
+      text-transform: none;
 
-      /* “engraved plate” feel */
+      /* your “old” embossed vibe */
       text-shadow:
-        0 1px 0 rgba(0,0,0,.90),
+        0 1px 0 rgba(0,0,0,.88),
         0 2px 0 rgba(0,0,0,.55),
-        0 0 18px rgba(201,149,85,.14),
-        -1px 0 0 rgba(107,63,22,.20),
-        1px 0 0 rgba(107,63,22,.18);
+        -1px 0 0 rgba(60,30,8,.30),
+        1px 0 0 rgba(60,30,8,.25),
+        0 0 14px rgba(184,132,66,.10);
+      filter: saturate(1.05) contrast(1.02);
     }
 
     .content{
-      color: var(--ink-dim);
+      color: rgba(207,199,187,.62);
       font-size: 16px;
-      line-height: 1.78;
+      line-height: 1.75;
       letter-spacing: .01em;
-      max-width: 460px;
+      max-width: 440px;
     }
     .content .hint{
-      opacity:.58;
+      opacity: .55;
       font-style: italic;
     }
 
-    /* Desktop alignment subtle “exhibition wall” */
-    @media (min-width: 980px){
-      .left .section-title{ text-align:left; }
-      .right .section-title{ text-align:right; }
-      .right .content{ margin-left:auto; }
-    }
-
-    /* Center engraved double diagonal divider */
+    /* Desktop divider: double diagonal (subtle, not “oxidized”) */
     .divider{
       position: relative;
-      height: 62vh;
-      max-height: 520px;
-      min-height: 360px;
       display:flex;
       justify-content:center;
       align-items:center;
-      margin-top: 8px;
     }
-
-    /* plate (soft shadow, not bright) */
-    .divider::before{
-      content:"";
-      position:absolute;
-      width: 30px;
-      height: 100%;
-      border-radius: 18px;
-      transform: rotate(10deg);
-      background:
-        linear-gradient(180deg,
-          rgba(255,255,255,.06),
-          rgba(255,255,255,.02) 25%,
-          rgba(0,0,0,.20) 65%,
-          rgba(0,0,0,.40));
-      box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,.35),
-        0 0 24px rgba(0,0,0,.55);
-      opacity: .28;
-      pointer-events:none;
-    }
-
-    /* actual engraved double lines */
     .divider::after{
       content:"";
       position:absolute;
-      width: 30px;
-      height: 100%;
-      border-radius: 18px;
+      width: 26px;
+      height: 72vh;
+      max-height: 520px;
+      min-height: 360px;
+      border-radius: 14px;
       transform: rotate(10deg);
+      pointer-events:none;
+
       background:
         linear-gradient(90deg,
-          transparent 0 34%,
-          var(--steel-dim) 34% 41%,
-          var(--steel-deep) 41% 46%,
-          transparent 46% 54%,
-          var(--steel-dim) 54% 61%,
-          var(--steel-deep) 61% 66%,
-          transparent 66% 100%);
+          transparent 0 35%,
+          rgba(169,167,161,.48) 35% 43%,
+          rgba(0,0,0,.55)      43% 48%,
+          transparent 48% 52%,
+          rgba(169,167,161,.46) 52% 60%,
+          rgba(0,0,0,.55)       60% 65%,
+          transparent 65% 100%);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.05),
         inset 0 -1px 0 rgba(0,0,0,.55);
-      opacity: .72; /* <-- make it clearly visible, still soft */
-      pointer-events:none;
+      opacity: .55;
     }
 
-    /* Mobile: stack Past / divider / Ongoing vertically with breathing space */
+    @media (min-width: 980px){
+      .float-right .section-title{ text-align:right; }
+      .float-right .content{ margin-left:auto; text-align:left; }
+    }
+
+    /* Mobile: stack Past / line / Ongoing (keep your old mobile behavior) */
     @media (max-width: 900px){
-      .wrap{ width: min(var(--maxw), calc(100% - 40px)); }
+      .wrap{ width: min(var(--maxw), calc(100% - 40px)); padding-top: 56px; }
+      .back{ left: 0; top: 22px; }
 
       .stage{
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 10px;
         min-height: auto;
-        margin-top: 26px;
       }
-
-      /* Past / Ongoing become top & bottom */
-      .panel{ padding: 6px 6px 18px; }
 
       .divider{
-        height: 28px;
-        min-height: 28px;
-        max-height: 28px;
-        margin: 6px 0 10px;
-      }
-
-      /* horizontal engraved line on mobile */
-      .divider::before{
-        display:none;
+        height: 34px;
+        margin: 8px 0 14px;
       }
       .divider::after{
-        transform:none;
-        width: 100%;
+        transform: none;
         height: 2px;
+        min-height: 2px;
+        max-height: 2px;
+        width: 100%;
         border-radius: 0;
-        background: linear-gradient(90deg,
-          transparent,
-          rgba(167,165,159,.55),
-          rgba(25,25,25,.65),
-          rgba(167,165,159,.55),
-          transparent);
-        opacity: .78;
+        background: linear-gradient(90deg, transparent, rgba(207,199,187,.35), transparent);
+        opacity: .75;
       }
 
-      .right .section-title{ text-align:left; }
+      .float-right .section-title{ text-align:left; }
+      .panel{ padding: 6px 6px 18px; }
       .content{ max-width: 100%; }
     }
   </style>
@@ -251,23 +198,22 @@
   <div class="wrap">
     <a class="back" href="index.html">back</a>
 
+    <!-- ONLY change requested: make Research title/back match Writing -->
     <div class="title">RESEARCH</div>
     <div class="title-line"></div>
 
+    <!-- Keep your old Past/Ongoing block as-is -->
     <div class="stage">
-      <!-- LEFT / TOP: Past -->
-      <section class="panel left">
+      <section class="panel float-left">
         <div class="section-title">Past</div>
         <div class="content">
           <div class="hint">(You can list past projects / publications here.)</div>
         </div>
       </section>
 
-      <!-- CENTER divider -->
       <div class="divider" aria-hidden="true"></div>
 
-      <!-- RIGHT / BOTTOM: Ongoing -->
-      <section class="panel right">
+      <section class="panel float-right">
         <div class="section-title">Ongoing</div>
         <div class="content">
           <div class="hint">(You can list ongoing research threads here.)</div>
