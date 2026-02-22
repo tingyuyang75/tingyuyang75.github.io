@@ -11,15 +11,16 @@
   --text:rgba(232,230,227,0.92);
   --muted:rgba(232,230,227,0.72);
 
-  /* old gold engraved (not shiny) */
-  --gold-ink: rgba(184, 137, 78, 0.62);
-  --gold-hi:  rgba(255, 235, 205, 0.14); /* tiny edge light */
-  --gold-lo:  rgba(0, 0, 0, 0.86);       /* deep press */
+  /* Rusted-gold engraved (clearer, not shiny) */
+  --rust: rgba(198, 138, 72, 0.82);      /* main metal */
+  --rust2: rgba(156, 98, 48, 0.55);      /* deeper rust */
+  --edgehi: rgba(255, 232, 200, 0.18);   /* tiny highlight */
+  --press: rgba(0, 0, 0, 0.90);          /* deep emboss */
 
-  /* divider: hard, book-embossed metal (dark) */
-  --cut-mid:  rgba(220, 220, 220, 0.14);
-  --cut-hi:   rgba(255, 255, 255, 0.16);
-  --cut-lo:   rgba(0, 0, 0, 0.88);
+  /* Old bookplate engraved divider (clearer but not bright) */
+  --cutMid: rgba(225,225,225,0.20);
+  --cutHi:  rgba(255,255,255,0.14);
+  --cutLo:  rgba(0,0,0,0.92);
 }
 
 *{ box-sizing:border-box; }
@@ -72,33 +73,38 @@ body{
   height:560px;
 }
 
-/* Past / Ongoing */
+/* ===== Labels: elegant rusted engraved ===== */
 .label{
   position:absolute;
-  top:-42px;                 /* move UP (more) */
-  font-size:38px;            /* clearer on desktop */
-  letter-spacing:5px;
-  text-transform:none;       /* Title Case */
-  color:var(--gold-ink);
-  opacity:.98;
+  top:-46px;
+  font-size:40px;
+  letter-spacing:3px;
+  color:var(--rust);
+  opacity:1;
   z-index:3;
 
-  /* engraved: hard press + tiny edge highlight */
+  /* engraved + rust texture illusion */
   text-shadow:
-    0  2px 0 var(--gold-lo),
-    0 -1px 0 var(--gold-hi);
+    0  2px 0 var(--press),
+    0 -1px 0 var(--edgehi),
+    1px 0 0 rgba(0,0,0,0.55),
+   -1px 0 0 rgba(255,255,255,0.06),
+    0  0 18px rgba(198,138,72,0.08); /* soft warmth, not glow */
+
+  /* subtle “aged metal” */
+  filter: saturate(1.06) contrast(1.03);
 }
 .past{ left:0; }
 .ongoing{ right:0; }
 
-/* divider (behind text) */
+/* Divider */
 .divider{
   position:absolute;
   left:50%;
-  top:-60px;                 /* reaches toward title, but stays behind */
+  top:-58px;
   transform:translateX(-50%);
   height:720px;
-  width:34px;
+  width:36px;
   pointer-events:none;
   z-index:1;
 }
@@ -110,23 +116,22 @@ body{
   left:50%;
   top:0;
   transform:translateX(-50%) rotate(10deg);
-  width:5px;
+  width:6px;
   height:100%;
-  border-radius:3px;
+  border-radius:4px;
 
-  /* darker, book-embossed feel */
   background:linear-gradient(
     to bottom,
     rgba(255,255,255,0.06),
-    var(--cut-mid),
+    var(--cutMid),
     rgba(255,255,255,0.06)
   );
 
+  /* deeper press, clearer edge */
   box-shadow:
-    3px 0 0 var(--cut-lo),      /* deep sink */
-    -1px 0 0 var(--cut-hi),     /* subtle edge */
-    0 0 0 rgba(0,0,0,0);        /* no glow */
-  opacity:.90;
+    4px 0 0 var(--cutLo),
+    -1px 0 0 var(--cutHi);
+  opacity:.96;
 }
 
 /* second cut */
@@ -135,25 +140,25 @@ body{
   position:absolute;
   left:50%;
   top:0;
-  transform:translateX(calc(-50% + 11px)) rotate(10deg);
-  width:4px;
+  transform:translateX(calc(-50% + 12px)) rotate(10deg);
+  width:5px;
   height:100%;
-  border-radius:3px;
+  border-radius:4px;
 
   background:linear-gradient(
     to bottom,
     rgba(255,255,255,0.05),
-    rgba(210,210,210,0.11),
+    rgba(210,210,210,0.18),
     rgba(255,255,255,0.05)
   );
 
   box-shadow:
-    3px 0 0 rgba(0,0,0,0.90),
-    -1px 0 0 rgba(255,255,255,0.12);
-  opacity:.88;
+    4px 0 0 rgba(0,0,0,0.93),
+    -1px 0 0 rgba(255,255,255,0.10);
+  opacity:.94;
 }
 
-/* ===== mobile ===== */
+/* ===== mobile: Past/Ongoing stacked (center), divider moved down ===== */
 @media (max-width:768px){
   .back{ top:20px; left:20px; }
 
@@ -165,24 +170,36 @@ body{
     margin:70px auto 100px auto;
   }
 
+  /* stack */
   .label{
-    top:-34px;               /* still up, but less extreme */
-    font-size:30px;
-    letter-spacing:4px;
+    left:50%;
+    right:auto;
+    transform:translateX(-50%);
+    top:-52px;
+    font-size:34px;
+    letter-spacing:3px;
+    text-align:center;
+  }
+  .past{
+    top:-64px;              /* first line */
+  }
+  .ongoing{
+    top:-12px;              /* second line (stacked) */
   }
 
-  /* KEY FIX: mobile divider moves DOWN + SHORTER so it won't fight labels */
+  /* divider: shorter & starts lower so it doesn't fight the labels */
   .divider{
-    top:68px;                /* push below Past/Ongoing */
-    height:520px;            /* shorter */
-    width:28px;
+    top:88px;
+    height:500px;
+    width:30px;
   }
 }
 
-/* very small phones */
 @media (max-width:420px){
-  .label{ font-size:28px; }
-  .divider{ top:76px; height:500px; }
+  .label{ font-size:32px; }
+  .past{ top:-62px; }
+  .ongoing{ top:-14px; }
+  .divider{ top:96px; height:480px; }
 }
 </style>
 </head>
