@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>Research</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root{
@@ -11,16 +11,16 @@
   --text:#e8e6e3;
   --muted:rgba(232,230,227,0.78);
 
-  /* Title underline */
-  --line:rgba(232,230,227,0.28);
+  /* cold metal */
+  --steel-ink: rgba(214, 220, 226, 0.58);     /* metal type fill (not bright) */
+  --steel-hi:  rgba(255, 255, 255, 0.60);     /* highlight */
+  --steel-lo:  rgba(0,   0,   0,   0.78);     /* shadow */
+  --steel-glow: rgba(160, 180, 200, 0.10);    /* very faint cool glow */
 
-  /* Divider (grey-white engraved) */
-  --div-dark:rgba(255,255,255,0.18);
-  --div-light:rgba(255,255,255,0.38);
-
-  /* Past (orange-gold engraved) */
-  --gold-dark:rgba(214,156,82,0.28);
-  --gold-light:rgba(214,156,82,0.52);
+  /* divider */
+  --div-core: rgba(230, 235, 240, 0.36);
+  --div-hi:   rgba(255, 255, 255, 0.55);
+  --div-lo:   rgba(0,   0,   0,   0.86);
 }
 
 *{box-sizing:border-box;}
@@ -29,9 +29,9 @@ body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:Georgia, serif;
-  letter-spacing:0.5px;
+  font-family: Georgia, serif;
   min-height:100vh;
+  overflow-x:hidden;
 }
 
 /* back */
@@ -56,188 +56,147 @@ body{
 .header h1{
   font-weight:normal;
   letter-spacing:4px;
-  font-size:32px;
+  font-size:34px;
   margin:0;
 }
 .title-line{
-  width:120px;
+  width:140px;
   height:1px;
-  background:var(--line);
-  margin:18px auto 0 auto;
+  background:rgba(232,230,227,0.28);
+  margin:20px auto 0 auto;
 }
 
-/* ===== main split area ===== */
-.split-wrap{
-  width:100%;
-  margin-top:88px;
-  padding:0 24px 90px 24px;
-}
-
+/* ===== split stage ===== */
 .split{
   position:relative;
-  width:min(980px, 100%);
-  margin:0 auto;
-  height:420px;           /* desktop stage */
-  display:flex;
-  align-items:stretch;
-  justify-content:space-between;
-  gap:40px;
+  width:min(1100px, 92%);
+  margin:92px auto 120px auto;
+  height:540px;
 }
 
-/* left / right zones (for future content) */
-.zone{
-  flex:1;
-  position:relative;
-  min-width:0;
+/* Metal engraved labels */
+.label{
+  position:absolute;
+  top:0;
+  font-size:34px;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:var(--steel-ink);
+
+  /* hard engraved: crisp shadow + sharp highlight */
+  text-shadow:
+    0  2px 0 var(--steel-lo),         /* pressed down */
+    0 -1px 0 rgba(255,255,255,0.35),  /* top edge catch */
+    0  0  10px var(--steel-glow);     /* faint coolness */
+  opacity:.95;
 }
 
-/* Center divider: a slightly thicker engraved line, leaning RIGHT 10deg */
-.center-divider{
+.past{ left:0; }
+.ongoing{ right:0; }
+
+/* ===== deep metal double divider (leans RIGHT 10°) ===== */
+.divider{
   position:absolute;
   left:50%;
-  top:0;
+  top:-48px;                 /* extend upward closer to RESEARCH */
   transform:translateX(-50%);
-  width:10px;            /* "thicker" presence */
-  height:100%;
+  height:700px;              /* longer */
+  width:26px;
   pointer-events:none;
 }
 
-/* main line */
-.center-divider::before{
+/* main cut */
+.divider::before{
   content:"";
   position:absolute;
   left:50%;
   top:0;
   transform:translateX(-50%) rotate(10deg);
-  width:3px;             /* actual line thickness */
+  width:5px;                 /* thicker */
   height:100%;
   background:linear-gradient(
     to bottom,
-    rgba(255,255,255,0.06),
-    rgba(255,255,255,0.22),
-    rgba(255,255,255,0.06)
+    rgba(255,255,255,0.10),
+    rgba(235,240,245,0.40),
+    rgba(255,255,255,0.10)
   );
-  border-radius:2px;
+  border-radius:3px;
+
+  /* metal plate engraving: strong shadow one side, sharp highlight other side */
   box-shadow:
-    /* engraved feel: highlight + shadow */
-    1px 0 0 rgba(255,255,255,0.20),
-    -1px 0 0 rgba(0,0,0,0.55),
-    0 0 12px rgba(0,0,0,0.55);
-  opacity:.95;
+    3px 0 0 var(--div-lo),                /* deep sink */
+    -2px 0 0 var(--div-hi),               /* sharp edge catch */
+    0 0 22px rgba(0,0,0,0.70);            /* depth haze */
 }
 
-/* a faint parallel “second cut” to make it more “刻” */
-.center-divider::after{
+/* second cut */
+.divider::after{
   content:"";
   position:absolute;
   left:50%;
   top:0;
-  transform:translateX(calc(-50% + 4px)) rotate(10deg);
-  width:1px;
+  transform:translateX(calc(-50% + 10px)) rotate(10deg);
+  width:4px;                 /* thicker */
   height:100%;
-  background:rgba(255,255,255,0.10);
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.07),
+    rgba(230,235,240,0.28),
+    rgba(255,255,255,0.07)
+  );
+  border-radius:3px;
   box-shadow:
-    1px 0 0 rgba(255,255,255,0.12),
-    -1px 0 0 rgba(0,0,0,0.45);
-  opacity:.75;
-}
-
-/* ===== PAST engraved label ===== */
-.past{
-  position:absolute;
-  left:0;
-  top:36%;
-  transform:translateY(-50%);
-  font-size:26px;
-  letter-spacing:4px;
-  font-weight:normal;
-  color:rgba(214,156,82,0.18); /* base */
-  text-transform:uppercase;
-
-  /* engraved: orange-gold highlight + dark inset */
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.55),              /* sink */
-    0 -1px 0 rgba(214,156,82,0.22),        /* subtle glow up */
-    0 0 10px rgba(214,156,82,0.08);        /* faint warmth */
+    3px 0 0 rgba(0,0,0,0.82),
+    -1px 0 0 rgba(255,255,255,0.30);
   opacity:.95;
 }
 
-/* Optional tiny underline under PAST (also engraved) */
-.past-line{
-  position:absolute;
-  left:0;
-  top:calc(36% + 18px);
-  width:120px;
-  height:1px;
-  background:linear-gradient(90deg, var(--gold-light), rgba(214,156,82,0));
-  opacity:.45;
-}
-
-/* ===== responsive ===== */
+/* ===== mobile ===== */
 @media (max-width:768px){
-  .header{margin-top:100px;}
-  .header h1{font-size:26px;}
+  .header{ margin-top:100px; }
+  .header h1{ font-size:26px; }
 
-  .split-wrap{padding:0 18px 70px 18px;}
   .split{
-    height:520px;                 /* more vertical room */
-    flex-direction:column;
-    gap:26px;
+    height:640px;
+    margin:70px auto 100px auto;
   }
 
-  /* divider becomes a shorter center line so it doesn't feel like cutting the whole page */
-  .center-divider{
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    height:260px;
+  .label{
+    font-size:26px;
+    letter-spacing:5px;
   }
 
-  .past{
-    left:0;
-    top:0;
-    transform:none;
-    font-size:22px;
+  .divider{
+    height:560px;
+    top:-10px;
   }
-  .past-line{
-    left:0;
-    top:32px;
-    width:96px;
+
+  .back{
+    top:20px;
+    left:20px;
   }
 }
 
 @media (max-width:420px){
-  .back{left:18px;}
-  .center-divider{height:220px;}
+  .label{ font-size:24px; }
 }
 </style>
 </head>
 
 <body>
-  <a href="index.html" class="back">← back</a>
 
-  <div class="header">
-    <h1>RESEARCH</h1>
-    <div class="title-line"></div>
-  </div>
+<a href="index.html" class="back">← back</a>
 
-  <div class="split-wrap">
-    <div class="split">
-      <!-- Left zone -->
-      <div class="zone">
-        <div class="past">PAST</div>
-        <div class="past-line"></div>
-        <!-- 之後你要放 past 的內容/卡片，就丟在這個 zone 裡 -->
-      </div>
+<div class="header">
+  <h1>RESEARCH</h1>
+  <div class="title-line"></div>
+</div>
 
-      <!-- Right zone -->
-      <div class="zone">
-        <!-- 之後你要放 current / notes / etc. 也可以放這裡 -->
-      </div>
+<div class="split">
+  <div class="label past">PAST</div>
+  <div class="label ongoing">ONGOING</div>
+  <div class="divider"></div>
+</div>
 
-      <!-- Center divider -->
-      <div class="center-divider"></div>
-    </div>
-  </div>
 </body>
 </html>
