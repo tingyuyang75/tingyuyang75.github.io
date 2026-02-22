@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Research</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
 :root{
   --bg:#0a0a0a;
   --text:#e8e6e3;
-  --muted:rgba(232,230,227,0.75);
+  --muted:rgba(232,230,227,0.78);
+
+  /* Title underline */
   --line:rgba(232,230,227,0.28);
-  --engrave-dark:rgba(255,255,255,0.05);
-  --engrave-light:rgba(255,255,255,0.12);
+
+  /* Divider (grey-white engraved) */
+  --div-dark:rgba(255,255,255,0.18);
+  --div-light:rgba(255,255,255,0.38);
+
+  /* Past (orange-gold engraved) */
+  --gold-dark:rgba(214,156,82,0.28);
+  --gold-light:rgba(214,156,82,0.52);
 }
 
 *{box-sizing:border-box;}
@@ -23,6 +31,7 @@ body{
   color:var(--text);
   font-family:Georgia, serif;
   letter-spacing:0.5px;
+  min-height:100vh;
 }
 
 /* back */
@@ -33,7 +42,8 @@ body{
   font-size:16px;
   text-decoration:none;
   color:var(--muted);
-  opacity:.8;
+  opacity:.82;
+  z-index:10;
 }
 .back:hover{opacity:1;}
 
@@ -41,15 +51,14 @@ body{
 .header{
   text-align:center;
   margin-top:120px;
+  padding:0 16px;
 }
-
 .header h1{
   font-weight:normal;
   letter-spacing:4px;
   font-size:32px;
   margin:0;
 }
-
 .title-line{
   width:120px;
   height:1px;
@@ -57,67 +66,178 @@ body{
   margin:18px auto 0 auto;
 }
 
-/* ===== 雙刻印斜線 ===== */
-
-.divider{
-  position:relative;
+/* ===== main split area ===== */
+.split-wrap{
   width:100%;
-  height:220px;
-  margin-top:100px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  margin-top:88px;
+  padding:0 24px 90px 24px;
 }
 
-/* 第一條刻印 */
-.divider::before,
-.divider::after{
+.split{
+  position:relative;
+  width:min(980px, 100%);
+  margin:0 auto;
+  height:420px;           /* desktop stage */
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:40px;
+}
+
+/* left / right zones (for future content) */
+.zone{
+  flex:1;
+  position:relative;
+  min-width:0;
+}
+
+/* Center divider: a slightly thicker engraved line, leaning RIGHT 10deg */
+.center-divider{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:10px;            /* "thicker" presence */
+  height:100%;
+  pointer-events:none;
+}
+
+/* main line */
+.center-divider::before{
   content:"";
   position:absolute;
-  width:240px;
-  height:1px;
-  background:var(--engrave-dark);
-  transform:rotate(-10deg);
+  left:50%;
+  top:0;
+  transform:translateX(-50%) rotate(10deg);
+  width:3px;             /* actual line thickness */
+  height:100%;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.06)
+  );
+  border-radius:2px;
   box-shadow:
-    0 1px 0 var(--engrave-light),
-    0 -1px 0 rgba(0,0,0,0.6);
+    /* engraved feel: highlight + shadow */
+    1px 0 0 rgba(255,255,255,0.20),
+    -1px 0 0 rgba(0,0,0,0.55),
+    0 0 12px rgba(0,0,0,0.55);
+  opacity:.95;
 }
 
-/* 上面那條 */
-.divider::before{
-  transform:rotate(-10deg) translateY(-6px);
+/* a faint parallel “second cut” to make it more “刻” */
+.center-divider::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(calc(-50% + 4px)) rotate(10deg);
+  width:1px;
+  height:100%;
+  background:rgba(255,255,255,0.10);
+  box-shadow:
+    1px 0 0 rgba(255,255,255,0.12),
+    -1px 0 0 rgba(0,0,0,0.45);
+  opacity:.75;
 }
 
-/* 下面那條 */
-.divider::after{
-  transform:rotate(-10deg) translateY(6px);
+/* ===== PAST engraved label ===== */
+.past{
+  position:absolute;
+  left:0;
+  top:36%;
+  transform:translateY(-50%);
+  font-size:26px;
+  letter-spacing:4px;
+  font-weight:normal;
+  color:rgba(214,156,82,0.18); /* base */
+  text-transform:uppercase;
+
+  /* engraved: orange-gold highlight + dark inset */
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.55),              /* sink */
+    0 -1px 0 rgba(214,156,82,0.22),        /* subtle glow up */
+    0 0 10px rgba(214,156,82,0.08);        /* faint warmth */
+  opacity:.95;
 }
 
-/* mobile */
+/* Optional tiny underline under PAST (also engraved) */
+.past-line{
+  position:absolute;
+  left:0;
+  top:calc(36% + 18px);
+  width:120px;
+  height:1px;
+  background:linear-gradient(90deg, var(--gold-light), rgba(214,156,82,0));
+  opacity:.45;
+}
+
+/* ===== responsive ===== */
 @media (max-width:768px){
-  .header{
-    margin-top:100px;
+  .header{margin-top:100px;}
+  .header h1{font-size:26px;}
+
+  .split-wrap{padding:0 18px 70px 18px;}
+  .split{
+    height:520px;                 /* more vertical room */
+    flex-direction:column;
+    gap:26px;
   }
-  .header h1{
-    font-size:26px;
+
+  /* divider becomes a shorter center line so it doesn't feel like cutting the whole page */
+  .center-divider{
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    height:260px;
   }
-  .divider{
-    height:180px;
+
+  .past{
+    left:0;
+    top:0;
+    transform:none;
+    font-size:22px;
   }
+  .past-line{
+    left:0;
+    top:32px;
+    width:96px;
+  }
+}
+
+@media (max-width:420px){
+  .back{left:18px;}
+  .center-divider{height:220px;}
 }
 </style>
 </head>
 
 <body>
+  <a href="index.html" class="back">← back</a>
 
-<a href="index.html" class="back">← back</a>
+  <div class="header">
+    <h1>RESEARCH</h1>
+    <div class="title-line"></div>
+  </div>
 
-<div class="header">
-  <h1>RESEARCH</h1>
-  <div class="title-line"></div>
-</div>
+  <div class="split-wrap">
+    <div class="split">
+      <!-- Left zone -->
+      <div class="zone">
+        <div class="past">PAST</div>
+        <div class="past-line"></div>
+        <!-- 之後你要放 past 的內容/卡片，就丟在這個 zone 裡 -->
+      </div>
 
-<div class="divider"></div>
+      <!-- Right zone -->
+      <div class="zone">
+        <!-- 之後你要放 current / notes / etc. 也可以放這裡 -->
+      </div>
 
+      <!-- Center divider -->
+      <div class="center-divider"></div>
+    </div>
+  </div>
 </body>
 </html>
