@@ -1,222 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Research</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research</title>
 
-<style>
-:root{
-  --bg:#070707;
-  --text:rgba(232,230,227,0.92);
-  --muted:rgba(232,230,227,0.72);
+  <style>
+    :root{
+      --bg: #060606;
+      --ink: rgba(235,235,235,0.86);
 
-  /* Rusted-gold engraved (clearer, not shiny) */
-  --rust: rgba(198, 138, 72, 0.82);      /* main metal */
-  --rust2: rgba(156, 98, 48, 0.55);      /* deeper rust */
-  --edgehi: rgba(255, 232, 200, 0.18);   /* tiny highlight */
-  --press: rgba(0, 0, 0, 0.90);          /* deep emboss */
+      /* Rusty plate vibe */
+      --rust-base: #b98145;      /* warm bronze */
+      --rust-deep: #6b3f1f;      /* deep rust */
+      --rust-highlight: #d7a46a; /* worn edge */
+    }
 
-  /* Old bookplate engraved divider (clearer but not bright) */
-  --cutMid: rgba(225,225,225,0.20);
-  --cutHi:  rgba(255,255,255,0.14);
-  --cutLo:  rgba(0,0,0,0.92);
-}
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
 
-*{ box-sizing:border-box; }
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: Georgia, serif;
-  min-height:100vh;
-  overflow-x:hidden;
-}
+    body:before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,0.35), transparent 45%),
+        radial-gradient(circle at 70% 30%, rgba(255,255,255,0.25), transparent 55%),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.18), transparent 55%);
+      mix-blend-mode: screen;
+    }
 
-/* back */
-.back{
-  position:fixed;
-  top:28px;
-  left:34px;
-  font-size:16px;
-  text-decoration:none;
-  color:var(--muted);
-  opacity:.84;
-  z-index:10;
-}
-.back:hover{ opacity:1; }
+    a { color: inherit; text-decoration: none; }
 
-/* header */
-.header{
-  text-align:center;
-  margin-top:120px;
-  padding:0 16px;
-}
-.header h1{
-  margin:0;
-  font-weight:normal;
-  letter-spacing:4px;
-  font-size:34px;
-}
-.title-line{
-  width:140px;
-  height:1px;
-  background:rgba(232,230,227,0.26);
-  margin:20px auto 0 auto;
-}
+    .wrap{
+      min-height: 100%;
+      padding: 46px 52px 64px;
+      box-sizing: border-box;
+    }
 
-/* stage */
-.split{
-  position:relative;
-  width:min(1100px, 92%);
-  margin:92px auto 120px auto;
-  height:560px;
-}
+    /* back like About */
+    .back{
+      position: absolute;
+      top: 26px;
+      left: 34px;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: rgba(235,235,235,0.62);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.65);
+    }
+    .back:hover{ color: rgba(235,235,235,0.78); }
 
-/* ===== Labels: elegant rusted engraved ===== */
-.label{
-  position:absolute;
-  top:-46px;
-  font-size:40px;
-  letter-spacing:3px;
-  color:var(--rust);
-  opacity:1;
-  z-index:3;
+    /* Title like About (center + thin rule) */
+    .title{
+      text-align: center;
+      margin: 0;
+      letter-spacing: 0.28em;
+      font-weight: 500;
+      font-size: 44px;
+      color: rgba(235,235,235,0.78);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.7);
+    }
+    .rule{
+      width: min(520px, 62vw);
+      height: 1px;
+      margin: 18px auto 0;
+      background: rgba(235,235,235,0.22);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.7);
+    }
 
-  /* engraved + rust texture illusion */
-  text-shadow:
-    0  2px 0 var(--press),
-    0 -1px 0 var(--edgehi),
-    1px 0 0 rgba(0,0,0,0.55),
-   -1px 0 0 rgba(255,255,255,0.06),
-    0  0 18px rgba(198,138,72,0.08); /* soft warmth, not glow */
+    /* Main two-side stage */
+    .stage{
+      position: relative;
+      margin: 56px auto 0;
+      width: min(1100px, 92vw);
+      height: min(72vh, 640px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 80px;
+      align-items: start;
+    }
 
-  /* subtle “aged metal” */
-  filter: saturate(1.06) contrast(1.03);
-}
-.past{ left:0; }
-.ongoing{ right:0; }
+    .side{
+      padding-top: 8px;
+    }
 
-/* Divider */
-.divider{
-  position:absolute;
-  left:50%;
-  top:-58px;
-  transform:translateX(-50%);
-  height:720px;
-  width:36px;
-  pointer-events:none;
-  z-index:1;
-}
+    /* Rusty embossed heading */
+    .plate{
+      margin: 0;
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.05;
 
-/* first cut */
-.divider::before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  transform:translateX(-50%) rotate(10deg);
-  width:6px;
-  height:100%;
-  border-radius:4px;
+      color: var(--rust-base);
 
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.06),
-    var(--cutMid),
-    rgba(255,255,255,0.06)
-  );
+      text-shadow:
+        0 1px 0 rgba(0,0,0,0.85),
+        0 -1px 0 rgba(255,255,255,0.08),
+        1px 0 0 rgba(0,0,0,0.55),
+        -1px 0 0 rgba(0,0,0,0.55),
+        0 10px 24px rgba(0,0,0,0.55);
+    }
 
-  /* deeper press, clearer edge */
-  box-shadow:
-    4px 0 0 var(--cutLo),
-    -1px 0 0 var(--cutHi);
-  opacity:.96;
-}
+    @supports (-webkit-background-clip: text) {
+      .plate{
+        background-image:
+          linear-gradient(180deg,
+            var(--rust-highlight) 0%,
+            #c99255 18%,
+            var(--rust-base) 45%,
+            var(--rust-deep) 78%,
+            #c58a4d 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+      }
+    }
 
-/* second cut */
-.divider::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  transform:translateX(calc(-50% + 12px)) rotate(10deg);
-  width:5px;
-  height:100%;
-  border-radius:4px;
+    /* Divider: two parallel engraved lines, slight right tilt */
+    .divider{
+      position: absolute;
+      left: 50%;
+      top: 44%;
+      transform: translate(-50%, -50%) rotate(10deg);
+      width: 28px;
+      height: 78%;
+      pointer-events: none;
+      opacity: 0.92;
+      filter: saturate(0.6);
+    }
+    .divider:before,
+    .divider:after{
+      content:"";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      border-radius: 10px;
 
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.05),
-    rgba(210,210,210,0.18),
-    rgba(255,255,255,0.05)
-  );
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.10),
+        rgba(255,255,255,0.05) 18%,
+        rgba(0,0,0,0.35) 55%,
+        rgba(0,0,0,0.55));
 
-  box-shadow:
-    4px 0 0 rgba(0,0,0,0.93),
-    -1px 0 0 rgba(255,255,255,0.10);
-  opacity:.94;
-}
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        inset 0 -1px 0 rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 18px 38px rgba(0,0,0,0.55);
+    }
+    .divider:before{ left: 6px; }
+    .divider:after{ right: 6px; }
 
-/* ===== mobile: Past/Ongoing stacked (center), divider moved down ===== */
-@media (max-width:768px){
-  .back{ top:20px; left:20px; }
+    /* ===== 展牆版：右側 Ongoing 往中間收，不貼邊 ===== */
+    .right-wall{
+      padding-left: 10%;      /* 往中間收：像掛在右半牆 */
+      text-align: left;       /* 不要右貼齊 */
+    }
+    .right-wall .plate{
+      text-align: left;
+    }
 
-  .header{ margin-top:100px; }
-  .header h1{ font-size:26px; }
+    /* ===== Mobile ===== */
+    @media (max-width: 760px){
+      .wrap{ padding: 38px 22px 52px; }
+      .back{ left: 18px; top: 20px; font-size: 17px; }
 
-  .split{
-    height:640px;
-    margin:70px auto 100px auto;
-  }
+      .title{ font-size: 38px; letter-spacing: 0.22em; }
+      .rule{ width: min(420px, 72vw); }
 
-  /* stack */
-  .label{
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
-    top:-52px;
-    font-size:34px;
-    letter-spacing:3px;
-    text-align:center;
-  }
-  .past{
-    top:-64px;              /* first line */
-  }
-  .ongoing{
-    top:-12px;              /* second line (stacked) */
-  }
+      .stage{
+        margin-top: 34px;
+        height: auto;
+        grid-template-columns: 1fr;
+        row-gap: 26px;
+      }
 
-  /* divider: shorter & starts lower so it doesn't fight the labels */
-  .divider{
-    top:88px;
-    height:500px;
-    width:30px;
-  }
-}
+      .plate{
+        font-size: 46px;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
 
-@media (max-width:420px){
-  .label{ font-size:32px; }
-  .past{ top:-62px; }
-  .ongoing{ top:-14px; }
-  .divider{ top:96px; height:480px; }
-}
-</style>
+      /* Mobile keeps breathing room + centered headings */
+      .right-wall{
+        padding-left: 0;
+        text-align: center;
+      }
+      .right-wall .plate{ text-align: center; }
+
+      .divider{
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: rotate(10deg);
+        margin: 8px auto 10px;
+        width: 26px;
+        height: 210px;
+      }
+    }
+
+    @media (max-width: 380px){
+      .plate{ font-size: 42px; }
+      .divider{ height: 190px; }
+    }
+  </style>
 </head>
 
 <body>
-<a href="index.html" class="back">← back</a>
+  <a class="back" href="index.html">← back</a>
 
-<div class="header">
-  <h1>RESEARCH</h1>
-  <div class="title-line"></div>
-</div>
+  <div class="wrap">
+    <h1 class="title">RESEARCH</h1>
+    <div class="rule"></div>
 
-<div class="split">
-  <div class="label past">Past</div>
-  <div class="label ongoing">Ongoing</div>
-  <div class="divider"></div>
-</div>
+    <section class="stage" aria-label="Research timeline split: Past and Ongoing">
+      <div class="side">
+        <h2 class="plate">Past</h2>
+      </div>
 
+      <div class="side right-wall">
+        <h2 class="plate">Ongoing</h2>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+    </section>
+  </div>
 </body>
 </html>
