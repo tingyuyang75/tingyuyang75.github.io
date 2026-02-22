@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Research</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
 :root{
-  --bg:#0a0a0a;
-  --text:#e8e6e3;
-  --muted:rgba(232,230,227,0.78);
+  --bg:#070707;
+  --text:rgba(232,230,227,0.92);
+  --muted:rgba(232,230,227,0.72);
 
-  /* cold metal */
-  --steel-ink: rgba(214, 220, 226, 0.58);     /* metal type fill (not bright) */
-  --steel-hi:  rgba(255, 255, 255, 0.60);     /* highlight */
-  --steel-lo:  rgba(0,   0,   0,   0.78);     /* shadow */
-  --steel-glow: rgba(160, 180, 200, 0.10);    /* very faint cool glow */
+  /* old gold engraved (not shiny) */
+  --gold-ink: rgba(184, 137, 78, 0.62);
+  --gold-hi:  rgba(255, 235, 205, 0.14); /* tiny edge light */
+  --gold-lo:  rgba(0, 0, 0, 0.86);       /* deep press */
 
-  /* divider */
-  --div-core: rgba(230, 235, 240, 0.36);
-  --div-hi:   rgba(255, 255, 255, 0.55);
-  --div-lo:   rgba(0,   0,   0,   0.86);
+  /* divider: hard, book-embossed metal (dark) */
+  --cut-mid:  rgba(220, 220, 220, 0.14);
+  --cut-hi:   rgba(255, 255, 255, 0.16);
+  --cut-lo:   rgba(0, 0, 0, 0.88);
 }
 
-*{box-sizing:border-box;}
-
+*{ box-sizing:border-box; }
 body{
   margin:0;
   background:var(--bg);
@@ -42,10 +40,10 @@ body{
   font-size:16px;
   text-decoration:none;
   color:var(--muted);
-  opacity:.82;
+  opacity:.84;
   z-index:10;
 }
-.back:hover{opacity:1;}
+.back:hover{ opacity:1; }
 
 /* header */
 .header{
@@ -54,79 +52,81 @@ body{
   padding:0 16px;
 }
 .header h1{
+  margin:0;
   font-weight:normal;
   letter-spacing:4px;
   font-size:34px;
-  margin:0;
 }
 .title-line{
   width:140px;
   height:1px;
-  background:rgba(232,230,227,0.28);
+  background:rgba(232,230,227,0.26);
   margin:20px auto 0 auto;
 }
 
-/* ===== split stage ===== */
+/* stage */
 .split{
   position:relative;
   width:min(1100px, 92%);
   margin:92px auto 120px auto;
-  height:540px;
+  height:560px;
 }
 
-/* Metal engraved labels */
+/* Past / Ongoing */
 .label{
   position:absolute;
-  top:0;
-  font-size:34px;
-  letter-spacing:6px;
-  text-transform:uppercase;
-  color:var(--steel-ink);
+  top:-42px;                 /* move UP (more) */
+  font-size:38px;            /* clearer on desktop */
+  letter-spacing:5px;
+  text-transform:none;       /* Title Case */
+  color:var(--gold-ink);
+  opacity:.98;
+  z-index:3;
 
-  /* hard engraved: crisp shadow + sharp highlight */
+  /* engraved: hard press + tiny edge highlight */
   text-shadow:
-    0  2px 0 var(--steel-lo),         /* pressed down */
-    0 -1px 0 rgba(255,255,255,0.35),  /* top edge catch */
-    0  0  10px var(--steel-glow);     /* faint coolness */
-  opacity:.95;
+    0  2px 0 var(--gold-lo),
+    0 -1px 0 var(--gold-hi);
 }
-
 .past{ left:0; }
 .ongoing{ right:0; }
 
-/* ===== deep metal double divider (leans RIGHT 10°) ===== */
+/* divider (behind text) */
 .divider{
   position:absolute;
   left:50%;
-  top:-48px;                 /* extend upward closer to RESEARCH */
+  top:-60px;                 /* reaches toward title, but stays behind */
   transform:translateX(-50%);
-  height:700px;              /* longer */
-  width:26px;
+  height:720px;
+  width:34px;
   pointer-events:none;
+  z-index:1;
 }
 
-/* main cut */
+/* first cut */
 .divider::before{
   content:"";
   position:absolute;
   left:50%;
   top:0;
   transform:translateX(-50%) rotate(10deg);
-  width:5px;                 /* thicker */
+  width:5px;
   height:100%;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.10),
-    rgba(235,240,245,0.40),
-    rgba(255,255,255,0.10)
-  );
   border-radius:3px;
 
-  /* metal plate engraving: strong shadow one side, sharp highlight other side */
+  /* darker, book-embossed feel */
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06),
+    var(--cut-mid),
+    rgba(255,255,255,0.06)
+  );
+
   box-shadow:
-    3px 0 0 var(--div-lo),                /* deep sink */
-    -2px 0 0 var(--div-hi),               /* sharp edge catch */
-    0 0 22px rgba(0,0,0,0.70);            /* depth haze */
+    3px 0 0 var(--cut-lo),      /* deep sink */
+    -1px 0 0 var(--cut-hi),     /* subtle edge */
+    0 0 0 rgba(0,0,0,0);        /* no glow */
+  opacity:.90;
 }
 
 /* second cut */
@@ -135,24 +135,28 @@ body{
   position:absolute;
   left:50%;
   top:0;
-  transform:translateX(calc(-50% + 10px)) rotate(10deg);
-  width:4px;                 /* thicker */
+  transform:translateX(calc(-50% + 11px)) rotate(10deg);
+  width:4px;
   height:100%;
+  border-radius:3px;
+
   background:linear-gradient(
     to bottom,
-    rgba(255,255,255,0.07),
-    rgba(230,235,240,0.28),
-    rgba(255,255,255,0.07)
+    rgba(255,255,255,0.05),
+    rgba(210,210,210,0.11),
+    rgba(255,255,255,0.05)
   );
-  border-radius:3px;
+
   box-shadow:
-    3px 0 0 rgba(0,0,0,0.82),
-    -1px 0 0 rgba(255,255,255,0.30);
-  opacity:.95;
+    3px 0 0 rgba(0,0,0,0.90),
+    -1px 0 0 rgba(255,255,255,0.12);
+  opacity:.88;
 }
 
 /* ===== mobile ===== */
 @media (max-width:768px){
+  .back{ top:20px; left:20px; }
+
   .header{ margin-top:100px; }
   .header h1{ font-size:26px; }
 
@@ -162,29 +166,28 @@ body{
   }
 
   .label{
-    font-size:26px;
-    letter-spacing:5px;
+    top:-34px;               /* still up, but less extreme */
+    font-size:30px;
+    letter-spacing:4px;
   }
 
+  /* KEY FIX: mobile divider moves DOWN + SHORTER so it won't fight labels */
   .divider{
-    height:560px;
-    top:-10px;
-  }
-
-  .back{
-    top:20px;
-    left:20px;
+    top:68px;                /* push below Past/Ongoing */
+    height:520px;            /* shorter */
+    width:28px;
   }
 }
 
+/* very small phones */
 @media (max-width:420px){
-  .label{ font-size:24px; }
+  .label{ font-size:28px; }
+  .divider{ top:76px; height:500px; }
 }
 </style>
 </head>
 
 <body>
-
 <a href="index.html" class="back">← back</a>
 
 <div class="header">
@@ -193,8 +196,8 @@ body{
 </div>
 
 <div class="split">
-  <div class="label past">PAST</div>
-  <div class="label ongoing">ONGOING</div>
+  <div class="label past">Past</div>
+  <div class="label ongoing">Ongoing</div>
   <div class="divider"></div>
 </div>
 
